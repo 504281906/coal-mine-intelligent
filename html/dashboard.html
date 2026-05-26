@@ -6,151 +6,204 @@
 <title>煤矿智能化常态化运行管理系统 - 首页</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
+:root {
+  --bg-base: #e8ecf0;
+  --bg-card: #ffffff;
+  --border: #d0d7de;
+  --text-primary: #1a2332;
+  --text-secondary: #5a6475;
+  --text-muted: #9aa0ab;
+  --accent-blue: #2563eb;
+  --accent-blue-light: rgba(37,99,235,0.08);
+  --accent-green: #16a34a;
+  --accent-red: #dc2626;
+  --accent-amber: #d97706;
+  --accent-purple: #9333ea;
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f0f2f5; color: #333; font-size: 14px; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-size: 14px;
+  min-height: 100vh;
+}
 
-.header { height: 60px; background: #1a73e8; color: #fff; display: flex; align-items: center; padding: 0 24px; box-shadow: 0 2px 8px rgba(26,115,232,0.3); position: sticky; top: 0; z-index: 100; }
-.header .logo { font-size: 18px; font-weight: 600; margin-right: auto; display: flex; align-items: center; gap: 10px; }
-.header .logo svg { width: 28px; height: 28px; }
-.header .user-info { display: flex; align-items: center; gap: 16px; font-size: 14px; }
-.header .user-info .avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+/* HEADER */
+.header {
+  height: 60px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header .logo { font-size: 16px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+.logo-icon { width: 30px; height: 30px; background: var(--accent-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; }
+.header-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.header-time { font-size: 13px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.header-user { font-size: 13px; color: var(--text-secondary); }
 
-.main-container { display: flex; min-height: calc(100vh - 60px); }
+/* LAYOUT */
+.main-wrapper { display: flex; min-height: calc(100vh - 60px); }
 
-.sidebar { width: 200px; background: #fff; border-right: 1px solid #e8e8e8; flex-shrink: 0; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; }
-.nav-item { display: flex; align-items: center; padding: 14px 20px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.2s; gap: 10px; font-size: 14px; }
-.nav-item:hover { background: #f5f8ff; color: #1a73e8; }
-.nav-item.active { background: #e8f0fe; color: #1a73e8; border-left-color: #1a73e8; font-weight: 500; }
-.nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
-.nav-item .sub-arrow { margin-left: auto; font-size: 12px; }
+/* SIDEBAR */
+.sidebar { width: 64px; background: var(--bg-card); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 14px 0; gap: 3px; flex-shrink: 0; }
+.sidebar-item { width: 46px; height: 46px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: 12px; cursor: pointer; color: var(--text-muted); font-size: 9px; transition: all 0.2s; }
+.sidebar-item:hover { background: #f5f7fa; color: var(--text-secondary); }
+.sidebar-item.active { background: var(--accent-blue-light); color: var(--accent-blue); }
+.sidebar-item .icon { font-size: 18px; }
 
-.content { flex: 1; padding: 20px; overflow-x: hidden; min-width: 0; }
-.breadcrumb { font-size: 13px; color: #999; margin-bottom: 16px; }
+/* CONTENT */
+.content { flex: 1; padding: 20px; min-width: 0; }
+.breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
 
-.dashboard-grid {
+/* GRID: 4 equal columns, 3 rows */
+.grid {
   display: grid;
-  grid-template-columns: 230px 1fr 1fr 220px;
-  grid-template-rows: 400px 400px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto auto;
   gap: 14px;
 }
 
-.card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-.card-title { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-.card-title .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-.card-title .badge { margin-left: auto; font-size: 11px; font-weight: 400; color: #888; }
+/* CARD BASE */
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; transition: box-shadow 0.2s; }
+.card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.card-title { font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+.card-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
-/* 基本概况 - 列1行1 */
-.overview-content { font-size: 12px; line-height: 1.8; }
-.overview-content p { margin-bottom: 5px; display: flex; align-items: flex-start; gap: 6px; }
-.overview-content .label { color: #888; flex-shrink: 0; min-width: 62px; }
-.overview-content .value { color: #333; }
-.overview-content .value.red { color: #e53935; font-weight: 600; }
-.overview-content .value.orange { color: #f57c00; font-weight: 600; }
-.overview-content .value.green { color: #388e3c; font-weight: 600; }
+/* OVERVIEW: col1 row1 span2 */
+.overview-card { grid-column: 1; grid-row: 1 / 3; }
+.overview-stat { display: flex; flex-direction: column; gap: 11px; }
+.overview-item { display: flex; flex-direction: column; gap: 2px; }
+.overview-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.overview-value { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+.overview-value.red { color: var(--accent-red); font-weight: 700; }
+.overview-value.orange { color: var(--accent-amber); font-weight: 700; }
+.overview-value.green { color: var(--accent-green); font-weight: 700; }
+.overview-value.large { font-size: 22px; font-weight: 800; line-height: 1; }
+.overview-bar { height: 5px; background: #e8ecf0; border-radius: 3px; overflow: hidden; margin-top: 2px; }
+.overview-bar-fill { height: 100%; border-radius: 3px; }
 
-/* 雷达图 - 跨列2-3、跨行1-2（2×2） */
-.radar-card { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; }
-.radar-container { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px; gap: 0; width: 100%; }
+/* RADAR: cols 2-3 rows 1-2 (big center square) */
+.radar-card { grid-column: 2 / 4; grid-row: 1 / 3; display: flex; flex-direction: column; }
+.radar-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; position: relative; padding: 8px; }
 #radarChart { width: 100% !important; height: auto !important; }
-.result-badge { position: absolute; top: 36px; right: 16px; text-align: center; background: #fff3e0; border: 2px solid #ff7043; border-radius: 10px; padding: 8px 16px; min-width: 114px; z-index: 10; }
-.result-badge .label { font-size: 11px; color: #c62828; margin-bottom: 2px; font-weight: 500; }
-.result-badge .score { font-size: 30px; font-weight: 800; color: #c62828; line-height: 1; }
-.result-badge .unit { font-size: 11px; color: #c62828; font-weight: 500; }
-.result-badge.pass { background: #e8f5e9; border-color: #66bb6a; }
-.result-badge.pass .label, .result-badge.pass .score, .result-badge.pass .unit { color: #2e7d32; }
-.eval-conclusion { width: 100%; text-align: center; font-size: 12px; color: #666; background: #f8f9fa; border-radius: 6px; padding: 8px 12px; border-left: 3px solid #1a73e8; flex-shrink: 0; }
 
-/* 快捷入口 - 列4行1 */
+.result-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; background: rgba(255,255,255,0.95); border: 1px solid var(--border); border-radius: 16px; padding: 12px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); min-width: 110px; }
+.result-badge.fail { border-color: rgba(220,38,38,0.3); }
+.result-badge .label { font-size: 10px; color: var(--accent-red); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 2px; }
+.result-badge .score { font-size: 34px; font-weight: 900; color: var(--accent-red); line-height: 1; }
+.result-badge .unit { font-size: 11px; color: var(--accent-red); font-weight: 500; }
+.result-badge.pass { border-color: rgba(22,163,74,0.3); }
+.result-badge.pass .label { color: var(--accent-green); }
+.result-badge.pass .score { color: var(--accent-green); }
+.result-badge.pass .unit { color: var(--accent-green); }
+
+.eval-conclusion { width: 100%; text-align: center; font-size: 11px; color: var(--text-muted); background: #f5f7fa; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; border-left: 3px solid var(--accent-blue); flex-shrink: 0; }
+
+/* QUICK: col4 row1 */
 .quick-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.tile { border-radius: 10px; padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
-.tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-.tile .icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-.tile .label { font-size: 12px; font-weight: 500; text-align: center; color: #333; }
-.tile.org { background: linear-gradient(135deg, #e3f0ff, #bbd4fb); }
-.tile.org .icon { background: #1565c0; color: #fff; }
-.tile.reg { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
-.tile.reg .icon { background: #e65100; color: #fff; }
-.tile.policy { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
-.tile.policy .icon { background: #2e7d32; color: #fff; }
-.tile.train { background: linear-gradient(135deg, #fce4ec, #f8bbd9); }
-.tile.train .icon { background: #c2185b; color: #fff; }
+.tile { background: #f5f7fa; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s; }
+.tile:hover { background: var(--accent-blue-light); border-color: var(--accent-blue); transform: translateY(-2px); }
+.tile-icon { font-size: 16px; }
+.tile-label { font-size: 11px; color: var(--text-secondary); font-weight: 500; }
 
-/* 系统评价得分 - 列1行2 */
-.score-list { display: flex; flex-direction: column; gap: 4px; max-height: 220px; overflow-y: auto; }
-.score-item { display: flex; align-items: center; gap: 7px; }
-.score-item .label { width: 80px; font-size: 11px; color: #666; flex-shrink: 0; }
-.score-item .bar-wrap { flex: 1; height: 12px; background: #f0f0f0; border-radius: 3px; position: relative; overflow: visible; }
-.score-item .bar-wrap .pass-line { position: absolute; left: 70%; top: -3px; bottom: -3px; width: 2px; background: #e54; z-index: 2; }
-.score-item .bar { position: absolute; left: 0; top: 0; height: 100%; border-radius: 3px; }
-.score-item .bar.high { background: linear-gradient(90deg, #1565c0, #42a5f5); }
-.score-item .bar.mid { background: linear-gradient(90deg, #e53935, #ff7043); }
-.score-item .bar.low { background: linear-gradient(90deg, #b71c1c, #ef5350); }
-.score-item .score-num { width: 26px; font-size: 11px; font-weight: 700; text-align: right; }
-.score-item .score-num.high { color: #1565c0; }
-.score-item .score-num.mid { color: #e53935; }
-.score-item .score-num.low { color: #b71c1c; }
+/* SCORE: col1 row3 */
+.score-list { display: flex; flex-direction: column; gap: 7px; }
+.score-item { display: flex; align-items: center; gap: 8px; }
+.score-label { font-size: 11px; color: var(--text-secondary); width: 68px; flex-shrink: 0; }
+.score-bar-wrap { flex: 1; height: 5px; background: #e8ecf0; border-radius: 3px; overflow: visible; position: relative; }
+.score-pass-line { position: absolute; left: 70%; top: -2px; bottom: -2px; width: 1px; background: rgba(0,0,0,0.1); }
+.score-bar { height: 100%; border-radius: 3px; position: absolute; left: 0; top: 0; }
+.score-bar.high { background: var(--accent-blue); }
+.score-bar.mid { background: var(--accent-amber); }
+.score-bar.low { background: var(--accent-red); }
+.score-num { font-size: 11px; font-weight: 700; width: 26px; text-align: right; flex-shrink: 0; }
+.score-num.high { color: var(--accent-blue); }
+.score-num.mid { color: var(--accent-amber); }
+.score-num.low { color: var(--accent-red); }
 
-/* 智能化系统 - 列4行2 */
-.subsystem-list { display: flex; flex-direction: column; gap: 3px; max-height: 220px; overflow-y: auto; }
-.subsystem-item { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer; transition: background 0.2s; font-size: 12px; }
-.subsystem-item:hover { background: #e3f0ff; }
-.subsystem-item .name { color: #333; }
-.subsystem-item .status { display: flex; align-items: center; gap: 4px; font-size: 11px; }
-.subsystem-item .status-dot { width: 6px; height: 6px; border-radius: 50%; }
-.subsystem-item .status-dot.ok { background: #4caf50; }
-.subsystem-item .status-dot.warn { background: #f5a623; }
-.subsystem-item .status-dot.err { background: #e53935; }
-.subsystem-item .arrow { color: #ccc; font-size: 11px; }
+/* SUBSYSTEM: col4 row3 */
+.subsystem-list { display: flex; flex-direction: column; gap: 5px; }
+.subsystem-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; background: #f5f7fa; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.subsystem-item:hover { background: var(--accent-blue-light); border-color: var(--accent-blue); }
+.subsystem-name { font-size: 11px; color: var(--text-secondary); }
+.subsystem-status { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; }
+.status-dot.ok { background: var(--accent-green); }
+.status-dot.warn { background: var(--accent-amber); }
+.status-dot.err { background: var(--accent-red); animation: pulse-err 2s infinite; }
+@keyframes pulse-err { 0%,100%{opacity:1}50%{opacity:0.4} }
+.status-text.ok { color: var(--accent-green); }
+.status-text.warn { color: var(--accent-amber); }
+.status-text.err { color: var(--accent-red); }
 
-/* 底部三栏 */
-.bottom-tables { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+/* BOTTOM 3 EQUAL */
+.bottom-row { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mini-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.mini-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.mini-card-title { font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+.mini-card-count { font-size: 10px; color: var(--text-muted); background: #f5f7fa; padding: 2px 7px; border-radius: 8px; border: 1px solid var(--border); }
 
-.mini-card { background: #fff; border-radius: 12px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-.mini-card-title { font-size: 13px; font-weight: 600; color: #333; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
-.mini-card-title .dot { width: 8px; height: 8px; border-radius: 50%; }
-.mini-card-title .badge { margin-left: auto; font-size: 11px; font-weight: 400; color: #888; }
-.data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.data-table th { background: #f8f9fa; padding: 6px 9px; text-align: left; font-weight: 500; color: #888; border-bottom: 1px solid #eee; }
-.data-table td { padding: 6px 9px; border-bottom: 1px solid #f5f5f5; color: #333; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; padding: 0 6px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+.data-table td { padding: 8px 6px; font-size: 11px; color: var(--text-secondary); border-bottom: 1px solid #f0f2f5; }
 .data-table tr:last-child td { border-bottom: none; }
-.data-table tr:hover td { background: #f5f8ff; }
-.data-table .tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
-.data-table .tag.warn { background: #fff3e0; color: #c62828; }
-.data-table .tag.ok { background: #e8f5e9; color: #2e7d32; }
-.data-table .blue-link { color: #1565c0; cursor: pointer; text-decoration: none; }
-.data-table .blue-link:hover { text-decoration: underline; }
-.pagination { display: flex; align-items: center; justify-content: flex-end; gap: 5px; margin-top: 8px; font-size: 11px; color: #888; }
-.pagination button { padding: 3px 8px; border: 1px solid #ddd; background: #fff; border-radius: 4px; cursor: pointer; font-size: 11px; }
-.pagination button:hover { background: #f5f5f5; }
-.pagination button.active { background: #1565c0; color: #fff; border-color: #1565c0; }
+.data-table tr:hover td { background: var(--accent-blue-light); }
+.blue-link { color: var(--accent-blue); cursor: pointer; text-decoration: none; }
+.blue-link:hover { text-decoration: underline; }
+.tag { display: inline-block; padding: 1px 6px; border-radius: 5px; font-size: 10px; font-weight: 600; }
+.tag.ok { background: rgba(22,163,74,0.1); color: var(--accent-green); }
+.tag.warn { background: rgba(220,38,38,0.1); color: var(--accent-red); }
 
-/* 通知公告 */
-.notice-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f5f5f5; cursor: pointer; }
+.pagination { display: flex; align-items: center; gap: 3px; margin-top: 10px; justify-content: flex-end; }
+.pagination button { width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.pagination button:hover { background: #f5f7fa; }
+.pagination button.active { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
+.pagination-info { font-size: 10px; color: var(--text-muted); margin-left: 6px; }
+
+.notice-list { display: flex; flex-direction: column; }
+.notice-item { display: flex; align-items: flex-start; gap: 9px; padding: 8px 0; border-bottom: 1px solid #f0f2f5; cursor: pointer; transition: all 0.2s; }
 .notice-item:last-child { border-bottom: none; }
-.notice-item:hover { background: #f5f8ff; margin: 0 -14px; padding: 8px 14px; border-radius: 6px; }
-.notice-icon { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-.notice-icon.urgent { background: #ffebee; color: #c62828; }
-.notice-icon.warn { background: #fff3e0; color: #e65100; }
-.notice-icon.info { background: #e3f0ff; color: #1565c0; }
-.notice-icon.normal { background: #f5f5f5; color: #aaa; }
-.notice-body { flex: 1; }
-.notice-title { font-size: 12px; color: #333; line-height: 1.5; }
-.notice-meta { font-size: 11px; color: #aaa; margin-top: 2px; }
-.notice-tag { font-size: 10px; padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
-.notice-tag.urgent { background: #ffebee; color: #c62828; }
-.notice-tag.new { background: #e8f5e9; color: #2e7d32; }
-.notice-tag.info { background: #e3f0ff; color: #1565c0; }
+.notice-item:hover { background: var(--accent-blue-light); border-radius: 8px; padding-left: 6px; }
+.notice-icon { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+.notice-icon.urgent { background: rgba(220,38,38,0.1); color: var(--accent-red); }
+.notice-icon.warn { background: rgba(217,119,6,0.1); color: var(--accent-amber); }
+.notice-icon.info { background: rgba(37,99,235,0.1); color: var(--accent-blue); }
+.notice-icon.normal { background: #f5f7fa; color: var(--text-muted); }
+.notice-body { flex: 1; min-width: 0; }
+.notice-title { font-size: 11px; color: var(--text-secondary); line-height: 1.5; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+.notice-tag { font-size: 9px; padding: 1px 5px; border-radius: 4px; flex-shrink: 0; }
+.notice-tag.urgent { background: rgba(220,38,38,0.1); color: var(--accent-red); }
+.notice-tag.new { background: rgba(22,163,74,0.1); color: var(--accent-green); }
+.notice-tag.info { background: rgba(37,99,235,0.1); color: var(--accent-blue); }
+.notice-meta { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
 
-@media (max-width: 1200px) {
-  .dashboard-grid { grid-template-columns: 210px 1fr 1fr 200px; }
-  .bottom-tables { grid-template-columns: 1fr 1fr; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .bottom-row { grid-template-columns: 1fr 1fr; }
+  .bottom-row .mini-card:last-child { grid-column: 1 / -1; }
 }
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   .sidebar { display: none; }
-  .dashboard-grid { grid-template-columns: 1fr 1fr; }
-  .content { padding: 16px; }
-  .radar-card { grid-column: 1 / -1; }
-  .bottom-tables { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .overview-card { grid-column: 1; grid-row: 1; }
+  .radar-card { grid-column: 1 / -1; grid-row: 2; }
+  .quick-card { grid-column: 2; grid-row: 1; }
+  .score-card { grid-column: 1; grid-row: 3; }
+  .subsystem-card { grid-column: 2; grid-row: 3; }
+  .bottom-row { grid-column: 1 / -1; grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -158,103 +211,178 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
 
 <div class="header">
   <div class="logo">
-    <svg viewBox="0 0 28 28" fill="none">
-      <circle cx="14" cy="14" r="13" stroke="#fff" stroke-width="2"/>
-      <path d="M8 14l4 4 8-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <div class="logo-icon">&#9881;</div>
     煤矿智能化常态化运行管理系统
   </div>
-  <div class="user-info"><span>王矿长</span><div class="avatar">&#128100;</div></div>
+  <div class="header-right">
+    <div class="header-time" id="clock">--:--:--</div>
+    <div class="header-user">&#128100; 王矿长</div>
+  </div>
 </div>
 
-<div class="main-container">
+<div class="main-wrapper">
   <div class="sidebar">
-    <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>首页</div>
-    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>评价中心 <span class="sub-arrow">&#8250;</span></div>
-    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>运行台账 <span class="sub-arrow">&#8250;</span></div>
-    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>培训考核 <span class="sub-arrow">&#8250;</span></div>
-    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>子系统监控 <span class="sub-arrow">&#8250;</span></div>
-    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>综合管控 <span class="sub-arrow">&#8250;</span></div>
-    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>系统设置 <span class="sub-arrow">&#8250;</span></div>
+    <div class="sidebar-item active">
+      <div class="icon">&#127968;</div>
+      <span>首页</span>
+    </div>
+    <div class="sidebar-item">
+      <div class="icon">&#128202;</div>
+      <span>评价</span>
+    </div>
+    <div class="sidebar-item">
+      <div class="icon">&#128203;</div>
+      <span>台账</span>
+    </div>
+    <div class="sidebar-item">
+      <div class="icon">&#127891;</div>
+      <span>培训</span>
+    </div>
+    <div class="sidebar-item">
+      <div class="icon">&#9889;</div>
+      <span>监控</span>
+    </div>
+    <div class="sidebar-item">
+      <div class="icon">&#128421;</div>
+      <span>管控</span>
+    </div>
+    <div class="sidebar-item">
+      <div class="icon">&#9881;</div>
+      <span>设置</span>
+    </div>
   </div>
 
   <div class="content">
     <div class="breadcrumb">首页</div>
 
-    <div class="dashboard-grid">
-      <!-- 基本概况 - 列1行1 -->
-      <div class="card" style="grid-column:1;grid-row:1;">
-        <div class="card-title"><span class="dot" style="background:#1565c0"></span>基本概况</div>
-        <div class="overview-content">
-          <p><span class="label">矿井名称</span><span class="value">XXX煤矿</span></p>
-          <p><span class="label">评价周期</span><span class="value">2026年5月</span></p>
-          <p><span class="label">综合得分</span><span class="value red">40分（不合格）</span></p>
-          <p><span class="label">达标情况</span><span class="value red">距合格线差30分</span></p>
-          <p><span class="label">一票否决</span><span class="value orange">9项系统存在否决项</span></p>
-          <p><span class="label">加分情况</span><span class="value green">无加分项</span></p>
-          <p><span class="label">评价状态</span><span class="value red">&#9679; 待整改</span></p>
-          <p><span class="label">下次评价</span><span class="value">2026年06月25日</span></p>
+    <div class="grid">
+      <!-- 基本概况: col1, row1 (top-left small square) -->
+      <div class="card overview-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-dot" style="background:var(--accent-blue)"></span>
+            基本概况
+          </div>
+        </div>
+        <div class="overview-stat">
+          <div class="overview-item"><span class="overview-label">矿井名称</span><span class="overview-value">XXX煤矿</span></div>
+          <div class="overview-item"><span class="overview-label">评价周期</span><span class="overview-value">2026年5月</span></div>
+          <div class="overview-item">
+            <span class="overview-label">综合得分</span>
+            <span class="overview-value large red">40<span style="font-size:14px;font-weight:400">分</span></span>
+            <div class="overview-bar"><div class="overview-bar-fill" style="width:40%;background:var(--accent-red)"></div></div>
+          </div>
+          <div class="overview-item"><span class="overview-label">达标情况</span><span class="overview-value red">距合格线差30分</span></div>
+          <div class="overview-item"><span class="overview-label">一票否决</span><span class="overview-value orange">9项存在否决项</span></div>
+          <div class="overview-item"><span class="overview-label">加分情况</span><span class="overview-value green">无加分项</span></div>
+          <div class="overview-item"><span class="overview-label">下次评价</span><span class="overview-value">2026年06月25日</span></div>
         </div>
       </div>
 
-      <!-- 雷达图 - 列3行1 -->
-      <div class="card" style="grid-column:2 / 4;grid-row:1 / 3;">
-        <div class="card-title"><span class="dot" style="background:#1a73e8"></span>综合评价雷达图</div>
-        <div class="radar-container">
-          <canvas id="radarChart"></canvas>
+      <!-- 雷达图: cols 2-3, rows 1-2 (center big square) -->
+      <div class="card radar-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-dot" style="background:var(--accent-blue)"></span>
+            综合评价雷达图
+          </div>
+        </div>
+        <div class="radar-body">
+          <div style="width:100%;max-width:440px;">
+            <canvas id="radarChart"></canvas>
+          </div>
           <div class="result-badge fail">
             <div class="label">评价结果</div>
             <div class="score">40</div>
-            <div class="unit">分 &#183; 不合格</div>
+            <div class="unit">分 &middot; 不合格</div>
           </div>
-          <div class="eval-conclusion">距合格线（70分）差30分，需重点提升综采、掘进，信息基础设施等系统</div>
+          <div class="eval-conclusion">距合格线（70分）差30分，需重点提升综采、掘进、信息基础设施等系统</div>
         </div>
       </div>
 
-      <!-- 快捷入口 - 列4行1 -->
+      <!-- 快捷入口: col4, row1 -->
       <div class="card" style="grid-column:4;grid-row:1;">
-        <div class="card-title"><span class="dot" style="background:#f57c00"></span>快捷入口</div>
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-dot" style="background:var(--accent-amber)"></span>
+            快捷入口
+          </div>
+        </div>
         <div class="quick-tiles">
-          <div class="tile org"><div class="icon">&#128694;</div><div class="label">管理机构</div></div>
-          <div class="tile reg"><div class="icon">&#128203;</div><div class="label">管理制度</div></div>
-          <div class="tile policy"><div class="icon">&#128220;</div><div class="label">政策解读</div></div>
-          <div class="tile train"><div class="icon">&#127891;</div><div class="label">培训计划</div></div>
+          <div class="tile"><div class="tile-icon">&#128694;</div><div class="tile-label">管理机构</div></div>
+          <div class="tile"><div class="tile-icon">&#128203;</div><div class="tile-label">管理制度</div></div>
+          <div class="tile"><div class="tile-icon">&#128220;</div><div class="tile-label">政策解读</div></div>
+          <div class="tile"><div class="tile-icon">&#127891;</div><div class="tile-label">培训计划</div></div>
         </div>
       </div>
 
-      <!-- 系统评价得分 - 列1行2 -->
-      <div class="card" style="grid-column:1;grid-row:2;">
-        <div class="card-title"><span class="dot" style="background:#e53935"></span>系统评价得分</div>
+      <!-- 系统评价得分: col1, row3 -->
+      <div class="card" style="grid-column:1;grid-row:3;">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-dot" style="background:var(--accent-red)"></span>
+            系统评价得分
+          </div>
+        </div>
         <div class="score-list" id="scoreList"></div>
       </div>
 
-      <!-- 智能化系统 - 列2行2 -->
-      <div class="card" style="grid-column:4;grid-row:2;">
-        <div class="card-title"><span class="dot" style="background:#c2185b"></span>智能化系统</div>
+      <!-- 智能化系统: col4, row3 -->
+      <div class="card" style="grid-column:4;grid-row:3;">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="card-dot" style="background:var(--accent-purple)"></span>
+            智能化系统
+          </div>
+        </div>
         <div class="subsystem-list" id="subsystemList"></div>
       </div>
 
-      <!-- 底部三栏 -->
-      <div class="bottom-tables">
+      <!-- 底部三栏: spans all 4 columns -->
+      <div class="bottom-row">
         <div class="mini-card">
-          <div class="mini-card-title"><span class="dot" style="background:#1565c0"></span>运维计划 <span class="badge">共28条</span></div>
+          <div class="mini-card-header">
+            <div class="mini-card-title">
+              <span class="card-dot" style="background:var(--accent-blue)"></span>
+              运维计划
+            </div>
+            <span class="mini-card-count">28条</span>
+          </div>
           <table class="data-table">
-            <thead><tr><th>序号</th><th>创建人</th><th>计划名称</th><th>时间</th></tr></thead>
+            <thead><tr><th>#</th><th>创建人</th><th>计划名称</th><th>时间</th></tr></thead>
             <tbody id="maintenanceTable"></tbody>
           </table>
-          <div class="pagination"><button>&#171;</button><button>1</button><button class="active">2</button><button>3</button><button>&#187;</button></div>
+          <div class="pagination">
+            <button>&#171;</button><button>1</button><button class="active">2</button><button>3</button><button>&#187;</button>
+            <span class="pagination-info">共28条</span>
+          </div>
         </div>
         <div class="mini-card">
-          <div class="mini-card-title"><span class="dot" style="background:#e53935"></span>常态化评估报告 <span class="badge">共28条</span></div>
+          <div class="mini-card-header">
+            <div class="mini-card-title">
+              <span class="card-dot" style="background:var(--accent-red)"></span>
+              常态化评估报告
+            </div>
+            <span class="mini-card-count">28条</span>
+          </div>
           <table class="data-table">
-            <thead><tr><th>序号</th><th>考核内容</th><th>结果</th><th>评分</th></tr></thead>
+            <thead><tr><th>#</th><th>考核内容</th><th>结果</th><th>评分</th></tr></thead>
             <tbody id="evalTable"></tbody>
           </table>
-          <div class="pagination"><button>&#171;</button><button>1</button><button class="active">2</button><button>3</button><button>&#187;</button></div>
+          <div class="pagination">
+            <button>&#171;</button><button>1</button><button class="active">2</button><button>3</button><button>&#187;</button>
+            <span class="pagination-info">共28条</span>
+          </div>
         </div>
         <div class="mini-card">
-          <div class="mini-card-title"><span class="dot" style="background:#c2185b"></span>通知公告 <span class="badge">共6条</span></div>
-          <div id="noticeList"></div>
+          <div class="mini-card-header">
+            <div class="mini-card-title">
+              <span class="card-dot" style="background:var(--accent-purple)"></span>
+              通知公告
+            </div>
+            <span class="mini-card-count">6条</span>
+          </div>
+          <div class="notice-list" id="noticeList"></div>
         </div>
       </div>
     </div>
@@ -263,118 +391,106 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
 
 <script>
 var systems = [
-  { name: "综采系统", score: 78 },
-  { name: "掘进系统", score: 65 },
-  { name: "主运输系统", score: 82 },
-  { name: "辅助运输系统", score: 55 },
-  { name: "地质保障系统", score: 30 },
-  { name: "通风系统", score: 70 },
-  { name: "排水系统", score: 48 },
-  { name: "供电系统", score: 75 },
-  { name: "压风系统", score: 62 },
-  { name: "信息基础设施", score: 42 },
+  {name:"综采系统",score:78},{name:"掘进系统",score:65},{name:"主运输系统",score:82},
+  {name:"辅助运输系统",score:55},{name:"地质保障系统",score:30},{name:"通风系统",score:70},
+  {name:"排水系统",score:48},{name:"供电系统",score:75},{name:"压风系统",score:62},
+  {name:"信息基础设施",score:42}
 ];
 var subsystems = [
-  { name: "综采系统", status: "ok" },
-  { name: "掘进系统", status: "warn" },
-  { name: "主运输系统", status: "ok" },
-  { name: "辅助运输系统", status: "warn" },
-  { name: "地质保障系统", status: "err" },
-  { name: "通风系统", status: "ok" },
-  { name: "排水系统", status: "warn" },
-  { name: "供电系统", status: "ok" },
-  { name: "压风系统", status: "warn" },
-  { name: "信息基础设施", status: "err" },
+  {name:"综采系统",status:"ok"},{name:"掘进系统",status:"warn"},{name:"主运输系统",status:"ok"},
+  {name:"辅助运输系统",status:"warn"},{name:"地质保障系统",status:"err"},{name:"通风系统",status:"ok"},
+  {name:"排水系统",status:"warn"},{name:"供电系统",status:"ok"},{name:"压风系统",status:"warn"},
+  {name:"信息基础设施",status:"err"}
 ];
 var maintenanceData = [
-  { id: 1, person: "张三", name: "综采面设备月度检修", time: "2026-05-25" },
-  { id: 2, person: "李四", name: "主运输皮带检测", time: "2026-05-25" },
-  { id: 3, person: "王五", name: "排水系统巡检", time: "2026-05-26" },
-  { id: 4, person: "赵六", name: "通风系统月度检测", time: "2026-05-26" },
-  { id: 5, person: "钱七", name: "供电系统绝缘检测", time: "2026-05-26" },
+  {id:1,person:"张三",name:"综采面设备月度检修",time:"2026-05-25"},
+  {id:2,person:"李四",name:"主运输皮带检测",time:"2026-05-25"},
+  {id:3,person:"王五",name:"排水系统巡检",time:"2026-05-26"},
+  {id:4,person:"赵六",name:"通风系统月度检测",time:"2026-05-26"},
+  {id:5,person:"钱七",name:"供电系统绝缘检测",time:"2026-05-26"}
 ];
 var evalReportData = [
-  { id: 1, name: "综采系统月度评价", result: "合格", score: 78 },
-  { id: 2, name: "掘进系统月度评价", result: "不合格", score: 65 },
-  { id: 3, name: "主运输系统月度评价", result: "合格", score: 82 },
-  { id: 4, name: "地质保障系统月度评价", result: "不合格", score: 30 },
-  { id: 5, name: "排水系统月度评价", result: "不合格", score: 48 },
+  {id:1,name:"综采系统月度评价",result:"合格",score:78},
+  {id:2,name:"掘进系统月度评价",result:"不合格",score:65},
+  {id:3,name:"主运输系统月度评价",result:"合格",score:82},
+  {id:4,name:"地质保障系统月度评价",result:"不合格",score:30},
+  {id:5,name:"排水系统月度评价",result:"不合格",score:48}
 ];
 var noticeData = [
-  { icon: "urgent", title: "关于5月份综采系统评分不达标的整改通知", meta: "智能化办公室 · 2026-05-26", tag: "urgent", tagText: "紧急" },
-  { icon: "warn", title: "地质保障系统传感器故障，请尽快安排检修", meta: "设备管理部 · 2026-05-25", tag: "new", tagText: "新" },
-  { icon: "info", title: "国家能源局发布《井工煤矿智能化常态化运行评价方法》", meta: "政策法规部 · 2026-05-24", tag: "info", tagText: "政策" },
-  { icon: "warn", title: "6月份培训计划已发布，请各部门组织人员参加", meta: "人力资源部 · 2026-05-23", tag: "new", tagText: "新" },
-  { icon: "normal", title: "关于规范智能化系统运行台账填报的通知", meta: "智能化办公室 · 2026-05-20", tag: null, tagText: "" },
-  { icon: "normal", title: "5月份智能化系统运行月报已上传，请查阅", meta: "生产管理部 · 2026-05-18", tag: null, tagText: "" },
+  {icon:"urgent",title:"关于5月份综采系统评分不达标的整改通知",meta:"智能化办公室 \u00b7 2026-05-26",tag:"urgent",tagText:"紧急"},
+  {icon:"warn",title:"地质保障系统传感器故障，请尽快安排检修",meta:"设备管理部 \u00b7 2026-05-25",tag:"new",tagText:"新"},
+  {icon:"info",title:"国家能源局发布《井工煤矿智能化常态化运行评价方法》",meta:"政策法规部 \u00b7 2026-05-24",tag:"info",tagText:"政策"},
+  {icon:"warn",title:"6月份培训计划已发布，请各部门组织人员参加",meta:"人力资源部 \u00b7 2026-05-23",tag:"new",tagText:"新"},
+  {icon:"normal",title:"关于规范智能化系统运行台账填报的通知",meta:"智能化办公室 \u00b7 2026-05-20"},
+  {icon:"normal",title:"5月份智能化系统运行月报已上传，请查阅",meta:"生产管理部 \u00b7 2026-05-18"}
 ];
 
 function renderScoreList() {
-  var container = document.getElementById("scoreList");
+  var c = document.getElementById("scoreList");
   var html = "";
   for (var i = 0; i < systems.length; i++) {
     var s = systems[i];
-    var barClass = s.score >= 70 ? "high" : s.score >= 50 ? "mid" : "low";
-    html += '<div class="score-item">' +
-      '<span class="label">' + s.name + '</span>' +
-      '<div class="bar-wrap"><div class="pass-line"></div><div class="bar ' + barClass + '" style="width:' + s.score + '%"></div></div>' +
-      '<span class="score-num ' + barClass + '">' + s.score + '</span></div>';
+    var cls = s.score >= 70 ? "high" : s.score >= 50 ? "mid" : "low";
+    html += "<div class='score-item'>" +
+      "<span class='score-label'>" + s.name + "</span>" +
+      "<div class='score-bar-wrap'><div class='score-pass-line'></div><div class='score-bar " + cls + "' style='width:" + s.score + "%'></div></div>" +
+      "<span class='score-num " + cls + "'>" + s.score + "</span></div>";
   }
-  container.innerHTML = html;
+  c.innerHTML = html;
 }
 
 function renderSubsystemList() {
-  var container = document.getElementById("subsystemList");
-  var statusMap = { ok: "正常", warn: "预警", err: "异常" };
-  var statusColorMap = { ok: "ok", warn: "warn", err: "err" };
+  var c = document.getElementById("subsystemList");
+  var sm = {ok:"正常",warn:"预警",err:"异常"};
+  var sc = {ok:"ok",warn:"warn",err:"err"};
   var html = "";
   for (var i = 0; i < subsystems.length; i++) {
     var s = subsystems[i];
-    html += '<div class="subsystem-item"><span class="name">' + s.name + '</span>' +
-      '<span class="status"><span class="status-dot ' + statusColorMap[s.status] + '"></span>' +
-      statusMap[s.status] + '<span class="arrow">&#8250;</span></span></div>';
+    html += "<div class='subsystem-item'><span class='subsystem-name'>" + s.name + "</span>" +
+      "<span class='subsystem-status'><span class='status-dot " + sc[s.status] + "'></span>" +
+      "<span class='status-text " + sc[s.status] + "'>" + sm[s.status] + "</span></span></div>";
   }
-  container.innerHTML = html;
+  c.innerHTML = html;
 }
 
 function renderMaintenanceTable() {
-  var tbody = document.getElementById("maintenanceTable");
+  var tb = document.getElementById("maintenanceTable");
   var html = "";
   for (var i = 0; i < maintenanceData.length; i++) {
     var r = maintenanceData[i];
-    html += '<tr><td>' + r.id + '</td><td>' + r.person + '</td>' +
-      '<td><span class="blue-link">' + r.name + '</span></td><td>' + r.time + '</td></tr>';
+    html += "<tr><td>" + r.id + "</td><td>" + r.person + "</td>" +
+      "<td><span class='blue-link'>" + r.name + "</span></td><td>" + r.time + "</td></tr>";
   }
-  tbody.innerHTML = html;
+  tb.innerHTML = html;
 }
 
 function renderEvalTable() {
-  var tbody = document.getElementById("evalTable");
+  var tb = document.getElementById("evalTable");
   var html = "";
   for (var i = 0; i < evalReportData.length; i++) {
     var r = evalReportData[i];
-    html += '<tr><td>' + r.id + '</td><td><span class="blue-link">' + r.name + '</span></td>' +
-      '<td><span class="tag ' + (r.result === "合格" ? "ok" : "warn") + '">' + r.result + '</span></td>' +
-      '<td style="font-weight:600;color:' + (r.score >= 70 ? "#1565c0" : "#c62828") + '">' + r.score + '分</td></tr>';
+    html += "<tr><td>" + r.id + "</td><td><span class='blue-link'>" + r.name + "</span></td>" +
+      "<td><span class='tag " + (r.result === "合格" ? "ok" : "warn") + "'>" + r.result + "</span></td>" +
+      "<td style='font-weight:700;color:" + (r.score >= 70 ? "var(--accent-blue)" : "var(--accent-red)") + "'>" + r.score + "分</td></tr>";
   }
-  tbody.innerHTML = html;
+  tb.innerHTML = html;
 }
 
 function renderNoticeList() {
-  var container = document.getElementById("noticeList");
+  var c = document.getElementById("noticeList");
+  var iconChars = {urgent:"!",warn:"!",info:"i",normal:"-"};
   var html = "";
-  var iconChars = { urgent: "!", warn: "!", info: "i", normal: "·" };
   for (var i = 0; i < noticeData.length; i++) {
     var n = noticeData[i];
-    var tagHtml = n.tag ? '<span class="notice-tag ' + n.tag + '">' + n.tagText + '</span>' : '';
-    html += '<div class="notice-item">' +
-      '<div class="notice-icon ' + n.icon + '">' + iconChars[n.icon] + '</div>' +
-      '<div class="notice-body">' +
-        '<div class="notice-title">' + n.title + tagHtml + '</div>' +
-        '<div class="notice-meta">' + n.meta + '</div>' +
-      '</div></div>';
+    var tagHtml = n.tag ? "<span class='notice-tag " + n.tag + "'>" + n.tagText + "</span>" : "";
+    html += "<div class='notice-item'>" +
+      "<div class='notice-icon " + n.icon + "'>" + iconChars[n.icon] + "</div>" +
+      "<div class='notice-body'>" +
+        "<div class='notice-title'>" + n.title + tagHtml + "</div>" +
+        "<div class='notice-meta'>" + n.meta + "</div>" +
+      "</div></div>";
   }
-  container.innerHTML = html;
+  c.innerHTML = html;
 }
 
 function renderRadarChart() {
@@ -382,15 +498,16 @@ function renderRadarChart() {
   new Chart(ctx, {
     type: "radar",
     data: {
-      labels: systems.map(function(s) { return s.name; }),
+      labels: systems.map(function(s){return s.name;}),
       datasets: [{
-        data: systems.map(function(s) { return s.score; }),
+        data: systems.map(function(s){return s.score;}),
         fill: true,
-        backgroundColor: "rgba(21, 101, 192, 0.12)",
-        borderColor: "#1565c0",
+        backgroundColor: "rgba(37,99,235,0.1)",
+        borderColor: "#2563eb",
         borderWidth: 2,
-        pointBackgroundColor: "#1565c0",
+        pointBackgroundColor: "#2563eb",
         pointRadius: 3,
+        pointHoverRadius: 5
       }]
     },
     options: {
@@ -398,15 +515,23 @@ function renderRadarChart() {
       plugins: { legend: { display: false } },
       scales: {
         r: {
-          min: 0, max: 100, ticks: { stepSize: 20, font: { size: 10 }, color: "#999" },
-          pointLabels: { font: { size: 11 }, color: "#555" },
-          angleLines: { color: "#e8e8e8" },
-          grid: { color: "#e8e8e8" }
+          min: 0, max: 100, ticks: { stepSize: 20, font: { size: 10 }, color: "#9aa0ab", backdropColor: "transparent" },
+          pointLabels: { font: { size: 11 }, color: "#5a6475" },
+          angleLines: { color: "rgba(208,215,222,0.8)" },
+          grid: { color: "rgba(208,215,222,0.8)" }
         }
       }
     }
   });
 }
+
+function updateClock() {
+  var now = new Date();
+  var el = document.getElementById("clock");
+  if (el) el.textContent = String(now.getHours()).padStart(2,"0") + ":" + String(now.getMinutes()).padStart(2,"0") + ":" + String(now.getSeconds()).padStart(2,"0");
+}
+setInterval(updateClock, 1000);
+updateClock();
 
 renderScoreList();
 renderSubsystemList();
