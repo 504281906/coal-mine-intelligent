@@ -34,76 +34,68 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
 .breadcrumb { font-size: 13px; color: #999; margin-bottom: 16px; }
 .breadcrumb span { color: #1a73e8; }
 
-/* 页面标题 */
-.page-title { font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 20px; }
-
 /* ---- 仪表盘主体 ---- */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 300px 1fr 260px;
+  grid-template-columns: 280px 1fr 260px;
   grid-template-rows: auto auto auto;
-  gap: 16px;
+  gap: 14px;
 }
 
 /* 通用卡片样式 */
-.card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-.card-title { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.card { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.card-title { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 .card-title .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 
 /* 左上：基本概况文字描述 */
-.overview-card { grid-column: 1; }
-.overview-content { font-size: 13px; line-height: 1.8; color: #555; }
-.overview-content p { margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; }
-.overview-content .label { color: #888; flex-shrink: 0; min-width: 70px; }
+.overview-card { grid-column: 1; grid-row: 1; }
+.overview-content { font-size: 13px; line-height: 1.9; color: #555; }
+.overview-content p { margin-bottom: 7px; display: flex; align-items: flex-start; gap: 8px; }
+.overview-content .label { color: #888; flex-shrink: 0; min-width: 68px; }
 .overview-content .value { color: #333; }
 .overview-content .value.red { color: #e53935; font-weight: 600; }
 .overview-content .value.orange { color: #f57c00; font-weight: 600; }
 .overview-content .value.green { color: #388e3c; font-weight: 600; }
 
-/* 左侧：系统评价得分 */
-.score-card { grid-column: 1; }
-.score-list { display: flex; flex-direction: column; gap: 10px; }
-.score-item { display: flex; align-items: center; gap: 10px; }
-.score-item .label { width: 90px; font-size: 12px; color: #666; flex-shrink: 0; }
-.score-item .bar-wrap { flex: 1; height: 18px; background: #f0f0f0; border-radius: 4px; position: relative; overflow: hidden; }
-.score-item .bar-wrap .pass-line { position: absolute; left: 70%; top: -4px; bottom: -4px; width: 2px; background: #e54; z-index: 2; }
-.score-item .bar-wrap .pass-line::after { content: '合格'; position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #e54; white-space: nowrap; }
-.score-item .bar { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; }
+/* 左中：系统评价得分 - 高度减半 */
+.score-card { grid-column: 1; grid-row: 2; }
+.score-list { display: flex; flex-direction: column; gap: 5px; }
+.score-item { display: flex; align-items: center; gap: 8px; }
+.score-item .label { width: 86px; font-size: 11px; color: #666; flex-shrink: 0; }
+.score-item .bar-wrap { flex: 1; height: 12px; background: #f0f0f0; border-radius: 3px; position: relative; overflow: visible; }
+.score-item .bar-wrap .pass-line { position: absolute; left: 70%; top: -3px; bottom: -3px; width: 2px; background: #e54; z-index: 2; }
+.score-item .bar { position: absolute; left: 0; top: 0; height: 100%; border-radius: 3px; }
 .score-item .bar.high { background: linear-gradient(90deg, #1565c0, #42a5f5); }
 .score-item .bar.mid { background: linear-gradient(90deg, #e53935, #ff7043); }
-.score-item .bar.low { background: linear-gradient(90deg, #c62828, #ef5350); }
-.score-item .score-num { width: 30px; font-size: 12px; font-weight: 700; text-align: right; }
+.score-item .bar.low { background: linear-gradient(90deg, #b71c1c, #ef5350); }
+.score-item .score-num { width: 26px; font-size: 11px; font-weight: 700; text-align: right; }
 .score-item .score-num.high { color: #1565c0; }
 .score-item .score-num.mid { color: #e53935; }
-.score-item .score-num.low { color: #c62828; }
+.score-item .score-num.low { color: #b71c1c; }
 
-/* 中间：雷达图 + 评价结果 */
-.radar-card { grid-column: 2; display: flex; flex-direction: column; align-items: center; }
-.radar-container { position: relative; width: 100%; max-width: 420px; }
-.result-badge { position: absolute; top: 16px; left: 16px; text-align: center; background: #fff3e0; border: 2px solid #ffb74d; border-radius: 10px; padding: 12px 20px; min-width: 120px; }
-.result-badge .label { font-size: 12px; color: #e64; margin-bottom: 4px; font-weight: 500; }
-.result-badge .score { font-size: 32px; font-weight: 800; color: #e64; line-height: 1; }
-.result-badge .unit { font-size: 12px; color: #e64; font-weight: 500; }
-.result-badge.fail { background: #fff3e0; border-color: #ff7043; }
-.result-badge.fail .label { color: #c62828; }
-.result-badge.fail .score { color: #c62828; }
-.result-badge.fail .unit { color: #c62828; }
+/* 中间：雷达图 - 上移，与基本概况同一水平线 */
+.radar-card { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: center; }
+.radar-container { position: relative; width: 100%; }
+.result-badge { position: absolute; top: 8px; left: 8px; text-align: center; background: #fff3e0; border: 2px solid #ff7043; border-radius: 10px; padding: 8px 14px; min-width: 108px; z-index: 10; }
+.result-badge .label { font-size: 11px; color: #c62828; margin-bottom: 2px; font-weight: 500; }
+.result-badge .score { font-size: 28px; font-weight: 800; color: #c62828; line-height: 1; }
+.result-badge .unit { font-size: 11px; color: #c62828; font-weight: 500; }
 .result-badge.pass { background: #e8f5e9; border-color: #66bb6a; }
 .result-badge.pass .label { color: #2e7d32; }
 .result-badge.pass .score { color: #2e7d32; }
 .result-badge.pass .unit { color: #2e7d32; }
-#radarChart { width: 100% !important; height: auto !important; max-height: 360px; }
-.eval-conclusion { text-align: center; margin-top: 12px; font-size: 13px; color: #666; background: #f8f9fa; border-radius: 8px; padding: 10px 16px; border-left: 3px solid #1a73e8; }
+#radarChart { width: 100% !important; height: auto !important; max-height: 280px; }
+.eval-conclusion { text-align: center; margin-top: 8px; font-size: 12px; color: #666; background: #f8f9fa; border-radius: 6px; padding: 7px 12px; border-left: 3px solid #1a73e8; }
 
-/* 右侧：快捷入口 + 子系统列表 */
-.right-card { grid-column: 3; display: flex; flex-direction: column; gap: 16px; }
+/* 右侧：快捷入口 + 智能化系统 - 上移 */
+.right-card { grid-column: 3; grid-row: 1; display: flex; flex-direction: column; gap: 14px; }
 
 /* 四宫格快捷入口 */
-.quick-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.tile { border-radius: 10px; padding: 14px 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.quick-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tile { border-radius: 10px; padding: 11px 8px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
 .tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-.tile .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-.tile .label { font-size: 13px; font-weight: 500; text-align: center; color: #333; }
+.tile .icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.tile .label { font-size: 12px; font-weight: 500; text-align: center; color: #333; }
 .tile.org { background: linear-gradient(135deg, #e3f0ff, #bbd4fb); }
 .tile.org .icon { background: #1565c0; color: #fff; }
 .tile.reg { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
@@ -113,54 +105,55 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
 .tile.train { background: linear-gradient(135deg, #fce4ec, #f8bbd9); }
 .tile.train .icon { background: #c2185b; color: #fff; }
 
-/* 子系统列表 */
-.subsystem-list { display: flex; flex-direction: column; gap: 4px; }
-.subsystem-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 13px; }
+/* 智能化系统列表 */
+.subsystem-list { display: flex; flex-direction: column; gap: 3px; }
+.subsystem-item { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer; transition: background 0.2s; font-size: 12px; }
 .subsystem-item:hover { background: #e3f0ff; }
 .subsystem-item .name { color: #333; }
-.subsystem-item .status { display: flex; align-items: center; gap: 4px; font-size: 12px; }
+.subsystem-item .status { display: flex; align-items: center; gap: 4px; font-size: 11px; }
 .subsystem-item .status-dot { width: 6px; height: 6px; border-radius: 50%; }
 .subsystem-item .status-dot.ok { background: #4caf50; }
 .subsystem-item .status-dot.warn { background: #f5a623; }
 .subsystem-item .status-dot.err { background: #e53935; }
-.subsystem-item .arrow { color: #ccc; font-size: 12px; }
+.subsystem-item .arrow { color: #ccc; font-size: 11px; }
 
-/* 底部两个表格 - 各自独立卡片，各占1/3宽度 */
+/* 底部三个独立卡片，各占1/3 */
 .bottom-tables {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
+  gap: 14px;
 }
 
-.mini-card { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-.mini-card-title { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
+.mini-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.mini-card-title { font-size: 13px; font-weight: 600; color: #333; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
 .mini-card-title .dot { width: 8px; height: 8px; border-radius: 50%; }
-.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.data-table th { background: #f8f9fa; padding: 8px 10px; text-align: left; font-weight: 500; color: #888; border-bottom: 1px solid #eee; font-size: 12px; }
-.data-table td { padding: 8px 10px; border-bottom: 1px solid #f5f5f5; color: #333; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.data-table th { background: #f8f9fa; padding: 7px 9px; text-align: left; font-weight: 500; color: #888; border-bottom: 1px solid #eee; }
+.data-table td { padding: 7px 9px; border-bottom: 1px solid #f5f5f5; color: #333; }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: #f5f8ff; }
-.data-table .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+.data-table .tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; }
 .data-table .tag.warn { background: #fff3e0; color: #c62828; }
 .data-table .tag.ok { background: #e8f5e9; color: #2e7d32; }
 .data-table .blue-link { color: #1565c0; cursor: pointer; text-decoration: none; }
 .data-table .blue-link:hover { text-decoration: underline; }
-.pagination { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 10px; font-size: 12px; color: #888; }
-.pagination button { padding: 3px 8px; border: 1px solid #ddd; background: #fff; border-radius: 4px; cursor: pointer; font-size: 12px; }
+.pagination { display: flex; align-items: center; justify-content: flex-end; gap: 5px; margin-top: 8px; font-size: 11px; color: #888; }
+.pagination button { padding: 3px 8px; border: 1px solid #ddd; background: #fff; border-radius: 4px; cursor: pointer; font-size: 11px; }
 .pagination button:hover { background: #f5f5f5; }
 .pagination button.active { background: #1565c0; color: #fff; border-color: #1565c0; }
 
 /* 响应式 */
 @media (max-width: 1200px) {
-  .dashboard-grid { grid-template-columns: 280px 1fr 240px; }
+  .dashboard-grid { grid-template-columns: 260px 1fr 240px; }
   .bottom-tables { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 900px) {
   .sidebar { display: none; }
-  .dashboard-grid { grid-template-columns: 1fr; }
-  .score-card, .radar-card, .right-card { grid-column: 1; }
-  .right-card { flex-direction: row; }
+  .dashboard-grid { grid-template-columns: 1fr 1fr; }
+  .overview-card, .score-card { grid-column: 1; }
+  .radar-card { grid-column: 2; grid-row: 1; }
+  .right-card { grid-column: 1 / -1; flex-direction: row; }
   .bottom-tables { grid-template-columns: 1fr; }
 }
 </style>
@@ -191,33 +184,27 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
     </div>
     <div class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-      评价中心
-      <span class="sub-arrow">›</span>
+      评价中心 <span class="sub-arrow">›</span>
     </div>
     <div class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-      运行台账
-      <span class="sub-arrow">›</span>
+      运行台账 <span class="sub-arrow">›</span>
     </div>
     <div class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-      培训考核
-      <span class="sub-arrow">›</span>
+      培训考核 <span class="sub-arrow">›</span>
     </div>
     <div class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      子系统监控
-      <span class="sub-arrow">›</span>
+      子系统监控 <span class="sub-arrow">›</span>
     </div>
     <div class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      综合管控
-      <span class="sub-arrow">›</span>
+      综合管控 <span class="sub-arrow">›</span>
     </div>
     <div class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-      系统设置
-      <span class="sub-arrow">›</span>
+      系统设置 <span class="sub-arrow">›</span>
     </div>
   </div>
 
@@ -226,12 +213,9 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
     <div class="breadcrumb">首页</div>
 
     <div class="dashboard-grid">
-      <!-- 左上：基本概况文字描述 -->
+      <!-- 左上：基本概况 -->
       <div class="card overview-card">
-        <div class="card-title">
-          <span class="dot" style="background:#1565c0"></span>
-          基本概况
-        </div>
+        <div class="card-title"><span class="dot" style="background:#1565c0"></span>基本概况</div>
         <div class="overview-content">
           <p><span class="label">矿井名称</span><span class="value">XXX煤矿</span></p>
           <p><span class="label">评价周期</span><span class="value">2026年5月</span></p>
@@ -244,135 +228,71 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
         </div>
       </div>
 
-      <!-- 左侧：系统评价得分 -->
-      <div class="card score-card">
-        <div class="card-title">
-          <span class="dot" style="background:#e53935"></span>
-          系统评价得分
-        </div>
-        <div class="score-list" id="scoreList"></div>
-      </div>
-
-      <!-- 中间：雷达图 + 评价结果 -->
+      <!-- 中间：雷达图 - 上移，与基本概况同一行 -->
       <div class="card radar-card">
-        <div class="card-title">
-          <span class="dot" style="background:#1a73e8"></span>
-          综合评价雷达图
-        </div>
+        <div class="card-title"><span class="dot" style="background:#1a73e8"></span>综合评价雷达图</div>
         <div class="radar-container">
-          <div class="result-badge fail" id="resultBadge">
+          <div class="result-badge fail">
             <div class="label">评价结果</div>
-            <div class="score" id="totalScore">40</div>
+            <div class="score">40</div>
             <div class="unit">分 · 不合格</div>
           </div>
-          <div style="width:100%;max-width:400px;margin:0 auto;">
+          <div style="width:100%;max-width:360px;margin:0 auto;">
             <canvas id="radarChart"></canvas>
           </div>
-          <div class="eval-conclusion" id="evalConclusion">距合格线（70分）差30分，需重点提升综采、掘进、信息基础设施等系统</div>
+          <div class="eval-conclusion">距合格线（70分）差30分，需重点提升综采、掘进、信息基础设施等系统</div>
         </div>
       </div>
 
-      <!-- 右侧：快捷入口 + 子系统列表 -->
+      <!-- 右侧：快捷入口 + 智能化系统 - 上移 -->
       <div class="right-card">
-        <div class="card">
-          <div class="card-title">
-            <span class="dot" style="background:#f57c00"></span>
-            快捷入口
-          </div>
+        <div class="card" style="padding:14px;">
+          <div class="card-title"><span class="dot" style="background:#f57c00"></span>快捷入口</div>
           <div class="quick-tiles">
-            <div class="tile org">
-              <div class="icon">🏢</div>
-              <div class="label">管理机构</div>
-            </div>
-            <div class="tile reg">
-              <div class="icon">📑</div>
-              <div class="label">管理制度</div>
-            </div>
-            <div class="tile policy">
-              <div class="icon">📜</div>
-              <div class="label">政策解读</div>
-            </div>
-            <div class="tile train">
-              <div class="icon">🎓</div>
-              <div class="label">培训计划</div>
-            </div>
+            <div class="tile org"><div class="icon">🏢</div><div class="label">管理机构</div></div>
+            <div class="tile reg"><div class="icon">📑</div><div class="label">管理制度</div></div>
+            <div class="tile policy"><div class="icon">📜</div><div class="label">政策解读</div></div>
+            <div class="tile train"><div class="icon">🎓</div><div class="label">培训计划</div></div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-title">
-            <span class="dot" style="background:#c2185b"></span>
-            智能化系统
-          </div>
+        <div class="card" style="padding:14px;">
+          <div class="card-title"><span class="dot" style="background:#c2185b"></span>智能化系统</div>
           <div class="subsystem-list" id="subsystemList"></div>
         </div>
       </div>
 
-      <!-- 底部两个独立卡片，各占1/3 -->
+      <!-- 左下：系统评价得分 - 高度减半 -->
+      <div class="card score-card">
+        <div class="card-title"><span class="dot" style="background:#e53935"></span>系统评价得分</div>
+        <div class="score-list" id="scoreList"></div>
+      </div>
+
+      <!-- 底部三个独立卡片 -->
       <div class="bottom-tables">
-        <!-- 运维计划 -->
         <div class="mini-card">
-          <div class="mini-card-title">
-            <span class="dot" style="background:#1565c0"></span>
-            运维计划
-          </div>
+          <div class="mini-card-title"><span class="dot" style="background:#1565c0"></span>运维计划</div>
           <table class="data-table">
-            <thead>
-              <tr>
-                <th>序号</th>
-                <th>创建人</th>
-                <th>计划名称</th>
-                <th>计划时间</th>
-              </tr>
-            </thead>
+            <thead><tr><th>序号</th><th>创建人</th><th>计划名称</th><th>时间</th></tr></thead>
             <tbody id="maintenanceTable"></tbody>
           </table>
           <div class="pagination">
-            <button>«</button>
-            <button>1</button>
-            <button class="active">2</button>
-            <button>3</button>
-            <button>»</button>
-            <span>共28条</span>
+            <button>«</button><button>1</button><button class="active">2</button><button>3</button><button>»</button><span>共28条</span>
           </div>
         </div>
-
-        <!-- 常态化评估报告 -->
         <div class="mini-card">
-          <div class="mini-card-title">
-            <span class="dot" style="background:#e53935"></span>
-            常态化评估报告
-          </div>
+          <div class="mini-card-title"><span class="dot" style="background:#e53935"></span>常态化评估报告</div>
           <table class="data-table">
-            <thead>
-              <tr>
-                <th>序号</th>
-                <th>考核内容</th>
-                <th>考核结果</th>
-                <th>评分</th>
-              </tr>
-            </thead>
+            <thead><tr><th>序号</th><th>考核内容</th><th>结果</th><th>评分</th></tr></thead>
             <tbody id="evalTable"></tbody>
           </table>
           <div class="pagination">
-            <button>«</button>
-            <button>1</button>
-            <button class="active">2</button>
-            <button>3</button>
-            <button>»</button>
-            <span>共28条</span>
+            <button>«</button><button>1</button><button class="active">2</button><button>3</button><button>»</button><span>共28条</span>
           </div>
         </div>
-
-        <!-- 空白占位，保持三栏比例 -->
-        <div class="mini-card" style="background:#fafafa;">
-          <div class="mini-card-title">
-            <span class="dot" style="background:#ccc"></span>
-            通知公告
-          </div>
+        <div class="mini-card" style="background:#fafbfc;">
+          <div class="mini-card-title"><span class="dot" style="background:#ccc"></span>通知公告</div>
           <table class="data-table">
-            <tbody>
-              <tr><td colspan="4" style="text-align:center;color:#bbb;padding:30px;">暂无通知</td></tr>
-            </tbody>
+            <tbody><tr><td colspan="4" style="text-align:center;color:#bbb;padding:30px;">暂无通知</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -381,7 +301,6 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
 </div>
 
 <script>
-// 数据
 const systems = [
   { name: '综采系统', score: 78 },
   { name: '掘进系统', score: 65 },
@@ -394,7 +313,6 @@ const systems = [
   { name: '压风系统', score: 62 },
   { name: '信息基础设施', score: 42 },
 ];
-
 const subsystems = [
   { name: '综采系统', status: 'ok' },
   { name: '掘进系统', status: 'warn' },
@@ -407,7 +325,6 @@ const subsystems = [
   { name: '压风系统', status: 'warn' },
   { name: '信息基础设施', status: 'err' },
 ];
-
 const maintenanceData = [
   { id: 1, person: '张三', name: '综采面设备月度检修', time: '2026-05-25' },
   { id: 2, person: '李四', name: '主运输皮带检测', time: '2026-05-25' },
@@ -415,7 +332,6 @@ const maintenanceData = [
   { id: 4, person: '赵六', name: '通风系统月度检测', time: '2026-05-26' },
   { id: 5, person: '钱七', name: '供电系统绝缘检测', time: '2026-05-26' },
 ];
-
 const evalReportData = [
   { id: 1, name: '综采系统月度评价', result: '合格', score: 78 },
   { id: 2, name: '掘进系统月度评价', result: '不合格', score: 65 },
@@ -424,105 +340,68 @@ const evalReportData = [
   { id: 5, name: '排水系统月度评价', result: '不合格', score: 48 },
 ];
 
-// 渲染系统评价得分
 function renderScoreList() {
   const container = document.getElementById('scoreList');
   container.innerHTML = systems.map(s => {
     let barClass = s.score >= 70 ? 'high' : s.score >= 50 ? 'mid' : 'low';
     let scoreClass = s.score >= 70 ? 'high' : s.score >= 50 ? 'mid' : 'low';
-    return `<div class="score-item">
-      <span class="label">${s.name}</span>
-      <div class="bar-wrap">
-        <div class="pass-line"></div>
-        <div class="bar ${barClass}" style="width:${s.score}%"></div>
-      </div>
-      <span class="score-num ${scoreClass}">${s.score}</span>
-    </div>`;
+    return '<div class="score-item">' +
+      '<span class="label">' + s.name + '</span>' +
+      '<div class="bar-wrap"><div class="pass-line"></div><div class="bar ' + barClass + '" style="width:' + s.score + '%"></div></div>' +
+      '<span class="score-num ' + scoreClass + '">' + s.score + '</span></div>';
   }).join('');
 }
 
-// 渲染子系统列表
 function renderSubsystemList() {
   const container = document.getElementById('subsystemList');
   const statusMap = { ok: '正常', warn: '预警', err: '异常' };
   const statusColorMap = { ok: 'ok', warn: 'warn', err: 'err' };
-  container.innerHTML = subsystems.map(s => `
-    <div class="subsystem-item">
-      <span class="name">${s.name}</span>
-      <span class="status">
-        <span class="status-dot ${statusColorMap[s.status]}"></span>
-        ${statusMap[s.status]}
-        <span class="arrow">›</span>
-      </span>
-    </div>
-  `).join('');
+  container.innerHTML = subsystems.map(s =>
+    '<div class="subsystem-item"><span class="name">' + s.name + '</span>' +
+    '<span class="status"><span class="status-dot ' + statusColorMap[s.status] + '"></span>' +
+    statusMap[s.status] + '<span class="arrow">›</span></span></div>'
+  ).join('');
 }
 
-// 渲染运维计划表格
 function renderMaintenanceTable() {
   const tbody = document.getElementById('maintenanceTable');
-  tbody.innerHTML = maintenanceData.map(row => `
-    <tr>
-      <td>${row.id}</td>
-      <td>${row.person}</td>
-      <td><span class="blue-link">${row.name}</span></td>
-      <td>${row.time}</td>
-    </tr>
-  `).join('');
+  tbody.innerHTML = maintenanceData.map(row =>
+    '<tr><td>' + row.id + '</td><td>' + row.person + '</td>' +
+    '<td><span class="blue-link">' + row.name + '</span></td><td>' + row.time + '</td></tr>'
+  ).join('');
 }
 
-// 渲染评估报告表格
 function renderEvalTable() {
   const tbody = document.getElementById('evalTable');
-  tbody.innerHTML = evalReportData.map(row => `
-    <tr>
-      <td>${row.id}</td>
-      <td><span class="blue-link">${row.name}</span></td>
-      <td><span class="tag ${row.result==='合格'?'ok':'warn'}">${row.result}</span></td>
-      <td style="font-weight:600;color:${row.score>=70?'#1565c0':'#c62828'}">${row.score}分</td>
-    </tr>
-  `).join('');
+  tbody.innerHTML = evalReportData.map(row =>
+    '<tr><td>' + row.id + '</td><td><span class="blue-link">' + row.name + '</span></td>' +
+    '<td><span class="tag ' + (row.result==='合格'?'ok':'warn') + '">' + row.result + '</span></td>' +
+    '<td style="font-weight:600;color:' + (row.score>=70?'#1565c0':'#c62828') + '">' + row.score + '分</td></tr>'
+  ).join('');
 }
 
-// 雷达图
 function renderRadarChart() {
   const ctx = document.getElementById('radarChart').getContext('2d');
-  const labels = systems.map(s => s.name);
-  const data = systems.map(s => s.score);
-
   new Chart(ctx, {
     type: 'radar',
     data: {
-      labels,
+      labels: systems.map(s => s.name),
       datasets: [{
-        label: '评价得分',
-        data,
+        data: systems.map(s => s.score),
         fill: true,
         backgroundColor: 'rgba(21, 101, 192, 0.12)',
         borderColor: '#1565c0',
         borderWidth: 2,
         pointBackgroundColor: '#1565c0',
-        pointBorderColor: '#fff',
-        pointRadius: 4,
-        pointHoverRadius: 6,
+        pointRadius: 3,
       }]
     },
     options: {
       responsive: true,
-      maintainAspectRatio: true,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => `${ctx.label}: ${ctx.raw}分`
-          }
-        }
-      },
+      plugins: { legend: { display: false } },
       scales: {
         r: {
-          min: 0,
-          max: 100,
-          ticks: { stepSize: 20, font: { size: 10 }, color: '#999' },
+          min: 0, max: 100, ticks: { stepSize: 20, font: { size: 10 }, color: '#999' },
           pointLabels: { font: { size: 11 }, color: '#555' },
           angleLines: { color: '#e8e8e8' },
           grid: { color: '#e8e8e8' }
@@ -532,7 +411,6 @@ function renderRadarChart() {
   });
 }
 
-// 初始化
 renderScoreList();
 renderSubsystemList();
 renderMaintenanceTable();
