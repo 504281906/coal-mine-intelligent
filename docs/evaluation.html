@@ -200,10 +200,9 @@ body {
   .bottom-row { grid-column: 1 / -1; grid-template-columns: 1fr; }
 }
 
-/* 评价页专用 */
 .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 4px; transition: box-shadow 0.2s; }
 .stat-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-.stat-label { font-size: 12px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
 .stat-value { font-size: 28px; font-weight: 800; line-height: 1.1; }
 .stat-value.blue { color: var(--accent-blue); }
 .stat-value.green { color: var(--accent-green); }
@@ -212,7 +211,7 @@ body {
 .stat-value.purple { color: var(--accent-purple); }
 .stat-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 .search-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-.search-bar input { height: 34px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; font-size: 13px; color: var(--text-primary); background: var(--bg-card); outline: none; min-width: 180px; flex: 1; transition: border-color 0.2s; }
+.search-bar input { height: 34px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; font-size: 13px; color: var(--text-primary); background: var(--bg-card); outline: none; min-width: 160px; flex: 1; transition: border-color 0.2s, box-shadow 0.2s; }
 .search-bar input:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px var(--accent-blue-light); }
 .search-bar select { height: 34px; border: 1px solid var(--border); border-radius: 8px; padding: 0 10px; font-size: 13px; color: var(--text-secondary); background: var(--bg-card); outline: none; cursor: pointer; transition: border-color 0.2s; }
 .search-bar select:focus { border-color: var(--accent-blue); }
@@ -254,4 +253,84 @@ body {
 .pagination button:hover { background: #f5f7fa; }
 .pagination button.active { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
 .pagination-info { font-size: 11px; color: var(--text-muted); margin-left: 8px; }
-</style></head><body><div class="header"><div class="logo"><div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="building" aria-hidden="true" style="width:16px;height:16px;" class="lucide lucide-building"><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M12 6h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path><path d="M8 6h.01"></path><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg></div>' + title + '</div><div class="header-right"><div class="header-time" id="clock">--:--:--</div><div class="header-user">王矿长</div></div></div><div class="main-wrapper"><div class="sidebar">' + sb_items + '</div><div class="content"><div class="breadcrumb">' + bc + '</div>' + content + '</div></div><script>function updateClock(){var n=new Date(),e=document.getElementById("clock");if(e)e.textContent=String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0")+":"+String(n.getSeconds()).padStart(2,"0");}setInterval(updateClock,1e3);updateClock();if(typeof lucide!=="undefined")lucide.createIcons();</script></body></html>
+</style></head><body><div class="header"><div class="logo"><div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="building" aria-hidden="true" style="width:16px;height:16px;"><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M12 6h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path><path d="M8 6h.01"></path><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg></div>评价中心 - 煤矿智能化常态化运行管理系统</div><div class="header-right"><div class="header-time" id="clock">--:--:--</div><div class="header-user">王矿长</div></div></div><div class="main-wrapper"><div class="sidebar"><a class="sidebar-item" href="dashboard.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="home" aria-hidden="true" style="width:18px;height:18px;"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div><span>首页</span></a><a class="sidebar-item active" href="evaluation.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bar-chart-2" aria-hidden="true" style="width:18px;height:18px;"><path d="M5 21v-6"></path><path d="M12 21V3"></path><path d="M19 21V9"></path></svg></div><span>评价</span></a><a class="sidebar-item" href="ledger.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="file-text" aria-hidden="true" style="width:18px;height:18px;"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg></div><span>台账</span></a><a class="sidebar-item" href="training.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="graduation-cap" aria-hidden="true" style="width:18px;height:18px;"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg></div><span>培训</span></a><a class="sidebar-item" href="monitoring.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="monitor" aria-hidden="true" style="width:18px;height:18px;"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg></div><span>监控</span></a><a class="sidebar-item" href="control.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="layout-dashboard" aria-hidden="true" style="width:18px;height:18px;"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg></div><span>管控</span></a><a class="sidebar-item" href="settings.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="settings" aria-hidden="true" style="width:18px;height:18px;"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path><circle cx="12" cy="12" r="3"></circle></svg></div><span>设置</span></a></div><div class="content"><div class="breadcrumb">首页 / 评价</div>
+<div class="search-bar">
+  <input type="text" placeholder="搜索评价记录...">
+  <select><option>全部状态</option><option>合格</option><option>不合格</option></select>
+  <select><option>全部系统</option><option>综采系统</option><option>掘进系统</option><option>主运输系统</option></select>
+  <div style="margin-left:auto;display:flex;gap:10px;">
+    <button class="btn primary"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="zap" aria-hidden="true" style="width:14px;height:14px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>自动评分</button>
+    <button class="btn success"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-circle" aria-hidden="true" style="width:14px;height:14px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>一键合规</button>
+  </div>
+</div>
+
+<div class="grid grid-4" style="margin-bottom:16px;">
+  <div class="stat-card">
+    <div class="stat-label">综合得分</div>
+    <div class="stat-value red">40<span style="font-size:14px;font-weight:400">分</span></div>
+    <div class="stat-desc">距合格线差 30 分</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">合格项</div>
+    <div class="stat-value green">4<span style="font-size:14px;font-weight:400">项</span></div>
+    <div class="stat-desc">/ 10 大系统</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">不合格项</div>
+    <div class="stat-value amber">6<span style="font-size:14px;font-weight:400">项</span></div>
+    <div class="stat-desc">需重点整改</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">一票否决</div>
+    <div class="stat-value red">9<span style="font-size:14px;font-weight:400">项</span></div>
+    <div class="stat-desc">存在否决项</div>
+  </div>
+</div>
+
+<div class="grid grid-2" style="margin-bottom:16px;">
+  <div class="card">
+    <div class="card-header"><div class="card-title"><span class="card-dot" style="background:var(--accent-blue)"></span>各系统评分明细</div></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="score-item"><span class="score-label">综采系统</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar high" style="width:78%"></div></div><span class="score-num high">78</span></div>
+      <div class="score-item"><span class="score-label">掘进系统</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar mid" style="width:65%"></div></div><span class="score-num mid">65</span></div>
+      <div class="score-item"><span class="score-label">主运输系统</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar high" style="width:82%"></div></div><span class="score-num high">82</span></div>
+      <div class="score-item"><span class="score-label">辅助运输</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar mid" style="width:55%"></div></div><span class="score-num mid">55</span></div>
+      <div class="score-item"><span class="score-label">地质保障</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar low" style="width:30%"></div></div><span class="score-num low">30</span></div>
+      <div class="score-item"><span class="score-label">通风系统</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar high" style="width:70%"></div></div><span class="score-num high">70</span></div>
+      <div class="score-item"><span class="score-label">排水系统</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar low" style="width:48%"></div></div><span class="score-num low">48</span></div>
+      <div class="score-item"><span class="score-label">供电系统</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar high" style="width:75%"></div></div><span class="score-num high">75</span></div>
+      <div class="score-item"><span class="score-label">压风系统</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar mid" style="width:62%"></div></div><span class="score-num mid">62</span></div>
+      <div class="score-item"><span class="score-label">信息基础</span><div class="score-bar-wrap"><div class="score-pass-line"></div><div class="score-bar low" style="width:42%"></div></div><span class="score-num low">42</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title"><span class="card-dot" style="background:var(--accent-amber)"></span>合规检测结果</div></div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#f5f7fa;border-radius:8px;border:1px solid var(--border);"><span style="font-size:12px;color:var(--text-secondary);">机构设置完整性</span><span class="tag amber">部分合规</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#f5f7fa;border-radius:8px;border:1px solid var(--border);"><span style="font-size:12px;color:var(--text-secondary);">管理制度健全性</span><span class="tag ok">合规</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#f5f7fa;border-radius:8px;border:1px solid var(--border);"><span style="font-size:12px;color:var(--text-secondary);">人员配备达标率</span><span class="tag ok">合规</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#f5f7fa;border-radius:8px;border:1px solid var(--border);"><span style="font-size:12px;color:var(--text-secondary);">系统智能化水平</span><span class="tag amber">部分合规</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#f5f7fa;border-radius:8px;border:1px solid var(--border);"><span style="font-size:12px;color:var(--text-secondary);">数据采集覆盖率</span><span class="tag amber">部分合规</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#f5f7fa;border-radius:8px;border:1px solid var(--border);"><span style="font-size:12px;color:var(--text-secondary);">应急预案完备性</span><span class="tag ok">合规</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><span class="card-dot" style="background:var(--accent-purple)"></span>评价记录</div>
+    <span style="font-size:11px;color:var(--text-muted);">共 28 条</span>
+  </div>
+  <table class="data-table">
+    <thead><tr><th>#</th><th>评价周期</th><th>评价系统</th><th>综合得分</th><th>结果</th><th>操作</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>2026年05月</td><td><span class="blue-link">综采系统月度评价</span></td><td style="font-weight:700;color:var(--accent-blue)">78分</td><td><span class="tag ok">合格</span></td><td><span class="blue-link">查看</span></td></tr>
+      <tr><td>2</td><td>2026年05月</td><td><span class="blue-link">掘进系统月度评价</span></td><td style="font-weight:700;color:var(--accent-red)">65分</td><td><span class="tag warn">不合格</span></td><td><span class="blue-link">查看</span></td></tr>
+      <tr><td>3</td><td>2026年05月</td><td><span class="blue-link">主运输系统月度评价</span></td><td style="font-weight:700;color:var(--accent-blue)">82分</td><td><span class="tag ok">合格</span></td><td><span class="blue-link">查看</span></td></tr>
+      <tr><td>4</td><td>2026年05月</td><td><span class="blue-link">地质保障系统月度评价</span></td><td style="font-weight:700;color:var(--accent-red)">30分</td><td><span class="tag warn">不合格</span></td><td><span class="blue-link">查看</span></td></tr>
+      <tr><td>5</td><td>2026年05月</td><td><span class="blue-link">排水系统月度评价</span></td><td style="font-weight:700;color:var(--accent-red)">48分</td><td><span class="tag warn">不合格</span></td><td><span class="blue-link">查看</span></td></tr>
+    </tbody>
+  </table>
+  <div class="pagination"><button>&laquo;</button><button>1</button><button class="active">2</button><button>3</button><button>&raquo;</button><span class="pagination-info">共28条</span></div>
+</div>
+</div></div><script>function updateClock(){var n=new Date(),e=document.getElementById("clock");if(e)e.textContent=String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0")+":"+String(n.getSeconds()).padStart(2,"0");}setInterval(updateClock,1e3);updateClock();if(typeof lucide!=="undefined")lucide.createIcons();</script></body></html>
