@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>煤矿智能化常态化运行管理系统 - 首页</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f0f2f5; color: #333; font-size: 14px; }
+
+/* 顶部导航 */
+.header { height: 60px; background: #1a73e8; color: #fff; display: flex; align-items: center; padding: 0 24px; box-shadow: 0 2px 8px rgba(26,115,232,0.3); }
+.header .logo { font-size: 18px; font-weight: 600; margin-right: auto; display: flex; align-items: center; gap: 10px; }
+.header .logo svg { width: 28px; height: 28px; }
+.header .user-info { display: flex; align-items: center; gap: 16px; font-size: 14px; }
+.header .user-info .avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; }
+
+/* 主容器 */
+.main-container { display: flex; min-height: calc(100vh - 60px); }
+
+/* 左侧导航 */
+.sidebar { width: 200px; background: #fff; border-right: 1px solid #e8e8e8; flex-shrink: 0; }
+.nav-item { display: flex; align-items: center; padding: 14px 20px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.2s; gap: 10px; font-size: 14px; }
+.nav-item:hover { background: #f5f8ff; color: #1a73e8; }
+.nav-item.active { background: #e8f0fe; color: #1a73e8; border-left-color: #1a73e8; font-weight: 500; }
+.nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+.nav-item .sub-arrow { margin-left: auto; font-size: 12px; }
+
+/* 内容区 */
+.content { flex: 1; padding: 20px; overflow-x: hidden; }
+
+/* 面包屑 */
+.breadcrumb { font-size: 13px; color: #999; margin-bottom: 16px; }
+.breadcrumb span { color: #1a73e8; }
+
+/* 页面标题 */
+.page-title { font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 20px; }
+
+/* ---- 仪表盘主体 ---- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr 260px;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+/* 通用卡片样式 */
+.card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.card-title { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.card-title .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* 左侧：各系统得分 */
+.score-card { grid-row: 1; }
+.score-list { display: flex; flex-direction: column; gap: 10px; }
+.score-item { display: flex; align-items: center; gap: 10px; }
+.score-item .label { width: 90px; font-size: 12px; color: #666; flex-shrink: 0; }
+.score-item .bar-wrap { flex: 1; height: 20px; background: #f0f0f0; border-radius: 4px; position: relative; overflow: hidden; }
+.score-item .bar-wrap::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+.score-item .bar-wrap .bar { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; }
+.score-item .bar-wrap.pass { background: transparent; }
+.score-item .bar-wrap.pass .bar { background: #4a90e2; }
+.score-item .bar-wrap.fail { background: transparent; }
+.score-item .bar-wrap.fail .bar { background: #f5a623; }
+.score-item .bar-wrap.fail-low { background: transparent; }
+.score-item .bar-wrap.fail-low .bar { background: #e54; }
+.score-item .score-num { width: 32px; font-size: 12px; font-weight: 600; text-align: right; }
+
+/* 合格线标记 */
+.score-item .bar-wrap .pass-line {
+  position: absolute;
+  left: 70%;
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  background: #e54;
+  z-index: 2;
+}
+.score-item .bar-wrap .pass-line::after {
+  content: '合格线';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #e54;
+  white-space: nowrap;
+}
+
+/* 中间：雷达图 + 评价结果 */
+.radar-card { grid-row: 1; display: flex; flex-direction: column; align-items: center; }
+.radar-container { position: relative; width: 100%; max-width: 400px; }
+.radar-chart-wrap { position: relative; }
+#radarChart { width: 100% !important; height: auto !important; }
+.result-badge { position: absolute; top: 16px; right: 16px; text-align: center; background: #fff3e0; border: 1px solid #ffb74d; border-radius: 8px; padding: 10px 16px; }
+.result-badge .label { font-size: 12px; color: #e64; margin-bottom: 4px; }
+.result-badge .score { font-size: 28px; font-weight: 700; color: #e64; line-height: 1; }
+.result-badge .unit { font-size: 12px; color: #e64; }
+.result-badge.fail { background: #fff3e0; border-color: #ffb74d; }
+.result-badge.pass { background: #e8f5e9; border-color: #81c784; }
+.result-badge.pass .label { color: #388e3c; }
+.result-badge.pass .score { color: #388e3c; }
+.result-badge.pass .unit { color: #388e3c; }
+
+/* 评价结论 */
+.eval-conclusion { text-align: center; margin-top: 12px; font-size: 13px; color: #888; }
+
+/* 右侧：快捷入口 + 子系统列表 */
+.right-card { grid-row: 1; display: flex; flex-direction: column; gap: 16px; }
+
+/* 四宫格快捷入口 */
+.quick-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { border-radius: 10px; padding: 14px 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.tile .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.tile .label { font-size: 13px; font-weight: 500; text-align: center; }
+.tile.org { background: linear-gradient(135deg, #e3f0ff, #cce4ff); }
+.tile.org .icon { background: #1a73e8; color: #fff; }
+.tile.reg { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+.tile.reg .icon { background: #f57c00; color: #fff; }
+.tile.policy { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+.tile.policy .icon { background: #388e3c; color: #fff; }
+.tile.train { background: linear-gradient(135deg, #fce4ec, #f8bbd9); }
+.tile.train .icon { background: #e91e63; color: #fff; }
+
+/* 子系统列表 */
+.subsystem-list { display: flex; flex-direction: column; gap: 4px; }
+.subsystem-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 13px; }
+.subsystem-item:hover { background: #e8f0fe; }
+.subsystem-item .name { color: #333; }
+.subsystem-item .status { display: flex; align-items: center; gap: 4px; font-size: 12px; }
+.subsystem-item .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+.subsystem-item .status-dot.ok { background: #4caf50; }
+.subsystem-item .status-dot.warn { background: #f5a623; }
+.subsystem-item .status-dot.err { background: #e54; }
+.subsystem-item .arrow { color: #ccc; font-size: 12px; }
+
+/* 底部两个表格 */
+.table-card { grid-column: 1 / -1; }
+.table-tabs { display: flex; gap: 0; margin-bottom: 16px; border-bottom: 1px solid #eee; }
+.table-tab { padding: 8px 20px; font-size: 14px; color: #666; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s; }
+.table-tab:hover { color: #1a73e8; }
+.table-tab.active { color: #1a73e8; border-bottom-color: #1a73e8; font-weight: 500; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th { background: #f8f9fa; padding: 10px 12px; text-align: left; font-weight: 500; color: #666; border-bottom: 1px solid #eee; }
+.data-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; color: #333; }
+.data-table tr:hover td { background: #f5f8ff; }
+.data-table .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+.data-table .tag.warn { background: #fff3e0; color: #e64; }
+.data-table .tag.ok { background: #e8f5e9; color: #388e3c; }
+.pagination { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 12px; font-size: 13px; color: #666; }
+.pagination button { padding: 4px 10px; border: 1px solid #ddd; background: #fff; border-radius: 4px; cursor: pointer; }
+.pagination button:hover { background: #f5f5f5; }
+.pagination button.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+
+/* 响应式 */
+@media (max-width: 1200px) {
+  .dashboard-grid { grid-template-columns: 1fr 1fr; }
+  .score-card { grid-column: 1; grid-row: 1; }
+  .radar-card { grid-column: 2; grid-row: 1; }
+  .right-card { grid-column: 1 / -1; grid-row: 2; flex-direction: row; }
+  .table-card { grid-row: 3; }
+}
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .score-card, .radar-card, .right-card, .table-card { grid-column: 1; grid-row: auto; }
+  .right-card { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="header">
+  <div class="logo">
+    <svg viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="13" stroke="#fff" stroke-width="2"/>
+      <path d="M8 14l4 4 8-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    煤矿智能化常态化运行管理系统
+  </div>
+  <div class="user-info">
+    <span>王矿长</span>
+    <div class="avatar">👤</div>
+  </div>
+</div>
+
+<div class="main-container">
+  <!-- 左侧导航 -->
+  <div class="sidebar">
+    <div class="nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      首页
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+      评价中心
+      <span class="sub-arrow">›</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+      运行台账
+      <span class="sub-arrow">›</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      培训考核
+      <span class="sub-arrow">›</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      子系统监控
+      <span class="sub-arrow">›</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      综合管控
+      <span class="sub-arrow">›</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      系统设置
+      <span class="sub-arrow">›</span>
+    </div>
+  </div>
+
+  <!-- 内容区 -->
+  <div class="content">
+    <div class="breadcrumb">首页</div>
+    <div class="page-title">矿井智能化运行状态</div>
+
+    <div class="dashboard-grid">
+      <!-- 左侧：各系统得分条 -->
+      <div class="card score-card">
+        <div class="card-title">
+          <span class="dot" style="background:#4a90e2"></span>
+          各系统评价得分
+        </div>
+        <div class="score-list" id="scoreList"></div>
+      </div>
+
+      <!-- 中间：雷达图 + 评价结果 -->
+      <div class="card radar-card">
+        <div class="card-title">
+          <span class="dot" style="background:#1a73e8"></span>
+          综合评价雷达图
+        </div>
+        <div class="radar-container">
+          <div class="result-badge fail" id="resultBadge">
+            <div class="label">评价结果</div>
+            <div class="score" id="totalScore">40</div>
+            <div class="unit">分 · 不合格</div>
+          </div>
+          <div class="radar-chart-wrap" style="width:100%;max-width:360px;margin:0 auto;">
+            <canvas id="radarChart"></canvas>
+          </div>
+          <div class="eval-conclusion" id="evalConclusion">距合格线（70分）差30分，需重点提升综采、掘进、信息基础设施等系统</div>
+        </div>
+      </div>
+
+      <!-- 右侧：快捷入口 + 子系统列表 -->
+      <div class="right-card">
+        <div class="card">
+          <div class="card-title">
+            <span class="dot" style="background:#f5a623"></span>
+            快捷入口
+          </div>
+          <div class="quick-tiles">
+            <div class="tile org">
+              <div class="icon">🏢</div>
+              <div class="label">管理机构</div>
+            </div>
+            <div class="tile reg">
+              <div class="icon">📑</div>
+              <div class="label">管理制度</div>
+            </div>
+            <div class="tile policy">
+              <div class="icon">📜</div>
+              <div class="label">政策解读</div>
+            </div>
+            <div class="tile train">
+              <div class="icon">🎓</div>
+              <div class="label">培训计划</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">
+            <span class="dot" style="background:#e91e63"></span>
+            智能化系统
+          </div>
+          <div class="subsystem-list" id="subsystemList"></div>
+        </div>
+      </div>
+
+      <!-- 底部：两个表格 -->
+      <div class="card table-card">
+        <div class="card-title">
+          <span class="dot" style="background:#388e3c"></span>
+          运维记录
+        </div>
+        <div class="table-tabs">
+          <div class="table-tab active" data-tab="maintenance">运维计划</div>
+          <div class="table-tab" data-tab="eval">常态化评估报告</div>
+        </div>
+        <div id="tableContent">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>创建人</th>
+                <th>计划名称</th>
+                <th>计划内容</th>
+                <th>计划时间</th>
+                <th>附件</th>
+              </tr>
+            </thead>
+            <tbody id="maintenanceTable"></tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <button>«</button>
+          <button>1</button>
+          <button class="active">2</button>
+          <button>3</button>
+          <button>»</button>
+          <span>共28条</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// 数据
+const systems = [
+  { name: '综采系统', score: 78, weight: 18,否决: true },
+  { name: '掘进系统', score: 65, weight: 15,否决: true },
+  { name: '主运输系统', score: 82, weight: 10,否决: true },
+  { name: '辅助运输系统', score: 55, weight: 10,否决: true },
+  { name: '地质保障系统', score: 30, weight: 5,否决: true },
+  { name: '通风系统', score: 70, weight: 5,否决: true },
+  { name: '排水系统', score: 48, weight: 5,否决: true },
+  { name: '供电系统', score: 75, weight: 10,否决: true },
+  { name: '压风系统', score: 62, weight: 5,否决: true },
+  { name: '信息基础设施', score: 42, weight: 10,否决: true },
+];
+
+const subsystems = [
+  { name: '综采系统', status: 'ok' },
+  { name: '掘进系统', status: 'warn' },
+  { name: '主运输系统', status: 'ok' },
+  { name: '辅助运输系统', status: 'warn' },
+  { name: '地质保障系统', status: 'err' },
+  { name: '通风系统', status: 'ok' },
+  { name: '排水系统', status: 'warn' },
+  { name: '供电系统', status: 'ok' },
+  { name: '压风系统', status: 'warn' },
+  { name: '信息基础设施', status: 'err' },
+];
+
+const maintenanceData = [
+  { id: 1, person: '张三', name: '综采面设备月度检修', content: '采煤机、液压支架例行检查及润滑', time: '2026-05-25 09:00', file: '检修单.pdf' },
+  { id: 2, person: '李四', name: '主运输皮带检测', content: '皮带张紧度检测、滚筒轴承检查', time: '2026-05-25 14:30', file: '检测报告.pdf' },
+  { id: 3, person: '王五', name: '排水系统巡检', content: '水泵运行状态、排水管道排查', time: '2026-05-26 08:00', file: '巡检记录.xlsx' },
+  { id: 4, person: '赵六', name: '通风系统月度检测', content: '风机叶片角度、风压测试', time: '2026-05-26 10:00', file: null },
+  { id: 5, person: '钱七', name: '供电系统绝缘检测', content: '高压开关柜绝缘电阻测试', time: '2026-05-26 15:00', file: '检测单.pdf' },
+];
+
+const evalReportData = [
+  { id: 1, person: '系统', name: '综采系统月度评价', result: '合格', score: 78, file: '评价报告.pdf' },
+  { id: 2, person: '系统', name: '掘进系统月度评价', result: '不合格', score: 65, file: '评价报告.pdf' },
+  { id: 3, person: '系统', name: '主运输系统月度评价', result: '合格', score: 82, file: '评价报告.pdf' },
+  { id: 4, person: '系统', name: '地质保障系统月度评价', result: '不合格', score: 30, file: '评价报告.pdf' },
+  { id: 5, person: '系统', name: '排水系统月度评价', result: '不合格', score: 48, file: '评价报告.pdf' },
+];
+
+// 渲染得分条
+function renderScoreList() {
+  const container = document.getElementById('scoreList');
+  container.innerHTML = systems.map(s => {
+    let barClass = s.score >= 70 ? 'pass' : s.score >= 50 ? 'fail' : 'fail-low';
+    return `<div class="score-item">
+      <span class="label">${s.name}</span>
+      <div class="bar-wrap">
+        <div class="pass-line"></div>
+        <div class="bar" style="width:${s.score}%"></div>
+      </div>
+      <span class="score-num" style="color:${s.score>=70?'#4a90e2':'#e64'}">${s.score}</span>
+    </div>`;
+  }).join('');
+}
+
+// 渲染子系统列表
+function renderSubsystemList() {
+  const container = document.getElementById('subsystemList');
+  const statusMap = { ok: '正常', warn: '预警', err: '异常' };
+  const statusColorMap = { ok: 'ok', warn: 'warn', err: 'err' };
+  container.innerHTML = subsystems.map(s => `
+    <div class="subsystem-item">
+      <span class="name">${s.name}</span>
+      <span class="status">
+        <span class="status-dot ${statusColorMap[s.status]}"></span>
+        ${statusMap[s.status]}
+        <span class="arrow">›</span>
+      </span>
+    </div>
+  `).join('');
+}
+
+// 渲染运维表格
+function renderMaintenanceTable() {
+  const tbody = document.getElementById('maintenanceTable');
+  tbody.innerHTML = maintenanceData.map(row => `
+    <tr>
+      <td>${row.id}</td>
+      <td>${row.person}</td>
+      <td style="color:#1a73e8;cursor:pointer">${row.name}</td>
+      <td>${row.content}</td>
+      <td>${row.time}</td>
+      <td>${row.file ? `<a href="#" style="color:#1a73e8">📎 ${row.file}</a>` : '-'}</td>
+    </tr>
+  `).join('');
+}
+
+// 表格切换
+document.querySelectorAll('.table-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.table-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    const tabName = this.dataset.tab;
+    const tbody = document.getElementById('maintenanceTable');
+    if (tabName === 'maintenance') {
+      renderMaintenanceTable();
+    } else {
+      tbody.innerHTML = evalReportData.map(row => `
+        <tr>
+          <td>${row.id}</td>
+          <td>${row.person}</td>
+          <td style="color:#1a73e8;cursor:pointer">${row.name}</td>
+          <td>-</td>
+          <td>-</td>
+          <td>${row.score}分 · <span class="tag ${row.result==='合格'?'ok':'warn'}">${row.result}</span></td>
+        </tr>
+      `).join('');
+    }
+  });
+});
+
+// 雷达图
+function renderRadarChart() {
+  const ctx = document.getElementById('radarChart').getContext('2d');
+  const labels = systems.map(s => s.name);
+  const data = systems.map(s => s.score);
+
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels,
+      datasets: [{
+        label: '评价得分',
+        data,
+        fill: true,
+        backgroundColor: 'rgba(74,144,226,0.15)',
+        borderColor: '#4a90e2',
+        borderWidth: 2,
+        pointBackgroundColor: '#4a90e2',
+        pointBorderColor: '#fff',
+        pointRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.label}: ${ctx.raw}分`
+          }
+        }
+      },
+      scales: {
+        r: {
+          min: 0,
+          max: 100,
+          ticks: { stepSize: 20, font: { size: 10 } },
+          pointLabels: { font: { size: 11 }, color: '#666' },
+          angleLines: { color: '#eee' },
+          grid: { color: '#eee' }
+        }
+      }
+    }
+  });
+}
+
+// 初始化
+renderScoreList();
+renderSubsystemList();
+renderMaintenanceTable();
+renderRadarChart();
+</script>
+</body>
+</html>
