@@ -5,23 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>煤矿智能化常态化运行管理系统 - 首页</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f0f2f5; color: #333; font-size: 14px; }
 
 /* 顶部导航 */
-.header { height: 60px; background: #1a73e8; color: #fff; display: flex; align-items: center; padding: 0 24px; box-shadow: 0 2px 8px rgba(26,115,232,0.3); }
+.header { height: 60px; background: #1a73e8; color: #fff; display: flex; align-items: center; padding: 0 24px; box-shadow: 0 2px 8px rgba(26,115,232,0.3); position: sticky; top: 0; z-index: 100; }
 .header .logo { font-size: 18px; font-weight: 600; margin-right: auto; display: flex; align-items: center; gap: 10px; }
 .header .logo svg { width: 28px; height: 28px; }
 .header .user-info { display: flex; align-items: center; gap: 16px; font-size: 14px; }
-.header .user-info .avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; }
+.header .user-info .avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 16px; }
 
 /* 主容器 */
 .main-container { display: flex; min-height: calc(100vh - 60px); }
 
 /* 左侧导航 */
-.sidebar { width: 200px; background: #fff; border-right: 1px solid #e8e8e8; flex-shrink: 0; }
+.sidebar { width: 200px; background: #fff; border-right: 1px solid #e8e8e8; flex-shrink: 0; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; }
 .nav-item { display: flex; align-items: center; padding: 14px 20px; color: #555; cursor: pointer; border-left: 3px solid transparent; transition: all 0.2s; gap: 10px; font-size: 14px; }
 .nav-item:hover { background: #f5f8ff; color: #1a73e8; }
 .nav-item.active { background: #e8f0fe; color: #1a73e8; border-left-color: #1a73e8; font-weight: 500; }
@@ -29,7 +28,7 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
 .nav-item .sub-arrow { margin-left: auto; font-size: 12px; }
 
 /* 内容区 */
-.content { flex: 1; padding: 20px; overflow-x: hidden; }
+.content { flex: 1; padding: 20px; overflow-x: hidden; max-width: 1400px; }
 
 /* 面包屑 */
 .breadcrumb { font-size: 13px; color: #999; margin-bottom: 16px; }
@@ -41,132 +40,128 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
 /* ---- 仪表盘主体 ---- */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 280px 1fr 260px;
-  grid-template-rows: auto auto;
+  grid-template-columns: 300px 1fr 260px;
+  grid-template-rows: auto auto auto;
   gap: 16px;
 }
 
 /* 通用卡片样式 */
 .card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 .card-title { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-.card-title .dot { width: 8px; height: 8px; border-radius: 50%; }
+.card-title .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 
-/* 左侧：各系统得分 */
-.score-card { grid-row: 1; }
+/* 左上：基本概况文字描述 */
+.overview-card { grid-column: 1; }
+.overview-content { font-size: 13px; line-height: 1.8; color: #555; }
+.overview-content p { margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; }
+.overview-content .label { color: #888; flex-shrink: 0; min-width: 70px; }
+.overview-content .value { color: #333; }
+.overview-content .value.red { color: #e53935; font-weight: 600; }
+.overview-content .value.orange { color: #f57c00; font-weight: 600; }
+.overview-content .value.green { color: #388e3c; font-weight: 600; }
+
+/* 左侧：系统评价得分 */
+.score-card { grid-column: 1; }
 .score-list { display: flex; flex-direction: column; gap: 10px; }
 .score-item { display: flex; align-items: center; gap: 10px; }
 .score-item .label { width: 90px; font-size: 12px; color: #666; flex-shrink: 0; }
-.score-item .bar-wrap { flex: 1; height: 20px; background: #f0f0f0; border-radius: 4px; position: relative; overflow: hidden; }
-.score-item .bar-wrap::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; transition: width 0.5s ease; }
-.score-item .bar-wrap .bar { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; }
-.score-item .bar-wrap.pass { background: transparent; }
-.score-item .bar-wrap.pass .bar { background: #4a90e2; }
-.score-item .bar-wrap.fail { background: transparent; }
-.score-item .bar-wrap.fail .bar { background: #f5a623; }
-.score-item .bar-wrap.fail-low { background: transparent; }
-.score-item .bar-wrap.fail-low .bar { background: #e54; }
-.score-item .score-num { width: 32px; font-size: 12px; font-weight: 600; text-align: right; }
-
-/* 合格线标记 */
-.score-item .bar-wrap .pass-line {
-  position: absolute;
-  left: 70%;
-  top: -4px;
-  bottom: -4px;
-  width: 2px;
-  background: #e54;
-  z-index: 2;
-}
-.score-item .bar-wrap .pass-line::after {
-  content: '合格线';
-  position: absolute;
-  top: -18px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 10px;
-  color: #e54;
-  white-space: nowrap;
-}
+.score-item .bar-wrap { flex: 1; height: 18px; background: #f0f0f0; border-radius: 4px; position: relative; overflow: hidden; }
+.score-item .bar-wrap .pass-line { position: absolute; left: 70%; top: -4px; bottom: -4px; width: 2px; background: #e54; z-index: 2; }
+.score-item .bar-wrap .pass-line::after { content: '合格'; position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #e54; white-space: nowrap; }
+.score-item .bar { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; }
+.score-item .bar.high { background: linear-gradient(90deg, #1565c0, #42a5f5); }
+.score-item .bar.mid { background: linear-gradient(90deg, #e53935, #ff7043); }
+.score-item .bar.low { background: linear-gradient(90deg, #c62828, #ef5350); }
+.score-item .score-num { width: 30px; font-size: 12px; font-weight: 700; text-align: right; }
+.score-item .score-num.high { color: #1565c0; }
+.score-item .score-num.mid { color: #e53935; }
+.score-item .score-num.low { color: #c62828; }
 
 /* 中间：雷达图 + 评价结果 */
-.radar-card { grid-row: 1; display: flex; flex-direction: column; align-items: center; }
-.radar-container { position: relative; width: 100%; max-width: 400px; }
-.radar-chart-wrap { position: relative; }
-#radarChart { width: 100% !important; height: auto !important; }
-.result-badge { position: absolute; top: 16px; right: 16px; text-align: center; background: #fff3e0; border: 1px solid #ffb74d; border-radius: 8px; padding: 10px 16px; }
-.result-badge .label { font-size: 12px; color: #e64; margin-bottom: 4px; }
-.result-badge .score { font-size: 28px; font-weight: 700; color: #e64; line-height: 1; }
-.result-badge .unit { font-size: 12px; color: #e64; }
-.result-badge.fail { background: #fff3e0; border-color: #ffb74d; }
-.result-badge.pass { background: #e8f5e9; border-color: #81c784; }
-.result-badge.pass .label { color: #388e3c; }
-.result-badge.pass .score { color: #388e3c; }
-.result-badge.pass .unit { color: #388e3c; }
-
-/* 评价结论 */
-.eval-conclusion { text-align: center; margin-top: 12px; font-size: 13px; color: #888; }
+.radar-card { grid-column: 2; display: flex; flex-direction: column; align-items: center; }
+.radar-container { position: relative; width: 100%; max-width: 420px; }
+.result-badge { position: absolute; top: 16px; left: 16px; text-align: center; background: #fff3e0; border: 2px solid #ffb74d; border-radius: 10px; padding: 12px 20px; min-width: 120px; }
+.result-badge .label { font-size: 12px; color: #e64; margin-bottom: 4px; font-weight: 500; }
+.result-badge .score { font-size: 32px; font-weight: 800; color: #e64; line-height: 1; }
+.result-badge .unit { font-size: 12px; color: #e64; font-weight: 500; }
+.result-badge.fail { background: #fff3e0; border-color: #ff7043; }
+.result-badge.fail .label { color: #c62828; }
+.result-badge.fail .score { color: #c62828; }
+.result-badge.fail .unit { color: #c62828; }
+.result-badge.pass { background: #e8f5e9; border-color: #66bb6a; }
+.result-badge.pass .label { color: #2e7d32; }
+.result-badge.pass .score { color: #2e7d32; }
+.result-badge.pass .unit { color: #2e7d32; }
+#radarChart { width: 100% !important; height: auto !important; max-height: 360px; }
+.eval-conclusion { text-align: center; margin-top: 12px; font-size: 13px; color: #666; background: #f8f9fa; border-radius: 8px; padding: 10px 16px; border-left: 3px solid #1a73e8; }
 
 /* 右侧：快捷入口 + 子系统列表 */
-.right-card { grid-row: 1; display: flex; flex-direction: column; gap: 16px; }
+.right-card { grid-column: 3; display: flex; flex-direction: column; gap: 16px; }
 
 /* 四宫格快捷入口 */
 .quick-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .tile { border-radius: 10px; padding: 14px 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
-.tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 .tile .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-.tile .label { font-size: 13px; font-weight: 500; text-align: center; }
-.tile.org { background: linear-gradient(135deg, #e3f0ff, #cce4ff); }
-.tile.org .icon { background: #1a73e8; color: #fff; }
+.tile .label { font-size: 13px; font-weight: 500; text-align: center; color: #333; }
+.tile.org { background: linear-gradient(135deg, #e3f0ff, #bbd4fb); }
+.tile.org .icon { background: #1565c0; color: #fff; }
 .tile.reg { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
-.tile.reg .icon { background: #f57c00; color: #fff; }
+.tile.reg .icon { background: #e65100; color: #fff; }
 .tile.policy { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
-.tile.policy .icon { background: #388e3c; color: #fff; }
+.tile.policy .icon { background: #2e7d32; color: #fff; }
 .tile.train { background: linear-gradient(135deg, #fce4ec, #f8bbd9); }
-.tile.train .icon { background: #e91e63; color: #fff; }
+.tile.train .icon { background: #c2185b; color: #fff; }
 
 /* 子系统列表 */
 .subsystem-list { display: flex; flex-direction: column; gap: 4px; }
 .subsystem-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 13px; }
-.subsystem-item:hover { background: #e8f0fe; }
+.subsystem-item:hover { background: #e3f0ff; }
 .subsystem-item .name { color: #333; }
 .subsystem-item .status { display: flex; align-items: center; gap: 4px; font-size: 12px; }
 .subsystem-item .status-dot { width: 6px; height: 6px; border-radius: 50%; }
 .subsystem-item .status-dot.ok { background: #4caf50; }
 .subsystem-item .status-dot.warn { background: #f5a623; }
-.subsystem-item .status-dot.err { background: #e54; }
+.subsystem-item .status-dot.err { background: #e53935; }
 .subsystem-item .arrow { color: #ccc; font-size: 12px; }
 
-/* 底部两个表格 */
-.table-card { grid-column: 1 / -1; }
-.table-tabs { display: flex; gap: 0; margin-bottom: 16px; border-bottom: 1px solid #eee; }
-.table-tab { padding: 8px 20px; font-size: 14px; color: #666; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s; }
-.table-tab:hover { color: #1a73e8; }
-.table-tab.active { color: #1a73e8; border-bottom-color: #1a73e8; font-weight: 500; }
+/* 底部两个表格 - 各自独立卡片，各占1/3宽度 */
+.bottom-tables {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.mini-card { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.mini-card-title { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
+.mini-card-title .dot { width: 8px; height: 8px; border-radius: 50%; }
 .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.data-table th { background: #f8f9fa; padding: 10px 12px; text-align: left; font-weight: 500; color: #666; border-bottom: 1px solid #eee; }
-.data-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; color: #333; }
+.data-table th { background: #f8f9fa; padding: 8px 10px; text-align: left; font-weight: 500; color: #888; border-bottom: 1px solid #eee; font-size: 12px; }
+.data-table td { padding: 8px 10px; border-bottom: 1px solid #f5f5f5; color: #333; }
+.data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: #f5f8ff; }
-.data-table .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
-.data-table .tag.warn { background: #fff3e0; color: #e64; }
-.data-table .tag.ok { background: #e8f5e9; color: #388e3c; }
-.pagination { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 12px; font-size: 13px; color: #666; }
-.pagination button { padding: 4px 10px; border: 1px solid #ddd; background: #fff; border-radius: 4px; cursor: pointer; }
+.data-table .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+.data-table .tag.warn { background: #fff3e0; color: #c62828; }
+.data-table .tag.ok { background: #e8f5e9; color: #2e7d32; }
+.data-table .blue-link { color: #1565c0; cursor: pointer; text-decoration: none; }
+.data-table .blue-link:hover { text-decoration: underline; }
+.pagination { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 10px; font-size: 12px; color: #888; }
+.pagination button { padding: 3px 8px; border: 1px solid #ddd; background: #fff; border-radius: 4px; cursor: pointer; font-size: 12px; }
 .pagination button:hover { background: #f5f5f5; }
-.pagination button.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+.pagination button.active { background: #1565c0; color: #fff; border-color: #1565c0; }
 
 /* 响应式 */
 @media (max-width: 1200px) {
-  .dashboard-grid { grid-template-columns: 1fr 1fr; }
-  .score-card { grid-column: 1; grid-row: 1; }
-  .radar-card { grid-column: 2; grid-row: 1; }
-  .right-card { grid-column: 1 / -1; grid-row: 2; flex-direction: row; }
-  .table-card { grid-row: 3; }
+  .dashboard-grid { grid-template-columns: 280px 1fr 240px; }
+  .bottom-tables { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 900px) {
   .sidebar { display: none; }
   .dashboard-grid { grid-template-columns: 1fr; }
-  .score-card, .radar-card, .right-card, .table-card { grid-column: 1; grid-row: auto; }
-  .right-card { flex-direction: column; }
+  .score-card, .radar-card, .right-card { grid-column: 1; }
+  .right-card { flex-direction: row; }
+  .bottom-tables { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -232,11 +227,29 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
     <div class="page-title">矿井智能化运行状态</div>
 
     <div class="dashboard-grid">
-      <!-- 左侧：各系统得分条 -->
+      <!-- 左上：基本概况文字描述 -->
+      <div class="card overview-card">
+        <div class="card-title">
+          <span class="dot" style="background:#1565c0"></span>
+          基本概况
+        </div>
+        <div class="overview-content">
+          <p><span class="label">矿井名称</span><span class="value">XXX煤矿</span></p>
+          <p><span class="label">评价周期</span><span class="value">2026年5月</span></p>
+          <p><span class="label">综合得分</span><span class="value red">40分（不合格）</span></p>
+          <p><span class="label">达标情况</span><span class="value red">距合格线差30分</span></p>
+          <p><span class="label">一票否决</span><span class="value orange">9项系统存在否决项</span></p>
+          <p><span class="label">加分情况</span><span class="value green">无加分项</span></p>
+          <p><span class="label">评价状态</span><span class="value red">⬤ 待整改</span></p>
+          <p><span class="label">下次评价</span><span class="value">2026年6月25日</span></p>
+        </div>
+      </div>
+
+      <!-- 左侧：系统评价得分 -->
       <div class="card score-card">
         <div class="card-title">
-          <span class="dot" style="background:#4a90e2"></span>
-          各系统评价得分
+          <span class="dot" style="background:#e53935"></span>
+          系统评价得分
         </div>
         <div class="score-list" id="scoreList"></div>
       </div>
@@ -253,7 +266,7 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
             <div class="score" id="totalScore">40</div>
             <div class="unit">分 · 不合格</div>
           </div>
-          <div class="radar-chart-wrap" style="width:100%;max-width:360px;margin:0 auto;">
+          <div style="width:100%;max-width:400px;margin:0 auto;">
             <canvas id="radarChart"></canvas>
           </div>
           <div class="eval-conclusion" id="evalConclusion">距合格线（70分）差30分，需重点提升综采、掘进、信息基础设施等系统</div>
@@ -264,7 +277,7 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
       <div class="right-card">
         <div class="card">
           <div class="card-title">
-            <span class="dot" style="background:#f5a623"></span>
+            <span class="dot" style="background:#f57c00"></span>
             快捷入口
           </div>
           <div class="quick-tiles">
@@ -288,45 +301,80 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
         </div>
         <div class="card">
           <div class="card-title">
-            <span class="dot" style="background:#e91e63"></span>
+            <span class="dot" style="background:#c2185b"></span>
             智能化系统
           </div>
           <div class="subsystem-list" id="subsystemList"></div>
         </div>
       </div>
 
-      <!-- 底部：两个表格 -->
-      <div class="card table-card">
-        <div class="card-title">
-          <span class="dot" style="background:#388e3c"></span>
-          运维记录
-        </div>
-        <div class="table-tabs">
-          <div class="table-tab active" data-tab="maintenance">运维计划</div>
-          <div class="table-tab" data-tab="eval">常态化评估报告</div>
-        </div>
-        <div id="tableContent">
+      <!-- 底部两个独立卡片，各占1/3 -->
+      <div class="bottom-tables">
+        <!-- 运维计划 -->
+        <div class="mini-card">
+          <div class="mini-card-title">
+            <span class="dot" style="background:#1565c0"></span>
+            运维计划
+          </div>
           <table class="data-table">
             <thead>
               <tr>
                 <th>序号</th>
                 <th>创建人</th>
                 <th>计划名称</th>
-                <th>计划内容</th>
                 <th>计划时间</th>
-                <th>附件</th>
               </tr>
             </thead>
             <tbody id="maintenanceTable"></tbody>
           </table>
+          <div class="pagination">
+            <button>«</button>
+            <button>1</button>
+            <button class="active">2</button>
+            <button>3</button>
+            <button>»</button>
+            <span>共28条</span>
+          </div>
         </div>
-        <div class="pagination">
-          <button>«</button>
-          <button>1</button>
-          <button class="active">2</button>
-          <button>3</button>
-          <button>»</button>
-          <span>共28条</span>
+
+        <!-- 常态化评估报告 -->
+        <div class="mini-card">
+          <div class="mini-card-title">
+            <span class="dot" style="background:#e53935"></span>
+            常态化评估报告
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>考核内容</th>
+                <th>考核结果</th>
+                <th>评分</th>
+              </tr>
+            </thead>
+            <tbody id="evalTable"></tbody>
+          </table>
+          <div class="pagination">
+            <button>«</button>
+            <button>1</button>
+            <button class="active">2</button>
+            <button>3</button>
+            <button>»</button>
+            <span>共28条</span>
+          </div>
+        </div>
+
+        <!-- 空白占位，保持三栏比例 -->
+        <div class="mini-card" style="background:#fafafa;">
+          <div class="mini-card-title">
+            <span class="dot" style="background:#ccc"></span>
+            通知公告
+          </div>
+          <table class="data-table">
+            <tbody>
+              <tr><td colspan="4" style="text-align:center;color:#bbb;padding:30px;">暂无通知</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -336,16 +384,16 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
 <script>
 // 数据
 const systems = [
-  { name: '综采系统', score: 78, weight: 18,否决: true },
-  { name: '掘进系统', score: 65, weight: 15,否决: true },
-  { name: '主运输系统', score: 82, weight: 10,否决: true },
-  { name: '辅助运输系统', score: 55, weight: 10,否决: true },
-  { name: '地质保障系统', score: 30, weight: 5,否决: true },
-  { name: '通风系统', score: 70, weight: 5,否决: true },
-  { name: '排水系统', score: 48, weight: 5,否决: true },
-  { name: '供电系统', score: 75, weight: 10,否决: true },
-  { name: '压风系统', score: 62, weight: 5,否决: true },
-  { name: '信息基础设施', score: 42, weight: 10,否决: true },
+  { name: '综采系统', score: 78 },
+  { name: '掘进系统', score: 65 },
+  { name: '主运输系统', score: 82 },
+  { name: '辅助运输系统', score: 55 },
+  { name: '地质保障系统', score: 30 },
+  { name: '通风系统', score: 70 },
+  { name: '排水系统', score: 48 },
+  { name: '供电系统', score: 75 },
+  { name: '压风系统', score: 62 },
+  { name: '信息基础设施', score: 42 },
 ];
 
 const subsystems = [
@@ -362,33 +410,34 @@ const subsystems = [
 ];
 
 const maintenanceData = [
-  { id: 1, person: '张三', name: '综采面设备月度检修', content: '采煤机、液压支架例行检查及润滑', time: '2026-05-25 09:00', file: '检修单.pdf' },
-  { id: 2, person: '李四', name: '主运输皮带检测', content: '皮带张紧度检测、滚筒轴承检查', time: '2026-05-25 14:30', file: '检测报告.pdf' },
-  { id: 3, person: '王五', name: '排水系统巡检', content: '水泵运行状态、排水管道排查', time: '2026-05-26 08:00', file: '巡检记录.xlsx' },
-  { id: 4, person: '赵六', name: '通风系统月度检测', content: '风机叶片角度、风压测试', time: '2026-05-26 10:00', file: null },
-  { id: 5, person: '钱七', name: '供电系统绝缘检测', content: '高压开关柜绝缘电阻测试', time: '2026-05-26 15:00', file: '检测单.pdf' },
+  { id: 1, person: '张三', name: '综采面设备月度检修', time: '2026-05-25' },
+  { id: 2, person: '李四', name: '主运输皮带检测', time: '2026-05-25' },
+  { id: 3, person: '王五', name: '排水系统巡检', time: '2026-05-26' },
+  { id: 4, person: '赵六', name: '通风系统月度检测', time: '2026-05-26' },
+  { id: 5, person: '钱七', name: '供电系统绝缘检测', time: '2026-05-26' },
 ];
 
 const evalReportData = [
-  { id: 1, person: '系统', name: '综采系统月度评价', result: '合格', score: 78, file: '评价报告.pdf' },
-  { id: 2, person: '系统', name: '掘进系统月度评价', result: '不合格', score: 65, file: '评价报告.pdf' },
-  { id: 3, person: '系统', name: '主运输系统月度评价', result: '合格', score: 82, file: '评价报告.pdf' },
-  { id: 4, person: '系统', name: '地质保障系统月度评价', result: '不合格', score: 30, file: '评价报告.pdf' },
-  { id: 5, person: '系统', name: '排水系统月度评价', result: '不合格', score: 48, file: '评价报告.pdf' },
+  { id: 1, name: '综采系统月度评价', result: '合格', score: 78 },
+  { id: 2, name: '掘进系统月度评价', result: '不合格', score: 65 },
+  { id: 3, name: '主运输系统月度评价', result: '合格', score: 82 },
+  { id: 4, name: '地质保障系统月度评价', result: '不合格', score: 30 },
+  { id: 5, name: '排水系统月度评价', result: '不合格', score: 48 },
 ];
 
-// 渲染得分条
+// 渲染系统评价得分
 function renderScoreList() {
   const container = document.getElementById('scoreList');
   container.innerHTML = systems.map(s => {
-    let barClass = s.score >= 70 ? 'pass' : s.score >= 50 ? 'fail' : 'fail-low';
+    let barClass = s.score >= 70 ? 'high' : s.score >= 50 ? 'mid' : 'low';
+    let scoreClass = s.score >= 70 ? 'high' : s.score >= 50 ? 'mid' : 'low';
     return `<div class="score-item">
       <span class="label">${s.name}</span>
       <div class="bar-wrap">
         <div class="pass-line"></div>
-        <div class="bar" style="width:${s.score}%"></div>
+        <div class="bar ${barClass}" style="width:${s.score}%"></div>
       </div>
-      <span class="score-num" style="color:${s.score>=70?'#4a90e2':'#e64'}">${s.score}</span>
+      <span class="score-num ${scoreClass}">${s.score}</span>
     </div>`;
   }).join('');
 }
@@ -410,44 +459,31 @@ function renderSubsystemList() {
   `).join('');
 }
 
-// 渲染运维表格
+// 渲染运维计划表格
 function renderMaintenanceTable() {
   const tbody = document.getElementById('maintenanceTable');
   tbody.innerHTML = maintenanceData.map(row => `
     <tr>
       <td>${row.id}</td>
       <td>${row.person}</td>
-      <td style="color:#1a73e8;cursor:pointer">${row.name}</td>
-      <td>${row.content}</td>
+      <td><span class="blue-link">${row.name}</span></td>
       <td>${row.time}</td>
-      <td>${row.file ? `<a href="#" style="color:#1a73e8">📎 ${row.file}</a>` : '-'}</td>
     </tr>
   `).join('');
 }
 
-// 表格切换
-document.querySelectorAll('.table-tab').forEach(tab => {
-  tab.addEventListener('click', function() {
-    document.querySelectorAll('.table-tab').forEach(t => t.classList.remove('active'));
-    this.classList.add('active');
-    const tabName = this.dataset.tab;
-    const tbody = document.getElementById('maintenanceTable');
-    if (tabName === 'maintenance') {
-      renderMaintenanceTable();
-    } else {
-      tbody.innerHTML = evalReportData.map(row => `
-        <tr>
-          <td>${row.id}</td>
-          <td>${row.person}</td>
-          <td style="color:#1a73e8;cursor:pointer">${row.name}</td>
-          <td>-</td>
-          <td>-</td>
-          <td>${row.score}分 · <span class="tag ${row.result==='合格'?'ok':'warn'}">${row.result}</span></td>
-        </tr>
-      `).join('');
-    }
-  });
-});
+// 渲染评估报告表格
+function renderEvalTable() {
+  const tbody = document.getElementById('evalTable');
+  tbody.innerHTML = evalReportData.map(row => `
+    <tr>
+      <td>${row.id}</td>
+      <td><span class="blue-link">${row.name}</span></td>
+      <td><span class="tag ${row.result==='合格'?'ok':'warn'}">${row.result}</span></td>
+      <td style="font-weight:600;color:${row.score>=70?'#1565c0':'#c62828'}">${row.score}分</td>
+    </tr>
+  `).join('');
+}
 
 // 雷达图
 function renderRadarChart() {
@@ -463,12 +499,13 @@ function renderRadarChart() {
         label: '评价得分',
         data,
         fill: true,
-        backgroundColor: 'rgba(74,144,226,0.15)',
-        borderColor: '#4a90e2',
+        backgroundColor: 'rgba(21, 101, 192, 0.12)',
+        borderColor: '#1565c0',
         borderWidth: 2,
-        pointBackgroundColor: '#4a90e2',
+        pointBackgroundColor: '#1565c0',
         pointBorderColor: '#fff',
         pointRadius: 4,
+        pointHoverRadius: 6,
       }]
     },
     options: {
@@ -486,10 +523,10 @@ function renderRadarChart() {
         r: {
           min: 0,
           max: 100,
-          ticks: { stepSize: 20, font: { size: 10 } },
-          pointLabels: { font: { size: 11 }, color: '#666' },
-          angleLines: { color: '#eee' },
-          grid: { color: '#eee' }
+          ticks: { stepSize: 20, font: { size: 10 }, color: '#999' },
+          pointLabels: { font: { size: 11 }, color: '#555' },
+          angleLines: { color: '#e8e8e8' },
+          grid: { color: '#e8e8e8' }
         }
       }
     }
@@ -500,6 +537,7 @@ function renderRadarChart() {
 renderScoreList();
 renderSubsystemList();
 renderMaintenanceTable();
+renderEvalTable();
 renderRadarChart();
 </script>
 </body>
