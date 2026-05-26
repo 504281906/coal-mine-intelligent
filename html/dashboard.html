@@ -113,7 +113,7 @@ body {
 .quick-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .tile { background: #f5f7fa; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s; }
 .tile:hover { background: var(--accent-blue-light); border-color: var(--accent-blue); transform: translateY(-2px); }
-.tile-icon { font-size: 16px; }
+.tile-icon { font-size: 20px; font-weight: 700; }
 .tile-label { font-size: 11px; color: var(--text-secondary); font-weight: 500; }
 
 /* SCORE: col1 row3 */
@@ -211,43 +211,43 @@ body {
 
 <div class="header">
   <div class="logo">
-    <div class="logo-icon">&#9881;</div>
+    <div class="logo-icon">&#9632;</div>
     煤矿智能化常态化运行管理系统
   </div>
   <div class="header-right">
     <div class="header-time" id="clock">--:--:--</div>
-    <div class="header-user">&#128100; 王矿长</div>
+    <div class="header-user">王矿长</div>
   </div>
 </div>
 
 <div class="main-wrapper">
   <div class="sidebar">
     <div class="sidebar-item active">
-      <div class="icon">&#127968;</div>
+      <div class="icon" style="font-size:16px;color:var(--accent-blue);font-weight:700;">&#9670;</div>
       <span>首页</span>
     </div>
     <div class="sidebar-item">
-      <div class="icon">&#128202;</div>
+      <div class="icon" style="font-size:16px;">&#9673;</div>
       <span>评价</span>
     </div>
     <div class="sidebar-item">
-      <div class="icon">&#128203;</div>
+      <div class="icon" style="font-size:16px;">&#9645;</div>
       <span>台账</span>
     </div>
     <div class="sidebar-item">
-      <div class="icon">&#127891;</div>
+      <div class="icon" style="font-size:16px;">&#9679;</div>
       <span>培训</span>
     </div>
     <div class="sidebar-item">
-      <div class="icon">&#9889;</div>
+      <div class="icon" style="font-size:16px;">&#9633;</div>
       <span>监控</span>
     </div>
     <div class="sidebar-item">
-      <div class="icon">&#128421;</div>
+      <div class="icon" style="font-size:16px;">&#9646;</div>
       <span>管控</span>
     </div>
     <div class="sidebar-item">
-      <div class="icon">&#9881;</div>
+      <div class="icon" style="font-size:16px;">&#9881;</div>
       <span>设置</span>
     </div>
   </div>
@@ -309,10 +309,10 @@ body {
           </div>
         </div>
         <div class="quick-tiles">
-          <div class="tile"><div class="tile-icon">&#128694;</div><div class="tile-label">管理机构</div></div>
-          <div class="tile"><div class="tile-icon">&#128203;</div><div class="tile-label">管理制度</div></div>
-          <div class="tile"><div class="tile-icon">&#128220;</div><div class="tile-label">政策解读</div></div>
-          <div class="tile"><div class="tile-icon">&#127891;</div><div class="tile-label">培训计划</div></div>
+          <div class="tile"><div class="tile-icon" style="font-size:18px;color:var(--accent-blue)">&#9632;</div><div class="tile-label">管理机构</div></div>
+          <div class="tile"><div class="tile-icon" style="font-size:18px;color:var(--accent-amber)">&#9644;</div><div class="tile-label">管理制度</div></div>
+          <div class="tile"><div class="tile-icon" style="font-size:18px;color:var(--accent-green)">&#9651;</div><div class="tile-label">政策解读</div></div>
+          <div class="tile"><div class="tile-icon" style="font-size:18px;color:var(--accent-purple)">&#9671;</div><div class="tile-label">培训计划</div></div>
         </div>
       </div>
 
@@ -478,7 +478,7 @@ function renderEvalTable() {
 
 function renderNoticeList() {
   var c = document.getElementById("noticeList");
-  var iconChars = {urgent:"!",warn:"!",info:"i",normal:"-"};
+  var iconChars = {urgent:"&#33;",warn:"&#42;",info:"i",normal:"&#176;"};
   var html = "";
   for (var i = 0; i < noticeData.length; i++) {
     var n = noticeData[i];
