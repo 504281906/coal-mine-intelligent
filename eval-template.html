@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>指标评价中心 - 煤矿智能化常态化运行管理系统</title>
+<style>
+:root{--bg-base:#e8ecf0;--bg-card:#ffffff;--border:#d0d7de;--text-primary:#1a2332;--text-secondary:#5a6475;--text-muted:#9aa0ab;--accent-blue:#2563eb;--accent-blue-light:rgba(37,99,235,0.08);--accent-green:#16a34a;--accent-red:#dc2626;--accent-amber:#d97706;--accent-purple:#9333ea;--radius:14px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg-base);color:var(--text-primary);font-size:14px;min-height:100vh;}
+.header{height:60px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;position:sticky;top:0;z-index:100;}
+.header .logo{font-size:15px;font-weight:600;display:flex;align-items:center;gap:10px;}
+.logo-icon{width:30px;height:30px;background:var(--accent-blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:14px;}
+.header-time{font-size:13px;color:var(--text-muted);font-variant-numeric:tabular-nums;}
+.header-user{font-size:13px;color:var(--text-secondary);}
+.main-wrapper{display:flex;min-height:calc(100vh - 60px);}
+.sidebar{width:64px;background:var(--bg-card);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:3px;flex-shrink:0;}
+.sidebar-item{width:46px;height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:12px;cursor:pointer;color:var(--text-muted);font-size:9px;transition:all 0.2s;text-decoration:none;}
+.sidebar-item:hover{background:#f5f7fa;color:var(--text-secondary);text-decoration:none;}
+.sidebar-item.active{background:var(--accent-blue-light);color:var(--accent-blue);text-decoration:none;}
+.sidebar-item .icon{font-size:18px;}
+.content{flex:1;padding:20px;min-width:0;}
+.page-title{font-size:16px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+.page-title .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-green);flex-shrink:0;}
+.page-desc{font-size:12px;color:var(--text-muted);margin-bottom:20px;}
+.dimension-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.dim-tab{padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);font-size:12px;color:var(--text-secondary);cursor:pointer;transition:all 0.2s;font-weight:500;}
+.dim-tab:hover{background:var(--accent-blue-light);border-color:var(--accent-blue);color:var(--accent-blue);}
+.dim-tab.active{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue);}
+.score-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.score-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+.score-card-label{font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.score-card-value{font-size:28px;font-weight:800;color:var(--text-primary);}
+.score-card-unit{font-size:13px;color:var(--text-muted);font-weight:400;}
+.score-card-sub{font-size:11px;color:var(--text-muted);margin-top:4px;}
+.weight-legend{display:flex;gap:16px;margin-bottom:16px;font-size:11px;color:var(--text-muted);}
+.weight-legend span{display:flex;align-items:center;gap:5px;}
+.weight-legend .dot{width:8px;height:8px;border-radius:2px;}
+.dim-section{margin-bottom:20px;}
+.dim-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius) var(--radius) 0 0;border-bottom:none;}
+.dim-name{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.dim-name-icon{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dim-meta{font-size:12px;color:var(--text-muted);display:flex;gap:16px;}
+.dim-meta span{font-weight:600;}
+.dim-meta .score-total{color:var(--accent-blue);}
+.indicator-table{background:var(--bg-card);border:1px solid var(--border);border-radius:0 0 var(--radius) var(--radius);overflow:hidden;}
+.indicator-table table{width:100%;border-collapse:collapse;}
+.indicator-table thead tr{background:#f5f7fa;}
+.indicator-table th{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
+.indicator-table td{padding:12px 14px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid #f0f2f5;vertical-align:top;}
+.indicator-table tr:last-child td{border-bottom:none;}
+.indicator-table tr:hover td{background:rgba(37,99,235,0.04);}
+.indicator-name{font-size:12px;font-weight:600;color:var(--text-primary);}
+.indicator-desc{font-size:11px;color:var(--text-muted);margin-top:3px;line-height:1.5;}
+.score-badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:12px;font-weight:800;}
+.score-badge.high{background:rgba(37,99,235,0.1);color:var(--accent-blue);}
+.score-badge.mid{background:rgba(217,119,6,0.1);color:var(--accent-amber);}
+.score-badge.low{background:rgba(220,38,38,0.1);color:var(--accent-red);}
+.method-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;background:#f0f2f5;color:var(--text-muted);}
+.rule-tag{font-size:11px;color:var(--accent-red);font-weight:600;}
+.weight-bar-wrap{display:flex;align-items:center;gap:8px;}
+.weight-bar{flex:1;height:5px;background:#e8ecf0;border-radius:3px;overflow:hidden;}
+.weight-bar-fill{height:100%;border-radius:3px;background:var(--accent-blue);}
+.weight-num{font-size:11px;font-weight:700;color:var(--accent-blue);width:32px;text-align:right;}
+.action-btn{padding:4px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;font-size:11px;color:var(--text-secondary);cursor:pointer;transition:all 0.2s;}
+.action-btn:hover{background:var(--accent-blue-light);border-color:var(--accent-blue);color:var(--accent-blue);}
+.total-row td{background:#f5f7fa!important;font-weight:700;color:var(--text-primary)!important;border-top:1px solid var(--border)!important;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+@media(max-width:900px){.sidebar{display:none;}.score-summary{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M12 6h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path><path d="M8 6h.01"></path><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg></div>
+    煤矿智能化常态化运行管理系统
+  </div>
+  <div class="header-right">
+    <div class="header-time" id="clock">--:--:--</div>
+    <div class="header-user">王矿长</div>
+  </div>
+</div>
+<div class="main-wrapper">
+  <div class="sidebar">
+    <a class="sidebar-item" href="index.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div><span>首页</span></a>
+    <a class="sidebar-item" href="data-center.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg></div><span>数据中心</span></a>
+    <a class="sidebar-item active" href="eval-template.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21v-6"></path><path d="M12 21V3"></path><path d="M19 21V9"></path></svg></div><span>指标评价</span></a>
+    <a class="sidebar-item" href="inspection.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg></div><span>巡检任务</span></a>
+    <a class="sidebar-item" href="monitoring.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg></div><span>智能监控</span></a>
+    <a class="sidebar-item" href="report.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg></div><span>评价报告</span></a>
+    <a class="sidebar-item" href="rectification.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div><span>整改管理</span></a>
+  </div>
+  <div class="content">
+    <div class="page-title"><span class="dot"></span>指标评价中心 · 评价模板配置</div>
+    <div class="page-desc">以下为《煤矿智能化常态化运行管理系统》九大子系统及基本要求的完整指标体系，包含每项指标的考核方式、标准分值及扣分规则。</div>
+
+    <div class="dimension-tabs">
+      <div class="dim-tab active" onclick="location.href='#dim-basic'">基本要求</div>
+      <div class="dim-tab" onclick="location.href='#dim-info'">信息基础设施</div>
+      <div class="dim-tab" onclick="location.href='#dim-geo'">地质保障系统</div>
+      <div class="dim-tab" onclick="location.href='#dim-excav'">掘进系统</div>
+      <div class="dim-tab" onclick="location.href='#dim-mining'">综采系统</div>
+      <div class="dim-tab" onclick="location.href='#dim-main'">主运输系统</div>
+      <div class="dim-tab" onclick="location.href='#dim-aux'">辅助运输系统</div>
+      <div class="dim-tab" onclick="location.href='#dim-support'">综合保障系统</div>
+      <div class="dim-tab" onclick="location.href='#dim-safety'">安全管控系统</div>
+      <div class="dim-tab" onclick="location.href='#dim-biz'">生产经营管理系统</div>
+    </div>
+
+    <div class="weight-legend">
+      <span><span class="dot" style="background:#2563eb;"></span>权重占比 = 该维度总分 / 系统总分</span>
+      <span><span class="dot" style="background:#d97706;"></span>标准分值 = 该指标满分，扣完即止</span>
+      <span><span class="dot" style="background:#dc2626;"></span>扣分规则 = 每处不符合扣 X 分</span>
+    </div>
+
+    <div class="score-summary">
+      <div class="score-card"><div class="score-card-label">系统总分</div><div class="score-card-value">1000<span class="score-card-unit"> 分</span></div><div class="score-card-sub">九大系统 + 基本要求</div></div>
+      <div class="score-card"><div class="score-card-label">指标数量</div><div class="score-card-value">126<span class="score-card-unit"> 项</span></div><div class="score-card-sub">分布于 10 个维度</div></div>
+      <div class="score-card"><div class="score-card-label">考核方式</div><div class="score-card-value">4<span class="score-card-unit"> 种</span></div><div class="score-card-sub">现场查验 / 查阅台账 / 实地测量 / 数据接入</div></div>
+      <div class="score-card"><div class="score-card-label">当前模板版本</div><div class="score-card-value" style="font-size:20px;color:var(--accent-blue);">V2.1</div><div class="score-card-sub">2026年05月 · 最新版</div></div>
+    </div>
+
+    <!-- ====== 基本要求 ====== -->
+    <div class="dim-section" id="dim-basic">
+      <div class="dim-header">
+        <div class="dim-name"><span class="dim-name-icon" style="background:#2563eb;"></span>基本要求</div>
+        <div class="dim-meta"><span>指标 <strong>6</strong> 项</span><span class="score-total">总分 <strong>100</strong> 分</span><span>权重 <strong>10%</strong></span></div>
+      </div>
+      <div class="indicator-table">
+        <table>
+          <thead><tr><th style="width:20%;">指标名称</th><th style="width:24%;">评价内容</th><th style="width:9%;text-align:center;">考核方式</th><th style="width:7%;text-align:center;">标准分</th><th style="width:24%;">扣分规则</th><th style="width:10%;">权重</th><th style="width:6%;text-align:center;">操作</th></tr></thead>
+          <tbody>
+            <tr><td><div class="indicator-name">管理科室组建</div></td><td><div class="indicator-desc">煤矿企业应组建专职常态化运行管理科室，明确分管领导和科室职责，配齐、配强专业技术人员，满足常态化管理需求。</div></td><td style="text-align:center;"><span class="method-tag">现场查验</span></td><td style="text-align:center;"><span class="score-badge high">20</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:20%;"></div></div><span class="weight-num">20%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">运行维护机制</div></td><td><div class="indicator-desc">制定智能化常态化运行维护及使用效果分析、考核等机制推动常态化运行，建立智能化系统的动态优化机制，推动技术升级与管理创新，每月召开智能化运行会议。</div></td><td style="text-align:center;"><span class="method-tag">现场查验</span></td><td style="text-align:center;"><span class="score-badge high">20</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:20%;"></div></div><span class="weight-num">20%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">管理制度与台账</div></td><td><div class="indicator-desc">建立完善的煤矿智能化管理制度，采掘工作面常态化运行记录、智能化配件更换明细、设备维护检修等信息台账完整，相关记录保存 1 年以上，并符合现场实际。</div></td><td style="text-align:center;"><span class="method-tag">现场查验</span></td><td style="text-align:center;"><span class="score-badge high">20</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:20%;"></div></div><span class="weight-num">20%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">上级考核台账</div></td><td><div class="indicator-desc">上级企业、煤矿企业对智能化常态化运行的考核台账保存完整。</div></td><td style="text-align:center;"><span class="method-tag">现场查验</span></td><td style="text-align:center;"><span class="score-badge mid">10</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:10%;"></div></div><span class="weight-num">10%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">培训计划与执行</div></td><td><div class="indicator-desc">编制年度培训计划，定期对智能化系统进行专项培训，培训内容涵盖智能化系统架构、运行原理、现场操作、故障排除、应急处置等内容，每次至少培训一次。</div></td><td style="text-align:center;"><span class="method-tag">现场查验</span></td><td style="text-align:center;"><span class="score-badge mid">15</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:15%;"></div></div><span class="weight-num">15%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">维护标准细化</div></td><td><div class="indicator-desc">煤矿企业要细化智能化设备、部件的维护管理标准以及软件的维护保养标准，日常维护人员要清楚维护标准并按照标准进行作业。</div></td><td style="text-align:center;"><span class="method-tag">现场查验</span></td><td style="text-align:center;"><span class="score-badge mid">15</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:15%;"></div></div><span class="weight-num">15%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr class="total-row"><td colspan="3">维度小计</td><td style="text-align:center;"><span class="score-badge high">100</span></td><td></td><td><span class="weight-num" style="width:auto;">100%</span></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ====== 信息基础设施 ====== -->
+    <div class="dim-section" id="dim-info">
+      <div class="dim-header">
+        <div class="dim-name"><span class="dim-name-icon" style="background:#16a34a;"></span>信息基础设施</div>
+        <div class="dim-meta"><span>指标 <strong>3</strong> 项</span><span class="score-total">总分 <strong>16</strong> 分</span><span>权重 <strong>10%</strong></span></div>
+      </div>
+      <div class="indicator-table">
+        <table>
+          <thead><tr><th style="width:20%;">指标名称</th><th style="width:24%;">评价内容</th><th style="width:9%;text-align:center;">考核方式</th><th style="width:7%;text-align:center;">标准分</th><th style="width:24%;">扣分规则</th><th style="width:10%;">权重</th><th style="width:6%;text-align:center;">操作</th></tr></thead>
+          <tbody>
+            <tr><td><div class="indicator-name">网络架构规划</div></td><td><div class="indicator-desc">主干网络架构规划和资源分配合理，满足智能化系统在线峰值使用。</div></td><td style="text-align:center;"><span class="method-tag">现场查验</span></td><td style="text-align:center;"><span class="score-badge mid">6</span></td><td><span class="rule-tag">一处不符合扣 3 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:37.5%;"></div></div><span class="weight-num">37.5%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">故障恢复时间</div></td><td><div class="indicator-desc">矿井工业主干网络故障恢复时间不大于四个小时。</div></td><td style="text-align:center;"><span class="method-tag">查阅台账</span></td><td style="text-align:center;"><span class="score-badge mid">4</span></td><td><span class="rule-tag">一处不符合扣 4 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:25%;"></div></div><span class="weight-num">25%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">网络图纸绘制</div></td><td><div class="indicator-desc">办公网络和工业网络须绘制网络拓扑图、设备布置图以及重要的生产控制环节网络部署图，并及时更新。</div></td><td style="text-align:center;"><span class="method-tag">现场查验</span></td><td style="text-align:center;"><span class="score-badge mid">6</span></td><td><span class="rule-tag">一处不符合扣 2 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:37.5%;"></div></div><span class="weight-num">37.5%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr class="total-row"><td colspan="3">维度小计</td><td style="text-align:center;"><span class="score-badge high">16</span></td><td></td><td><span class="weight-num" style="width:auto;">100%</span></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ====== 地质保障系统 ====== -->
+    <div class="dim-section" id="dim-geo">
+      <div class="dim-header">
+        <div class="dim-name"><span class="dim-name-icon" style="background:#9333ea;"></span>地质保障系统</div>
+        <div class="dim-meta"><span>指标 <strong>5</strong> 项</span><span class="score-total">总分 <strong>100</strong> 分</span><span>权重 <strong>10%</strong></span></div>
+      </div>
+      <div class="indicator-table">
+        <table>
+          <thead><tr><th style="width:20%;">指标名称</th><th style="width:24%;">评价内容</th><th style="width:9%;text-align:center;">考核方式</th><th style="width:7%;text-align:center;">标准分</th><th style="width:24%;">扣分规则</th><th style="width:10%;">权重</th><th style="width:6%;text-align:center;">操作</th></tr></thead>
+          <tbody>
+            <tr><td><div class="indicator-name">地质监测系统部署</div></td><td><div class="indicator-desc">矿井地质构造、水文地质、瓦斯地质等监测系统安装到位并正常运行，监测数据实时上传至平台。</div></td><td style="text-align:center;"><span class="method-tag">现场查验</span></td><td style="text-align:center;"><span class="score-badge high">25</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:25%;"></div></div><span class="weight-num">25%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">地质数据台账管理</div></td><td><div class="indicator-desc">地质勘探资料、采掘工程平面图、安全评价报告等台账完整，数字化存档并定期更新。</div></td><td style="text-align:center;"><span class="method-tag">查阅台账</span></td><td style="text-align:center;"><span class="score-badge high">20</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:20%;"></div></div><span class="weight-num">20%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">动态地质预报</div></td><td><div class="indicator-desc">针对工作面推进过程中的地质变化开展动态预报，预报周期不超过 30 天，预报结果准确率≥85%。</div></td><td style="text-align:center;"><span class="method-tag">查阅台账</span></td><td style="text-align:center;"><span class="score-badge mid">20</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:20%;"></div></div><span class="weight-num">20%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">隐蔽致灾因素普查</div></td><td><div class="indicator-desc">定期开展隐蔽致灾因素（采空区、废弃巷道、断层、陷落柱等）普查，普查结果录入平台并动态更新。</div></td><td style="text-align:center;"><span class="method-tag">实地测量</span></td><td style="text-align:center;"><span class="score-badge mid">20</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:20%;"></div></div><span class="weight-num">20%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr><td><div class="indicator-name">三维地质建模</div></td><td><div class="indicator-desc">建立矿井三维地质模型，为智能化开采提供地质数据支撑，模型精度满足生产决策需求。</div></td><td style="text-align:center;"><span class="method-tag">数据接入</span></td><td style="text-align:center;"><span class="score-badge mid">15</span></td><td><span class="rule-tag">一处不符合扣 5 分</span></td><td><div class="weight-bar-wrap"><div class="weight-bar"><div class="weight-bar-fill" style="width:15%;"></div></div><span class="weight-num">15%</span></div></td><td style="text-align:center;"><button class="action-btn">编辑</button></td></tr>
+            <tr class="total-row"><td colspan="3">维度小计</td><td style="text-align:center;"><span class="score-badge high">100</span></td><td></td><td><span class="weight-num" style="width:auto;">100%</span></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function updateClock(){const now=new Date();const h=String(now.getHours()).padStart(2,'0');const m=String(now.getMinutes()).padStart(2,'0');const s=String(now.getSeconds()).padStart(2,'0');document.getElementById('clock').textContent=h+':'+m+':'+s;}updateClock();setInterval(updateClock,1000);
+const tabs=document.querySelectorAll('.dim-tab');tabs.forEach(tab=>{tab.addEventListener('click',function(){tabs.forEach(t=>t.classList.remove('active'));this.classList.add('active');});});
+</script>
+</body>
+</html>
