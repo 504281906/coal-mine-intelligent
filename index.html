@@ -268,95 +268,100 @@ body {
   </div>
 </div>
 
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;">
-  <div class="kpi-card">
-    <div class="kpi-label">综合得分</div>
-    <div style="display:flex;align-items:baseline;gap:3px;">
-      <span class="kpi-value" style="color:var(--accent-blue);">72</span>
-      <span class="kpi-unit">分</span>
-      <span class="kpi-delta up">&#9650; +5</span>
-    </div>
-    <div class="kpi-sub">较上月 &#8593;5分 &middot; 等级：合格</div>
-    <div style="margin-top:8px;display:flex;align-items:center;gap:8px;">
-      <span class="tag ok">合格</span><span class="tag info">良好</span>
-    </div>
-  </div>
-  <div class="kpi-card">
-    <div class="kpi-label">子系统状态</div>
-    <div style="display:flex;align-items:baseline;gap:3px;">
-      <span class="kpi-value" style="color:var(--accent-green);">9</span>
-      <span class="kpi-unit">/ 9 在线</span>
-    </div>
-    <div class="kpi-sub">本月无人值守率 <strong style="color:var(--accent-blue);">85%</strong></div>
-    <div style="margin-top:8px;display:flex;gap:8px;">
-      <span style="font-size:11px;color:var(--accent-green);display:flex;align-items:center;gap:4px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-green);flex-shrink:0;"></span>正常 7</span>
-      <span style="font-size:11px;color:var(--accent-amber);display:flex;align-items:center;gap:4px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-amber);flex-shrink:0;"></span>告警 2</span>
-    </div>
-  </div>
-  <div class="kpi-card">
-    <div class="kpi-label">巡检任务</div>
-    <div style="display:flex;align-items:baseline;gap:3px;">
-      <span class="kpi-value" style="color:var(--accent-amber);">12</span>
-      <span class="kpi-unit">条待处理</span>
-    </div>
-    <div class="kpi-sub">进行中 5 &middot; 已超时 3 &middot; 今日新增 8</div>
-    <div style="margin-top:8px;">
-      <div style="height:4px;background:#e8ecf0;border-radius:2px;overflow:hidden;"><div style="height:100%;width:68%;background:var(--accent-green);border-radius:2px;"></div></div>
-      <div style="font-size:10px;color:var(--text-muted);margin-top:3px;">完成率 68%</div>
-    </div>
-  </div>
-  <div class="kpi-card">
-    <div class="kpi-label">整改任务</div>
-    <div style="display:flex;align-items:baseline;gap:3px;">
-      <span class="kpi-value" style="color:var(--accent-red);">5</span>
-      <span class="kpi-unit">条超期</span>
-    </div>
-    <div class="kpi-sub">本月整改完成率 <strong style="color:var(--accent-green);">76%</strong></div>
-    <div style="margin-top:8px;font-size:11px;color:var(--text-muted);">待整改 9 &middot; 已完成 28</div>
-  </div>
-</div>
+<div style="display:grid;grid-template-columns:1fr 2fr 1fr;gap:14px;margin-bottom:16px;align-items:start;">
 
-<div style="margin-bottom:16px;">
-  <div class="section-header">
-    <div class="section-title"><span class="dot" style="background:var(--accent-blue);"></span>功能模块</div>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;">
-    <div class="mod-card" onclick="location.href='data-center.html'">
-      <div class="mod-icon" style="background:rgba(37,99,235,0.1);color:var(--accent-blue);">&#128452;</div>
-      <div class="mod-title">运行数据中心</div>
-      <div class="mod-desc">数据源接入 &middot; 采集配置</div>
+  <!-- LEFT: 数据总览 -->
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="kpi-card" style="padding:14px;">
+      <div class="kpi-label">综合得分</div>
+      <div style="display:flex;align-items:baseline;gap:3px;">
+        <span class="kpi-value" style="color:var(--accent-blue);font-size:28px;">72</span>
+        <span class="kpi-unit">分</span>
+        <span class="kpi-delta up">&#9650; +5</span>
+      </div>
+      <div class="kpi-sub">较上月 &#8593;5分 &middot; 等级：合格</div>
     </div>
-    <div class="mod-card" onclick="location.href='eval-template.html'">
-      <div class="mod-icon" style="background:rgba(22,163,74,0.1);color:var(--accent-green);">&#128202;</div>
-      <div class="mod-title">指标评价中心</div>
-      <div class="mod-desc">模板定义 &middot; 权重配置</div>
+    <div class="kpi-card" style="padding:14px;">
+      <div class="kpi-label">子系统状态</div>
+      <div style="display:flex;align-items:baseline;gap:3px;">
+        <span class="kpi-value" style="color:var(--accent-green);font-size:28px;">9</span>
+        <span class="kpi-unit">/ 9 在线</span>
+      </div>
+      <div style="margin-top:6px;display:flex;gap:8px;">
+        <span style="font-size:11px;color:var(--accent-green);display:flex;align-items:center;gap:4px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-green);flex-shrink:0;"></span>正常 7</span>
+        <span style="font-size:11px;color:var(--accent-amber);display:flex;align-items:center;gap:4px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-amber);flex-shrink:0;"></span>告警 2</span>
+      </div>
     </div>
-    <div class="mod-card" onclick="location.href='inspection.html'">
-      <div class="mod-icon" style="background:rgba(217,119,6,0.1);color:var(--accent-amber);">&#128203;</div>
-      <div class="mod-title">巡检任务中心</div>
-      <div class="mod-desc">任务派发 &middot; 执行追踪</div>
+    <div class="kpi-card" style="padding:14px;">
+      <div class="kpi-label">巡检任务</div>
+      <div style="display:flex;align-items:baseline;gap:3px;">
+        <span class="kpi-value" style="color:var(--accent-amber);font-size:28px;">12</span>
+        <span class="kpi-unit">条待处理</span>
+      </div>
+      <div style="margin-top:6px;font-size:10px;color:var(--text-muted);">进行中 5 &middot; 已超时 3 &middot; 今日新增 8</div>
     </div>
-    <div class="mod-card" onclick="location.href='monitoring.html'">
-      <div class="mod-icon" style="background:rgba(147,51,234,0.1);color:#9333ea;">&#128200;</div>
-      <div class="mod-title">智能监控中心</div>
-      <div class="mod-desc">实时监控 &middot; 远程控制</div>
-    </div>
-    <div class="mod-card" onclick="location.href='report.html'">
-      <div class="mod-icon" style="background:rgba(37,99,235,0.08);color:var(--accent-blue);">&#128196;</div>
-      <div class="mod-title">评价报告中心</div>
-      <div class="mod-desc">评分计算 &middot; 报告生成</div>
-    </div>
-    <div class="mod-card" onclick="location.href='rectification.html'">
-      <div class="mod-icon" style="background:rgba(220,38,38,0.1);color:var(--accent-red);">&#10004;</div>
-      <div class="mod-title">整改管理中心</div>
-      <div class="mod-desc">任务派发 &middot; 验收闭环</div>
-    </div>
-    <div class="mod-card" onclick="location.href='settings.html'">
-      <div class="mod-icon" style="background:rgba(90,100,117,0.1);color:var(--text-secondary);">&#9881;</div>
-      <div class="mod-title">系统设置</div>
-      <div class="mod-desc">参数配置 &middot; 权限管理</div>
+    <div class="kpi-card" style="padding:14px;">
+      <div class="kpi-label">整改任务</div>
+      <div style="display:flex;align-items:baseline;gap:3px;">
+        <span class="kpi-value" style="color:var(--accent-red);font-size:28px;">5</span>
+        <span class="kpi-unit">条超期</span>
+      </div>
+      <div style="margin-top:6px;font-size:10px;color:var(--text-muted);">本月整改完成率 76% &middot; 待整改 9</div>
     </div>
   </div>
+
+  <!-- CENTER: 综合评价雷达图 -->
+  <div class="card" style="padding:18px;">
+    <div class="card-header" style="margin-bottom:12px;">
+      <div class="card-title"><span class="card-dot" style="background:var(--accent-purple);"></span>综合评价雷达图</div>
+      <span class="blue-link" onclick="location.href='report.html'" style="font-size:12px;">评价报告 &rarr;</span>
+    </div>
+    <div class="radar-body" style="position:relative;display:flex;flex-direction:column;align-items:center;padding:10px 16px;gap:8px;">
+      <canvas id="radarChart" width="420" height="360"></canvas>
+      <div class="result-badge fail" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;background:rgba(255,255,255,0.95);border:1px solid rgba(220,38,38,0.3);border-radius:16px;padding:12px 22px;box-shadow:0 8px 32px rgba(0,0,0,0.12);min-width:120px;">
+        <div style="font-size:11px;color:var(--accent-red);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:3px;">综合评级</div>
+        <div style="font-size:35px;font-weight:900;color:var(--accent-red);line-height:1;">72</div>
+        <div style="font-size:12px;color:var(--accent-red);font-weight:500;">分 · 合格</div>
+      </div>
+    </div>
+    <div style="width:100%;padding:9px 14px;font-size:12px;color:var(--text-muted);background:#f5f7fa;border:1px solid var(--border);border-radius:8px;border-left:4px solid var(--accent-blue);">
+      九大子系统均处于运行状态，信息基础设施与地质保障系统需重点优化。
+    </div>
+  </div>
+
+  <!-- RIGHT: 功能模块 -->
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <div style="font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:2px;">功能模块</div>
+    <div class="mod-card" onclick="location.href='data-center.html'" style="padding:10px 12px;display:flex;align-items:center;gap:10px;">
+      <div class="mod-icon" style="background:rgba(37,99,235,0.1);color:var(--accent-blue);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;">&#128452;</div>
+      <div><div class="mod-title" style="font-size:12px;">运行数据中心</div><div class="mod-desc" style="font-size:10px;">数据源接入 &middot; 采集配置</div></div>
+    </div>
+    <div class="mod-card" onclick="location.href='eval-template.html'" style="padding:10px 12px;display:flex;align-items:center;gap:10px;">
+      <div class="mod-icon" style="background:rgba(22,163,74,0.1);color:var(--accent-green);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;">&#128202;</div>
+      <div><div class="mod-title" style="font-size:12px;">指标评价中心</div><div class="mod-desc" style="font-size:10px;">模板定义 &middot; 权重配置</div></div>
+    </div>
+    <div class="mod-card" onclick="location.href='inspection.html'" style="padding:10px 12px;display:flex;align-items:center;gap:10px;">
+      <div class="mod-icon" style="background:rgba(217,119,6,0.1);color:var(--accent-amber);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;">&#128203;</div>
+      <div><div class="mod-title" style="font-size:12px;">巡检任务中心</div><div class="mod-desc" style="font-size:10px;">任务派发 &middot; 执行追踪</div></div>
+    </div>
+    <div class="mod-card" onclick="location.href='monitoring.html'" style="padding:10px 12px;display:flex;align-items:center;gap:10px;">
+      <div class="mod-icon" style="background:rgba(147,51,234,0.1);color:#9333ea;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;">&#128200;</div>
+      <div><div class="mod-title" style="font-size:12px;">智能监控中心</div><div class="mod-desc" style="font-size:10px;">实时监控 &middot; 远程控制</div></div>
+    </div>
+    <div class="mod-card" onclick="location.href='report.html'" style="padding:10px 12px;display:flex;align-items:center;gap:10px;">
+      <div class="mod-icon" style="background:rgba(37,99,235,0.08);color:var(--accent-blue);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;">&#128196;</div>
+      <div><div class="mod-title" style="font-size:12px;">评价报告中心</div><div class="mod-desc" style="font-size:10px;">评分计算 &middot; 报告生成</div></div>
+    </div>
+    <div class="mod-card" onclick="location.href='rectification.html'" style="padding:10px 12px;display:flex;align-items:center;gap:10px;">
+      <div class="mod-icon" style="background:rgba(220,38,38,0.1);color:var(--accent-red);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;">&#10004;</div>
+      <div><div class="mod-title" style="font-size:12px;">整改管理中心</div><div class="mod-desc" style="font-size:10px;">任务派发 &middot; 验收闭环</div></div>
+    </div>
+    <div class="mod-card" onclick="location.href='settings.html'" style="padding:10px 12px;display:flex;align-items:center;gap:10px;">
+      <div class="mod-icon" style="background:rgba(90,100,117,0.1);color:var(--text-secondary);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;">&#9881;</div>
+      <div><div class="mod-title" style="font-size:12px;">系统设置</div><div class="mod-desc" style="font-size:10px;">参数配置 &middot; 权限管理</div></div>
+    </div>
+  </div>
+
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
@@ -365,12 +370,12 @@ body {
       <div class="card-title"><span class="card-dot" style="background:var(--accent-blue);"></span>最新评价报告</div>
       <span class="blue-link section-more" onclick="location.href='report.html'">查看全部 &rarr;</span>
     </div>
-    <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#f5f7fa;border-radius:10px;border:1px solid var(--border);margin-bottom:14px;">
+    <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#f5f7fa;border-radius:10px;border:1px solid var(--border);margin-bottom:12px;">
       <div class="score-badge good">72</div>
       <div style="flex:1;">
         <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">2026年05月 &middot; 智能化系统月度评价</div>
         <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">2026-05-26 10:00 &nbsp;|&nbsp; 月度评价</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
           <span class="tag ok">合格</span><span class="tag info">良好</span>
           <span style="font-size:11px;color:var(--text-muted);">良好（&ge;70分）</span>
         </div>
@@ -379,6 +384,10 @@ body {
         <span style="font-size:10px;color:var(--text-muted);">更新时间</span>
         <span style="font-size:11px;font-weight:600;color:var(--text-secondary);">今天 10:00</span>
       </div>
+    </div>
+    <div style="padding:10px 14px;background:rgba(37,99,235,0.05);border:1px solid rgba(37,99,235,0.15);border-radius:8px;margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:700;color:var(--accent-blue);margin-bottom:6px;">&#9679; 基本要求</div>
+      <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;">九大子系统均须接入数据源并保持稳定采集，数据采集覆盖率达 100%；综合评分合格（&ge;70分）为基础门槛。</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;">
 <div class="rank-item"><span class="rank-num top">1</span><span class="rank-name">主运输系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:92%;background:var(--accent-green);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-green);">92</span></div>
@@ -488,28 +497,6 @@ body {
   </div>
 </div>
 </div></div>
-<div style="margin-bottom:16px;">
-  <div class="card" style="padding:20px;">
-    <div class="card-header" style="margin-bottom:16px;">
-      <div class="card-title"><span class="card-dot" style="background:var(--accent-purple);"></span>综合评价雷达图</div>
-    </div>
-    <div class="radar-body" style="padding:16px 20px;">
-      <canvas id="radarChart" width="500" height="400"></canvas>
-      <div class="result-badge fail" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;background:rgba(255,255,255,0.95);border:1px solid rgba(220,38,38,0.3);border-radius:16px;padding:14px 24px;box-shadow:0 8px 32px rgba(0,0,0,0.12);min-width:130px;">
-        <div style="font-size:12px;color:var(--accent-red);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:4px;">综合评级</div>
-        <div style="font-size:36px;font-weight:900;color:var(--accent-red);line-height:1;">72</div>
-        <div style="font-size:13px;color:var(--accent-red);font-weight:500;">分 · 合格</div>
-      </div>
-    </div>
-    <div class="eval-conclusion" style="margin-top:10px;padding:10px 14px;font-size:13px;color:var(--text-muted);background:#f5f7fa;border:1px solid var(--border);border-radius:10px;border-left:4px solid var(--accent-blue);">
-      本期评价：综合得分 72 分，评级「合格」；九大子系统均处于运行状态，信息基础设施与地质保障系统需重点优化。
-    </div>
-  </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  var ctx = document.getElementById("radarChart");
   if (!ctx) return;
   var c = ctx.getContext("2d");
   if (!c) return;
