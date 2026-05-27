@@ -1,312 +1,204 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>煤矿智能化常态化运行月度评价报告 - 2026年05月</title>
-<style>
-@media print {
-  @page {size:A4;margin:18mm 16mm 16mm 20mm;}
-  body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:12px;color:#1a2332;background:#fff;line-height:1.6;}
-  .ph-report{width:100%;max-width:1100px;}
-  .ph-header{display:flex;align-items:flex-start;justify-content:space-between;border-bottom:2px solid #2563eb;padding-bottom:12px;margin-bottom:20px;}
-  .ph-logo-wrap{display:flex;align-items:center;gap:12px;}
-  .ph-logo{width:40px;height:40px;background:rgba(37,99,235,0.08);border-radius:10px;border:1px solid rgba(37,99,235,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .ph-main-title{font-size:18px;font-weight:800;color:#1a2332;}
-  .ph-sub-title{font-size:11px;color:#9aa0ab;margin-top:2px;}
-  .ph-meta-block{display:flex;flex-direction:column;gap:3px;text-align:right;}
-  .ph-meta-row{font-size:11px;color:#5a6475;}
-  .ph-meta-key{color:#9aa0ab;}
-  .ph-meta-val{font-weight:600;}
-  .ph-score-banner{display:flex;align-items:center;gap:20px;background:linear-gradient(135deg,#f0f7ff 0%,#e8ecf0 100%);border:1px solid #d0d7de;border-radius:12px;padding:16px 20px;margin-bottom:20px;border-left:4px solid #2563eb;}
-  .ph-grade-box{min-width:80px;height:80px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:rgba(22,163,74,0.08);border:2px solid #16a34a;flex-shrink:0;}
-  .ph-grade-text{font-size:26px;font-weight:800;color:#16a34a;}
-  .ph-grade-label{font-size:10px;font-weight:600;color:#16a34a;}
-  .ph-score-right{flex:1;}
-  .ph-big-score{font-size:38px;font-weight:800;color:#2563eb;line-height:1.1;}
-  .ph-score-unit{font-size:14px;color:#9aa0ab;font-weight:400;}
-  .ph-score-sub{font-size:11px;color:#9aa0ab;margin-top:2px;}
-  .ph-score-breakdown{display:flex;gap:20px;margin-top:8px;flex-wrap:wrap;}
-  .ph-sd-item{display:flex;align-items:center;gap:4px;font-size:11px;}
-  .ph-sd-label{color:#9aa0ab;}
-  .ph-sd-val{font-weight:700;color:#2563eb;}
-  .ph-sd-max{color:#9aa0ab;}
-  .ph-sd-note{color:#dc2626;font-size:10px;}
-  .ph-bonus .ph-sd-val{color:#d97706;}
-  .ph-deduct .ph-sd-val{color:#dc2626;}
-  .ph-section{margin-bottom:20px;}
-  .ph-sec-title{font-size:13px;font-weight:700;color:#1a2332;padding:6px 12px;background:#f5f7fa;border-left:3px solid #2563eb;border-radius:0 6px 6px 0;margin-bottom:10px;}
-  .ph-table{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:11px;}
-  .ph-table th{background:#e8ecf0;color:#9aa0ab;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;padding:8px 10px;text-align:left;border-bottom:1px solid #d0d7de;font-size:10px;}
-  .ph-table td{padding:8px 10px;border-bottom:1px solid #f0f2f5;vertical-align:middle;color:#5a6475;}
-  .ph-table tr:hover td{background:#f5f7fa;}
-  .ph-table .ph-total-row td{background:#e8ecf0!important;font-weight:700;color:#1a2332;border-top:1px solid #d0d7de!important;}
-  .ph-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle;}
-  .ph-pct{font-weight:700;padding:2px 8px;border-radius:4px;font-size:10px;}
-  .ph-pct.high{background:rgba(22,163,74,0.1);color:#16a34a;}
-  .ph-pct.mid{background:rgba(217,119,6,0.1);color:#d97706;}
-  .ph-pct.low{background:rgba(220,38,38,0.1);color:#dc2626;}
-  .ph-pct.best{background:rgba(22,163,74,0.15);color:#16a34a;}
-  .ph-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;display:inline-block;}
-  .ph-badge.best{background:rgba(22,163,74,0.15);color:#16a34a;}
-  .ph-badge.ok{background:rgba(22,163,74,0.1);color:#16a34a;}
-  .ph-badge.warn{background:rgba(217,119,6,0.1);color:#d97706;}
-  .ph-badge.fail{background:rgba(220,38,38,0.1);color:#dc2626;}
-  .ph-red{color:#dc2626!important;font-weight:700;}
-  .ph-rec-group{margin-bottom:12px;}
-  .ph-rec-label{font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;margin-bottom:6px;}
-  .ph-rec-label.danger{background:rgba(220,38,38,0.08);color:#dc2626;border:1px solid rgba(220,38,38,0.2);}
-  .ph-rec-label.warn{background:rgba(217,119,6,0.08);color:#d97706;border:1px solid rgba(217,119,6,0.2);}
-  .ph-rec-label.good{background:rgba(22,163,74,0.08);color:#16a34a;border:1px solid rgba(22,163,74,0.2);}
-  .ph-rec-item{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:11px;color:#5a6475;align-items:flex-start;}
-  .ph-rec-item:last-child{border-bottom:none;}
-  .ph-rec-num{font-weight:700;color:#2563eb;flex-shrink:0;width:14px;}
-  .ph-rec-item strong{color:#1a2332;margin-right:4px;}
-  .ph-scale-table td{vertical-align:middle;}
-  .ph-scale-mark{text-align:center;padding:8px;background:#f5f7fa;border-radius:8px;border:1px solid #d0d7de;font-size:11px;color:#5a6475;line-height:1.8;}
-  .ph-footer{border-top:1px solid #d0d7de;padding-top:12px;margin-top:20px;}
-  .ph-footer-note{font-size:10px;color:#9aa0ab;text-align:center;margin-bottom:16px;font-style:italic;}
-  .ph-footer-sign{display:flex;gap:40px;justify-content:center;}
-  .ph-sign-item{text-align:center;}
-  .ph-sign-line{width:120px;height:1px;background:#1a2332;margin:0 auto 6px;}
-  .ph-sign-label{font-size:10px;color:#9aa0ab;}
-  .no-print{display:none;}
-  .page-break{page-break-before:always;}
-  .avoid-break{page-break-inside:avoid;}
-}
-@media screen {
-  body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#e8ecf0;margin:0;padding:20px;}
-  .screen-wrap{max-width:900px;margin:0 auto;}
-  .screen-top-bar{background:#fff;border:1px solid #d0d7de;border-radius:14px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;}
-  .screen-top-bar .logo{font-size:15px;font-weight:600;display:flex;align-items:center;gap:10px;}
-  .screen-btn{padding:8px 20px;border-radius:10px;border:none;background:#2563eb;color:#fff;font-size:13px;font-weight:600;cursor:pointer;}
-  .ph-report{background:#fff;border-radius:14px;border:1px solid #d0d7de;padding:24px;max-width:900px;margin:0 auto;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
-  .ph-header{border-bottom:2px solid #2563eb;padding-bottom:12px;margin-bottom:20px;}
-  .ph-footer-note{font-size:10px;color:#9aa0ab;text-align:center;margin-bottom:16px;font-style:italic;}
-  .ph-footer-sign{display:flex;gap:40px;justify-content:center;margin-top:16px;}
-  .ph-sign-line{width:120px;height:1px;background:#1a2332;margin:0 auto 6px;}
-  .ph-sign-label{font-size:10px;color:#9aa0ab;}
-}
-</style>
-</head>
-<body>
-<div class="screen-wrap">
-  <div class="screen-top-bar">
-    <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M12 6h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path><path d="M8 6h.01"></path><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg> 煤矿智能化常态化运行管理系统</div>
-    <button class="screen-btn no-print" onclick="window.print()">🖨️ 打印 / 导出 PDF</button>
-  </div>
-  <div class="ph-report">
-    <div class="ph-report">
-<div class="ph-header">
-  <div class="ph-logo-wrap">
-    <div class="ph-logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M12 6h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path><path d="M8 6h.01"></path><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg></div>
-    <div class="ph-title">
-      <div class="ph-main-title">煤矿智能化常态化运行月度评价报告</div>
-      <div class="ph-sub-title">智能化常态化运行评价报告 | 2026年05月评价周期</div>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>煤矿智能化常态化运行月度评价报告 - 2026年05月</title><style>
+.ph-report{font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:#1a2332;font-size:12px;line-height:1.7;background:#fff;max-width:900px;margin:0 auto;}
+@media print{@page{size:A4;margin:20mm 18mm 20mm 22mm;}body{print-color-adjust:exact;-webkit-print-color-adjust:exact;}}
+@media print{.noprint{display:none!important;}.ph-report{box-shadow:none;border:none;max-width:100%;padding:0;}}
+.ph-cover{border-bottom:2px solid #1a2332;padding-bottom:16px;margin-bottom:24px;}
+.ph-cover-top{display:flex;align-items:center;justify-content:space-between;}
+.ph-cover-logo{display:flex;align-items:center;gap:10px;}
+.ph-logo-icon{width:36px;height:36px;background:#1a2332;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.ph-cover-title{font-size:20px;font-weight:800;letter-spacing:1px;}
+.ph-cover-sub{font-size:11px;color:#9aa0ab;margin-top:3px;}
+.ph-cover-date{font-size:11px;color:#9aa0ab;text-align:right;}
+.ph-cover-date strong{color:#1a2332;font-size:13px;display:block;margin-bottom:2px;}
+.ph-report-title{text-align:center;border:2px solid #1a2332;border-radius:12px;padding:20px;margin-bottom:24px;background:#1a2332;color:#fff;}
+.ph-report-title h1{font-size:22px;font-weight:800;margin-bottom:6px;letter-spacing:2px;}
+.ph-report-title p{font-size:12px;opacity:0.75;}
+.ph-report-title .rt-sub{margin-top:10px;font-size:13px;opacity:0.9;font-weight:600;}
+.ph-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;}
+.ph-info-card{background:#f5f7fa;border:1px solid #d0d7de;border-radius:10px;padding:12px 14px;}
+.ph-info-card .ic-label{font-size:10px;color:#9aa0ab;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;}
+.ph-info-card .ic-value{font-size:14px;font-weight:700;color:#1a2332;}
+.ph-info-card .ic-note{font-size:10px;color:#9aa0ab;margin-top:2px;}
+.ph-score-row{display:flex;align-items:stretch;gap:12px;margin-bottom:24px;}
+.ph-score-card{flex:1;background:#f5f7fa;border:1px solid #d0d7de;border-radius:12px;padding:14px 16px;text-align:center;}
+.ph-score-card .sc-num{font-size:32px;font-weight:800;color:#1a2332;line-height:1.1;}
+.ph-score-card .sc-unit{font-size:13px;color:#9aa0ab;font-weight:400;}
+.ph-score-card .sc-label{font-size:10px;color:#9aa0ab;text-transform:uppercase;letter-spacing:0.5px;margin-top:4px;}
+.ph-score-card.grade-card{background:#1a2332;color:#fff;border-color:#1a2332;min-width:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
+.ph-score-card.grade-card .sc-num{color:#fff;font-size:26px;}
+.ph-score-card.grade-card .sc-label{color:rgba(255,255,255,0.6);}
+.ph-score-detail-card{flex:1.5;background:#f8f9fb;border:1px solid #d0d7de;border-radius:12px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;gap:6px;}
+.ph-sd-row{display:flex;align-items:center;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f0f2f5;font-size:11px;}
+.ph-sd-row:last-child{border-bottom:none;}
+.ph-sd-row .sd-l{color:#9aa0ab;}
+.ph-sd-row .sd-v{font-weight:700;color:#1a2332;}
+.ph-sd-row .sd-m{color:#9aa0ab;font-size:10px;}
+.ph-sd-row.bonus .sd-v{color:#d97706;}
+.ph-sd-row.deduct .sd-v{color:#dc2626;}
+.ph-section{margin-bottom:22px;}
+.ph-sec-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.ph-sec-num{width:22px;height:22px;background:#1a2332;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.ph-sec-title{font-size:14px;font-weight:800;color:#1a2332;letter-spacing:0.5px;}
+.ph-table{width:100%;border-collapse:collapse;font-size:11px;}
+.ph-table th{background:#1a2332;color:#fff;font-weight:600;padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:0.4px;}
+.ph-table th.tc{text-align:center;}
+.ph-table td{padding:9px 10px;border-bottom:1px solid #f0f2f5;vertical-align:middle;}
+.ph-table td.tc{text-align:center;}
+.ph-table tbody tr:hover td{background:#f5f7fa;}
+.ph-table tfoot td{background:#f5f7fa;font-weight:700;border-top:2px solid #1a2332!important;}
+.ph-table .tl{color:#9aa0ab;font-size:10px;}
+.ph-dot{width:8px;height:8px;border-radius:50%;display:inline-block;vertical-align:middle;margin-right:5px;flex-shrink:0;}
+.pct{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;}
+.pct-best{background:rgba(22,163,74,0.12);color:#16a34a;}
+.pct-high{background:rgba(22,163,74,0.1);color:#16a34a;}
+.pct-mid{background:rgba(217,119,6,0.1);color:#d97706;}
+.pct-low{background:rgba(220,38,38,0.1);color:#dc2626;}
+.badge{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;}
+.badge-best{background:#1a2332;color:#fff;}
+.badge-ok{background:rgba(22,163,74,0.1);color:#16a34a;}
+.badge-warn{background:rgba(217,119,6,0.1);color:#d97706;}
+.badge-fail{background:rgba(220,38,38,0.1);color:#dc2626;}
+.red{color:#dc2626;font-weight:700;}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;background:#f0f2f5;color:#9aa0ab;}
+.tag-red{background:rgba(220,38,38,0.1);color:#dc2626;}
+.rec-block{margin-bottom:14px;}
+.rec-head{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:8px;font-size:11px;font-weight:700;margin-bottom:8px;}
+.rec-head.danger{background:rgba(220,38,38,0.08);color:#dc2626;border:1px solid rgba(220,38,38,0.2);}
+.rec-head.warn{background:rgba(217,119,6,0.08);color:#d97706;border:1px solid rgba(217,119,6,0.2);}
+.rec-head.good{background:rgba(22,163,74,0.08);color:#16a34a;border:1px solid rgba(22,163,74,0.2);}
+.rec-list{list-style:none;padding:0;margin:0;}
+.rec-list li{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid #f0f2f5;font-size:11px;color:#5a6475;align-items:flex-start;line-height:1.5;}
+.rec-list li:last-child{border-bottom:none;}
+.rec-list li .rn{flex-shrink:0;width:16px;height:16px;border-radius:50%;background:#1a2332;color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-top:2px;}
+.rec-list li strong{color:#1a2332;}
+.scale-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.scale-card{border:1px solid #d0d7de;border-radius:10px;padding:12px;text-align:center;}
+.scale-card .sc-label{font-size:11px;font-weight:700;margin-bottom:4px;}
+.scale-card .sc-range{font-size:18px;font-weight:800;margin-bottom:4px;}
+.scale-card .sc-note{font-size:10px;color:#9aa0ab;line-height:1.4;}
+.scale-card.top{background:rgba(22,163,74,0.06);border-color:#16a34a;}
+.scale-card.pass{background:rgba(37,99,235,0.06);border-color:#2563eb;}
+.scale-card.warn{background:rgba(217,119,6,0.06);border-color:#d97706;}
+.scale-card.fail{background:rgba(220,38,38,0.06);border-color:#dc2626;}
+.ph-divider{border:none;border-top:1px solid #d0d7de;margin:20px 0;}
+.ph-signature{display:flex;gap:40px;justify-content:center;margin-top:24px;}
+.ph-sig-item{text-align:center;flex:1;max-width:200px;}
+.ph-sig-line{width:100%;height:1px;background:#1a2332;margin-bottom:6px;}
+.ph-sig-label{font-size:10px;color:#9aa0ab;}
+.ph-footnote{font-size:10px;color:#9aa0ab;text-align:center;margin-top:16px;font-style:italic;padding-top:12px;border-top:1px solid #f0f2f5;}
+@media(max-width:700px){.ph-info-grid{grid-template-columns:1fr;}.ph-score-row{flex-direction:column;}.scale-grid{grid-template-columns:1fr 1fr;}}
+</style></head><body style="margin:0;padding:0;font-family:PingFang SC,Microsoft YaHei,sans-serif;background:#e8ecf0;min-height:100vh;"><div style="background:#1a2332;color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-radius:14px 14px 0 0;border-bottom:2px solid #2563eb;"><div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M12 6h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path><path d="M8 6h.01"></path><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg>煤矿智能化常态化运行管理系统</div><button onclick="window.print()" style="padding:8px 20px;border-radius:10px;border:none;background:#2563eb;color:#fff;font-size:13px;font-weight:600;cursor:pointer;">🖨️ 打印报告</button></div><div style="background:#fff;border:1px solid #d0d7de;border-top:none;border-radius:0 0 14px 14px;max-width:900px;margin:0 auto;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+<div class="ph-report">
+<div class="ph-cover">
+  <div class="ph-cover-top">
+    <div class="ph-cover-logo">
+      <div class="ph-logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M12 6h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path><path d="M8 6h.01"></path><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg></div>
+      <div>
+        <div class="ph-cover-title">煤矿智能化常态化运行管理系统</div>
+        <div class="ph-cover-sub">Intelligent Coal Mine Normalized Operation Management System</div>
+      </div>
     </div>
-  </div>
-  <div class="ph-meta-block">
-    <div class="ph-meta-row"><span class="ph-meta-key">被评价单位：</span><span class="ph-meta-val">湖南XX煤业集团 · XX煤矿</span></div>
-    <div class="ph-meta-row"><span class="ph-meta-key">评价周期：</span><span class="ph-meta-val">2026年05月01日 — 2026年05月31日</span></div>
-    <div class="ph-meta-row"><span class="ph-meta-key">评价机构：</span><span class="ph-meta-val">智能化运行评价小组</span></div>
-    <div class="ph-meta-row"><span class="ph-meta-key">报告日期：</span><span class="ph-meta-val">2026年05月25日</span></div>
-    <div class="ph-meta-row"><span class="ph-meta-key">评价人签字：</span><span class="ph-meta-val">王矿长</span></div>
-  </div>
-</div>
-    <div class="ph-score-banner">
-  <div class="ph-grade-box pass">
-    <div class="ph-grade-text">合格</div>
-    <div class="ph-grade-label">综合评级</div>
-  </div>
-  <div class="ph-score-right">
-    <div class="ph-big-score">72.0<span class="ph-score-unit"> 分</span></div>
-    <div class="ph-score-sub">总分 1000 分制 | 及格线 700 分（70分换算）</div>
-    <div class="ph-score-breakdown">
-      <div class="ph-sd-item"><span class="ph-sd-label">九大系统得分</span><span class="ph-sd-val">570</span><span class="ph-sd-max">/ 900</span></div>
-      <div class="ph-sd-item"><span class="ph-sd-label">基本要求得分</span><span class="ph-sd-val">65</span><span class="ph-sd-max">/ 100</span></div>
-      <div class="ph-sd-item ph-bonus"><span class="ph-sd-label">加分项</span><span class="ph-sd-val">+5</span></div>
-      <div class="ph-sd-item ph-deduct"><span class="ph-sd-label">扣减项</span><span class="ph-sd-val">-3</span><span class="ph-sd-note">（一票否决）</span></div>
+    <div class="ph-cover-date">
+      <strong>2026年05月25日</strong>
+      报告编号：ICM-2026-05-001<br>评价机构：智能化运行评价小组
     </div>
   </div>
 </div>
-    <div class="ph-section">
-  <div class="ph-sec-title">一、各子系统评分明细</div>
-  <table class="ph-table">
-    <thead>
-      <tr>
-        <th style="width:26%">子系统</th>
-        <th style="width:8%;text-align:center">标准分</th>
-        <th style="width:8%;text-align:center">实得分</th>
-        <th style="width:8%;text-align:center">得分率</th>
-        <th style="width:8%;text-align:center">评级</th>
-        <th style="width:42%">主要问题 / 说明</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="ph-dot" style="background:#2563eb"></span>基本要求</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>65</strong></td>
-        <td style="text-align:center"><span class="ph-pct mid">65%</span></td>
-        <td style="text-align:center"><span class="ph-badge warn">偏低</span></td>
-        <td>管理制度与台账需补充近3个月培训记录；维护标准细化文件待完善。</td>
-      </tr>
-      <tr>
-        <td><span class="ph-dot" style="background:#16a34a"></span>信息基础设施</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>35</strong></td>
-        <td style="text-align:center"><span class="ph-pct low">35%</span></td>
-        <td style="text-align:center"><span class="ph-badge fail">不达标</span></td>
-        <td>主干网络冗余不足，交换机配置未标准化，故障恢复时间超4小时，需立即整改。</td>
-      </tr>
-      <tr>
-        <td><span class="ph-dot" style="background:#9333ea"></span>地质保障系统</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>42</strong></td>
-        <td style="text-align:center"><span class="ph-pct low">42%</span></td>
-        <td style="text-align:center"><span class="ph-badge fail">不达标</span></td>
-        <td>三维地质模型精度不足，动态预报周期超30天，隐蔽致灾因素普查数据缺失。</td>
-      </tr>
-      <tr>
-        <td><span class="ph-dot" style="background:#2563eb"></span>掘进系统</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>72</strong></td>
-        <td style="text-align:center"><span class="ph-pct mid">72%</span></td>
-        <td style="text-align:center"><span class="ph-badge ok">合格</span></td>
-        <td>设备智能化改造完成度一般，人员操作培训待加强。</td>
-      </tr>
-      <tr>
-        <td><span class="ph-dot" style="background:#16a34a"></span>综采系统</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>85</strong></td>
-        <td style="text-align:center"><span class="ph-pct high">85%</span></td>
-        <td style="text-align:center"><span class="ph-badge warn">接近良好</span></td>
-        <td>智能开采覆盖率较高，液压支架跟机自动化运行稳定。</td>
-      </tr>
-      <tr>
-        <td><span class="ph-dot" style="background:#9333ea"></span>主运输系统</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>92</strong></td>
-        <td style="text-align:center"><span class="ph-pct best">92%</span></td>
-        <td style="text-align:center"><span class="ph-badge best">优秀</span></td>
-        <td>皮带运输无人值守运行稳定，智能调速系统节能效果显著，建议保持当前运维标准。</td>
-      </tr>
-      <tr>
-        <td><span class="ph-dot" style="background:#d97706"></span>辅助运输系统</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>68</strong></td>
-        <td style="text-align:center"><span class="ph-pct mid">68%</span></td>
-        <td style="text-align:center"><span class="ph-badge warn">偏低</span></td>
-        <td>单轨吊视频监控覆盖不完整，无轨胶轮车远程诊断功能未启用。</td>
-      </tr>
-      <tr>
-        <td><span class="ph-dot" style="background:#2563eb"></span>综合保障系统</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>78</strong></td>
-        <td style="text-align:center"><span class="ph-pct mid">78%</span></td>
-        <td style="text-align:center"><span class="ph-badge ok">合格</span></td>
-        <td>电力监控、有害气体、通风系统运行正常，局部环节需优化。</td>
-      </tr>
-      <tr>
-        <td><span class="ph-dot" style="background:#16a34a"></span>安全管控系统</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>65</strong></td>
-        <td style="text-align:center"><span class="ph-pct mid">65%</span></td>
-        <td style="text-align:center"><span class="ph-badge warn">偏低</span></td>
-        <td>人员定位系统精度不足，电子围栏配置不完整，瓦斯突出预警阈值需重新校准。</td>
-      </tr>
-      <tr>
-        <td><span class="ph-dot" style="background:#9333ea"></span>生产经营管理系统</td>
-        <td style="text-align:center">100</td>
-        <td style="text-align:center"><strong>58</strong></td>
-        <td style="text-align:center"><span class="ph-pct low">58%</span></td>
-        <td style="text-align:center"><span class="ph-badge fail">不达标</span></td>
-        <td>产供销数据缺失率超30%，ERP与生产系统对接未完成，历史数据补录滞后。</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr class="ph-total-row">
-        <td><strong>合计</strong></td>
-        <td style="text-align:center"><strong>1000</strong></td>
-        <td style="text-align:center"><strong>570</strong></td>
-        <td style="text-align:center"><strong>57%</strong></td>
-        <td style="text-align:center"><span class="ph-badge warn">合格</span></td>
-        <td>基本要求（100分）另计：实得65分</td>
-      </tr>
-    </tfoot>
-  </table>
+<div class="ph-report-title">
+  <h1>智能化常态化运行月度评价报告</h1>
+  <p>Intelligent Coal Mine Normalized Operation Monthly Evaluation Report</p>
+  <div class="rt-sub">评价周期：2026年05月01日 — 2026年05月31日 | 被评价单位：湖南XX煤业集团 · XX煤矿</div>
 </div>
-    <div class="ph-section">
-  <div class="ph-sec-title">二、关键指标扣分详情（扣分制）</div>
-  <table class="ph-table">
-    <thead>
-      <tr>
-        <th style="width:22%">指标名称</th>
-        <th style="width:12%">所属系统</th>
-        <th style="width:8%;text-align:center">标准分</th>
-        <th style="width:8%;text-align:center">扣分</th>
-        <th style="width:8%;text-align:center">实得分</th>
-        <th style="width:42%">扣分原因</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>管理科室组建</td><td>基本要求</td><td style="text-align:center">20</td><td style="text-align:center" class="ph-red">-5</td><td style="text-align:center">15</td><td>未配备专职网络安全管理员，科室职责描述不清晰。</td></tr>
-      <tr><td>运行维护机制</td><td>基本要求</td><td style="text-align:center">20</td><td style="text-align:center" class="ph-red">-10</td><td style="text-align:center">10</td><td>近3个月智能化运行会议未召开，无动态优化记录。</td></tr>
-      <tr><td>管理制度与台账</td><td>基本要求</td><td style="text-align:center">20</td><td style="text-align:center" class="ph-red">-5</td><td style="text-align:center">15</td><td>配件更换明细缺失近1个月记录，部分台账超1年保存期。</td></tr>
-      <tr><td>上级考核台账</td><td>基本要求</td><td style="text-align:center">10</td><td style="text-align:center" class="ph-red">0</td><td style="text-align:center">10</td><td>（符合要求）</td></tr>
-      <tr><td>培训计划与执行</td><td>基本要求</td><td style="text-align:center">15</td><td style="text-align:center" class="ph-red">-5</td><td style="text-align:center">10</td><td>本年度仅开展1次培训，内容不完整（缺应急处置）。</td></tr>
-      <tr><td>维护标准细化</td><td>基本要求</td><td style="text-align:center">15</td><td style="text-align:center" class="ph-red">-5</td><td style="text-align:center">10</td><td>软件维护保养标准未单独制定，日常维护人员知晓率低于70%。</td></tr>
-      <tr><td>网络架构规划</td><td>信息基础设施</td><td style="text-align:center">15</td><td style="text-align:center" class="ph-red">-9</td><td style="text-align:center">6</td><td>主干网络无冗余链路，资源分配未按智能化峰值核算。</td></tr>
-      <tr><td>故障恢复时间</td><td>信息基础设施</td><td style="text-align:center">12</td><td style="text-align:center" class="ph-red">-8</td><td style="text-align:center">4</td><td>5月发生2次故障，恢复时间分别为6小时和8小时，超标准。</td></tr>
-      <tr><td>网络图纸绘制</td><td>信息基础设施</td><td style="text-align:center">10</td><td style="text-align:center" class="ph-red">-4</td><td style="text-align:center">6</td><td>工业控制网络拓扑图未及时更新，缺失2处设备布置图。</td></tr>
-      <tr><td>设备标准化配置</td><td>信息基础设施</td><td style="text-align:center">12</td><td style="text-align:center" class="ph-red">-6</td><td style="text-align:center">6</td><td>交换机品牌混杂（3家），固件版本未统一管理。</td></tr>
-      <tr><td>服务器与存储</td><td>信息基础设施</td><td style="text-align:center">16</td><td style="text-align:center" class="ph-red">-8</td><td style="text-align:center">8</td><td>核心服务器未做双机热备，存储容量仅满足1.5年需求。</td></tr>
-      <tr><td>网络安全防护</td><td>信息基础设施</td><td style="text-align:center">15</td><td style="text-align:center" class="ph-red">-5</td><td style="text-align:center">10</td><td>工控网络与办公网络隔离不彻底，入侵检测系统未启用。</td></tr>
-      <tr><td>无线网络覆盖</td><td>信息基础设施</td><td style="text-align:center">10</td><td style="text-align:center" class="ph-red">-5</td><td style="text-align:center">5</td><td>综采面Wi-Fi 6覆盖存在盲区，约20%区域信号弱。</td></tr>
-      <tr><td>机房环境监控</td><td>信息基础设施</td><td style="text-align:center">10</td><td style="text-align:center" class="ph-red">-5</td><td style="text-align:center">5</td><td>温湿度监控已接入，但烟雾告警阈值配置错误，未触发过告警。</td></tr>
-    </tbody>
-  </table>
+<div class="ph-info-grid">
+  <div class="ph-info-card"><div class="ic-label">被评价单位</div><div class="ic-value">湖南XX煤业集团 · XX煤矿</div><div class="ic-note">矿井核定生产能力：XXX万吨/年</div></div>
+  <div class="ph-info-card"><div class="ic-label">评价机构</div><div class="ic-value">智能化运行评价小组</div><div class="ic-note">王矿长（签字评价）</div></div>
+  <div class="ph-info-card"><div class="ic-label">评价周期</div><div class="ic-value">2026年05月</div><div class="ic-note">05月01日 — 05月31日</div></div>
+  <div class="ph-info-card"><div class="ic-label">报告日期</div><div class="ic-value">2026年05月25日</div><div class="ic-note">本报告一式三份</div></div>
 </div>
-    <div class="ph-section">
-  <div class="ph-sec-title">三、整改要求与建议</div>
-  <div class="ph-rec-group">
-    <div class="ph-rec-label danger">🔴 限期整改项（30日内）</div>
-    <div class="ph-rec-item"><span class="ph-rec-num">1.</span><strong>信息基础设施</strong> — 网络架构优化：立即启动主干网络冗余改造，2周内完成链路切换演练，确保故障恢复时间≤4小时。</div>
-    <div class="ph-rec-item"><span class="ph-rec-num">2.</span><strong>信息基础设施</strong> — 设备标准化：1个月内统一交换机品牌和固件版本，完成配置标准化文档。</div>
-    <div class="ph-rec-item"><span class="ph-rec-num">3.</span><strong>生产经营管理系统</strong> — 数据对接：ERP与生产系统对接，6月15日前完成产供销数据贯通，补充近6个月历史数据。</div>
-  </div>
-  <div class="ph-rec-group">
-    <div class="ph-rec-label warn">🟡 持续改进项（下月评估）</div>
-    <div class="ph-rec-item"><span class="ph-rec-num">4.</span><strong>地质保障系统</strong> — 动态预报周期压缩至30天内，6月底前完成三维地质模型迭代更新。</div>
-    <div class="ph-rec-item"><span class="ph-rec-num">5.</span><strong>辅助运输系统</strong> — 单轨吊视频监控全覆盖，启用无轨胶轮车远程诊断功能。</div>
-    <div class="ph-rec-item"><span class="ph-rec-num">6.</span><strong>安全管控系统</strong> — 人员定位精度提升，电子围栏全覆盖，瓦斯预警阈值重新校准。</div>
-  </div>
-  <div class="ph-rec-group">
-    <div class="ph-rec-label good">🟢 保持优秀项</div>
-    <div class="ph-rec-item"><span class="ph-rec-num">7.</span><strong>主运输系统</strong> — 保持当前皮带无人值守运维标准，持续深化智能调速节能优化。</div>
+<div class="ph-score-row">
+  <div class="ph-score-card grade-card"><div class="sc-num">合格</div><div class="sc-label">综合评级</div></div>
+  <div class="ph-score-card"><div class="sc-num">72.0<span class="sc-unit"> 分</span></div><div class="sc-label">综合得分（1000分制）</div></div>
+  <div class="ph-score-card"><div class="sc-num">57.0<span class="sc-unit"> %</span></div><div class="sc-label">综合得分率</div></div>
+  <div class="ph-score-detail-card">
+    <div class="ph-sd-row"><span class="sd-l">九大系统得分</span><span class="sd-v">570</span><span class="sd-m">/ 900</span></div>
+    <div class="ph-sd-row"><span class="sd-l">基本要求得分</span><span class="sd-v">65</span><span class="sd-m">/ 100</span></div>
+    <div class="ph-sd-row bonus"><span class="sd-l">加分项</span><span class="sd-v">+5</span><span class="sd-m"></span></div>
+    <div class="ph-sd-row deduct"><span class="sd-l">扣减项（一票否决）</span><span class="sd-v">-3</span><span class="sd-m"></span></div>
   </div>
 </div>
-    <div class="ph-section">
-  <div class="ph-sec-title">四、评分标准说明</div>
-  <table class="ph-table ph-scale-table">
-    <thead><tr><th>评级</th><th>换算分（百分制）</th><th>说明</th><th>本次结果</th></tr></thead>
-    <tbody>
-      <tr><td><span class="ph-badge best">优秀</span></td><td>≥90分</td><td>系统运行高度稳定，各项指标达标，整改项≤2项</td><td rowspan="4"><div class="ph-scale-mark">本次得分<br><strong style="font-size:20px">72.0</strong><br>综合评级：<span class="ph-badge warn">合格</span></div></td></tr>
-      <tr><td><span class="ph-badge ok">良好</span></td><td>80≤评分＜90</td><td>系统运行稳定，各项指标基本达标，整改项≤5项</td></tr>
-      <tr><td><span class="ph-badge warn">合格</span></td><td>70≤评分＜80</td><td>系统运行基本稳定，存在部分不达标项，须按期整改</td></tr>
-      <tr><td><span class="ph-badge fail">不合格</span></td><td>＜70分</td><td>系统运行存在重大隐患，须立即整改并重新评价</td></tr>
-    </tbody>
-  </table>
+<div class="ph-section">
+  <div class="ph-sec-header"><div class="ph-sec-num">1</div><div class="ph-sec-title">各子系统评分明细</div></div>
+  <table class="ph-table"><thead><tr><th>子系统</th><th class="tc">标准分</th><th class="tc">实得分</th><th class="tc">得分率</th><th class="tc">评级</th><th>主要问题</th></tr></thead><tbody>
+    <tr><td><span class="ph-dot" style="background:#1a2332"></span>基本要求</td><td class="tc">100</td><td class="tc"><strong>65</strong></td><td class="tc"><span class="pct pct-mid">65%</span></td><td class="tc"><span class="badge badge-warn">偏低</span></td><td>管理制度与台账需补充近3个月培训记录；维护标准细化文件待完善。</td></tr>
+    <tr><td><span class="ph-dot" style="background:#16a34a"></span>信息基础设施</td><td class="tc">100</td><td class="tc"><strong>35</strong></td><td class="tc"><span class="pct pct-low">35%</span></td><td class="tc"><span class="badge badge-fail">不达标</span></td><td>主干网络冗余不足，交换机配置未标准化，故障恢复时间超4小时，须立即整改。</td></tr>
+    <tr><td><span class="ph-dot" style="background:#9333ea"></span>地质保障系统</td><td class="tc">100</td><td class="tc"><strong>42</strong></td><td class="tc"><span class="pct pct-low">42%</span></td><td class="tc"><span class="badge badge-fail">不达标</span></td><td>三维地质模型精度不足，动态预报周期超30天，隐蔽致灾因素普查数据缺失。</td></tr>
+    <tr><td><span class="ph-dot" style="background:#2563eb"></span>掘进系统</td><td class="tc">100</td><td class="tc"><strong>72</strong></td><td class="tc"><span class="pct pct-mid">72%</span></td><td class="tc"><span class="badge badge-ok">合格</span></td><td>设备智能化改造完成度一般，人员操作培训待加强。</td></tr>
+    <tr><td><span class="ph-dot" style="background:#16a34a"></span>综采系统</td><td class="tc">100</td><td class="tc"><strong>85</strong></td><td class="tc"><span class="pct pct-high">85%</span></td><td class="tc"><span class="badge badge-warn">接近良好</span></td><td>智能开采覆盖率较高，液压支架跟机自动化运行稳定。</td></tr>
+    <tr><td><span class="ph-dot" style="background:#9333ea"></span>主运输系统</td><td class="tc">100</td><td class="tc"><strong>92</strong></td><td class="tc"><span class="pct pct-best">92%</span></td><td class="tc"><span class="badge badge-best">优秀</span></td><td>皮带运输无人值守运行稳定，智能调速系统节能效果显著，建议保持当前运维标准。</td></tr>
+    <tr><td><span class="ph-dot" style="background:#d97706"></span>辅助运输系统</td><td class="tc">100</td><td class="tc"><strong>68</strong></td><td class="tc"><span class="pct pct-mid">68%</span></td><td class="tc"><span class="badge badge-warn">偏低</span></td><td>单轨吊视频监控覆盖不完整，无轨胶轮车远程诊断功能未启用。</td></tr>
+    <tr><td><span class="ph-dot" style="background:#2563eb"></span>综合保障系统</td><td class="tc">100</td><td class="tc"><strong>78</strong></td><td class="tc"><span class="pct pct-mid">78%</span></td><td class="tc"><span class="badge badge-ok">合格</span></td><td>电力监控、有害气体、通风系统运行正常，局部环节需优化。</td></tr>
+    <tr><td><span class="ph-dot" style="background:#16a34a"></span>安全管控系统</td><td class="tc">100</td><td class="tc"><strong>65</strong></td><td class="tc"><span class="pct pct-mid">65%</span></td><td class="tc"><span class="badge badge-warn">偏低</span></td><td>人员定位系统精度不足，电子围栏配置不完整，瓦斯突出预警阈值需重新校准。</td></tr>
+    <tr><td><span class="ph-dot" style="background:#9333ea"></span>生产经营管理系统</td><td class="tc">100</td><td class="tc"><strong>58</strong></td><td class="tc"><span class="pct pct-low">58%</span></td><td class="tc"><span class="badge badge-fail">不达标</span></td><td>产供销数据缺失率超30%，ERP与生产系统对接未完成，历史数据补录滞后。</td></tr>
+  </tbody><tfoot><tr><td><strong>合计</strong></td><td class="tc"><strong>1000</strong></td><td class="tc"><strong>570</strong></td><td class="tc"><strong>57%</strong></td><td class="tc"><span class="badge badge-warn">合格</span></td><td>基本要求（100分）另计：实得 65分</td></tr></tfoot></table>
 </div>
-    <div class="ph-footer">
-  <div class="ph-footer-note">注：本报告一式三份，被评价单位、评价机构、存档各一份。报告结论仅对当次评价周期负责。</div>
-  <div class="ph-footer-sign">
-    <div class="ph-sign-item"><div class="ph-sign-line"></div><div class="ph-sign-label">评价人（签字）</div></div>
-    <div class="ph-sign-item"><div class="ph-sign-line"></div><div class="ph-sign-label">被评价单位负责人（签字）</div></div>
-    <div class="ph-sign-item"><div class="ph-sign-line"></div><div class="ph-sign-label">日期</div></div>
+<div class="ph-section">
+  <div class="ph-sec-header"><div class="ph-sec-num">2</div><div class="ph-sec-title">关键指标扣分详情（扣分制）</div></div>
+  <table class="ph-table"><thead><tr><th>指标名称</th><th>所属系统</th><th class="tc">标准分</th><th class="tc">扣分</th><th class="tc">实得分</th><th>扣分原因</th></tr></thead><tbody>
+    <tr><td>管理科室组建</td><td><span class="tag">基本要求</span></td><td class="tc">20</td><td class="tc red">-5</td><td class="tc">15</td><td>未配备专职网络安全管理员，科室职责描述不清晰。</td></tr>
+    <tr><td>运行维护机制</td><td><span class="tag">基本要求</span></td><td class="tc">20</td><td class="tc red">-10</td><td class="tc">10</td><td>近3个月智能化运行会议未召开，无动态优化记录。</td></tr>
+    <tr><td>管理制度与台账</td><td><span class="tag">基本要求</span></td><td class="tc">20</td><td class="tc red">-5</td><td class="tc">15</td><td>配件更换明细缺失近1个月记录，部分台账超1年保存期。</td></tr>
+    <tr><td>培训计划与执行</td><td><span class="tag">基本要求</span></td><td class="tc">15</td><td class="tc red">-5</td><td class="tc">10</td><td>本年度仅开展1次培训，内容不完整（缺应急处置）。</td></tr>
+    <tr><td>维护标准细化</td><td><span class="tag">基本要求</span></td><td class="tc">15</td><td class="tc red">-5</td><td class="tc">10</td><td>软件维护保养标准未单独制定，日常维护人员知晓率低于70%。</td></tr>
+    <tr><td>网络架构规划</td><td><span class="tag tag-red">信息基础设施</span></td><td class="tc">15</td><td class="tc red">-9</td><td class="tc">6</td><td>主干网络无冗余链路，资源分配未按智能化峰值核算。</td></tr>
+    <tr><td>故障恢复时间</td><td><span class="tag tag-red">信息基础设施</span></td><td class="tc">12</td><td class="tc red">-8</td><td class="tc">4</td><td>5月发生2次故障，恢复时间分别为6小时和8小时，超标准。</td></tr>
+    <tr><td>网络图纸绘制</td><td><span class="tag tag-red">信息基础设施</span></td><td class="tc">10</td><td class="tc red">-4</td><td class="tc">6</td><td>工业控制网络拓扑图未及时更新，缺失2处设备布置图。</td></tr>
+    <tr><td>设备标准化配置</td><td><span class="tag tag-red">信息基础设施</span></td><td class="tc">12</td><td class="tc red">-6</td><td class="tc">6</td><td>交换机品牌混杂（3家），固件版本未统一管理。</td></tr>
+    <tr><td>服务器与存储</td><td><span class="tag tag-red">信息基础设施</span></td><td class="tc">16</td><td class="tc red">-8</td><td class="tc">8</td><td>核心服务器未做双机热备，存储容量仅满足1.5年需求。</td></tr>
+    <tr><td>网络安全防护</td><td><span class="tag tag-red">信息基础设施</span></td><td class="tc">15</td><td class="tc red">-5</td><td class="tc">10</td><td>工控网络与办公网络隔离不彻底，入侵检测系统未启用。</td></tr>
+    <tr><td>地质监测系统部署</td><td><span class="tag tag-red">地质保障系统</span></td><td class="tc">25</td><td class="tc red">-10</td><td class="tc">15</td><td>部分水文监测传感器离线超72小时，监测数据中断。</td></tr>
+  </tbody></table>
+</div>
+<div class="ph-section">
+  <div class="ph-sec-header"><div class="ph-sec-num">3</div><div class="ph-sec-title">整改要求与建议</div></div>
+  <div class="rec-block">
+    <div class="rec-head danger">🔴 限期整改项（30日内）</div>
+    <ul class="rec-list">
+      <li><span class="rn">1</span><span><strong>信息基础设施 — 网络架构优化：</strong>立即启动主干网络冗余改造，2周内完成链路切换演练，确保故障恢复时间≤4小时。</span></li>
+      <li><span class="rn">2</span><span><strong>信息基础设施 — 设备标准化：</strong>1个月内统一交换机品牌和固件版本，完成配置标准化文档，建立变更管理台账。</span></li>
+      <li><span class="rn">3</span><span><strong>生产经营管理系统 — 数据贯通：</strong>ERP与生产系统对接，6月15日前完成产供销数据贯通，补充近6个月历史数据。</span></li>
+    </ul>
+  </div>
+  <div class="rec-block">
+    <div class="rec-head warn">🟡 持续改进项（下月评估）</div>
+    <ul class="rec-list">
+      <li><span class="rn">4</span><span><strong>地质保障系统：</strong>动态预报周期压缩至30天内，6月底前完成三维地质模型迭代更新。</span></li>
+      <li><span class="rn">5</span><span><strong>辅助运输系统：</strong>单轨吊视频监控全覆盖，启用无轨胶轮车远程诊断功能。</span></li>
+      <li><span class="rn">6</span><span><strong>安全管控系统：</strong>人员定位精度提升，电子围栏全覆盖，瓦斯预警阈值重新校准。</span></li>
+      <li><span class="rn">7</span><span><strong>基本要求 — 培训与台账：</strong>补充近3个月培训记录，完善配件更换明细。</span></li>
+    </ul>
+  </div>
+  <div class="rec-block">
+    <div class="rec-head good">🟢 保持优秀项</div>
+    <ul class="rec-list">
+      <li><span class="rn">★</span><span><strong>主运输系统（92分）：</strong>保持当前皮带无人值守运维标准，持续深化智能调速节能优化，建议推广至综采系统。</span></li>
+    </ul>
   </div>
 </div>
+<div class="ph-section">
+  <div class="ph-sec-header"><div class="ph-sec-num">4</div><div class="ph-sec-title">评分标准</div></div>
+  <div class="scale-grid">
+    <div class="scale-card top"><div class="sc-label" style="color:#16a34a">优秀</div><div class="sc-range" style="color:#16a34a">≥90分</div><div class="sc-note">系统运行高度稳定<br>各项指标达标<br>整改项≤2项</div></div>
+    <div class="scale-card pass"><div class="sc-label" style="color:#2563eb">良好</div><div class="sc-range" style="color:#2563eb">80-89分</div><div class="sc-note">系统运行稳定<br>各项指标基本达标<br>整改项≤5项</div></div>
+    <div class="scale-card pass" style="border-color:#2563eb;background:rgba(37,99,235,0.06);"><div class="sc-label" style="color:#2563eb">合格</div><div class="sc-range" style="color:#2563eb">70-79分</div><div class="sc-note">系统运行基本稳定<br>存在部分不达标项<br>须按期整改</div><div style="margin-top:8px;"><span class="pct pct-mid" style="background:rgba(37,99,235,0.1);color:#2563eb;">72分</span></div></div>
+    <div class="scale-card fail"><div class="sc-label" style="color:#dc2626">不合格</div><div class="sc-range" style="color:#dc2626">&lt;70分</div><div class="sc-note">系统运行存在重大隐患<br>须立即整改<br>重新评价</div></div>
   </div>
 </div>
-</body>
-</html>
+<hr class="ph-divider">
+<div class="ph-signature">
+  <div class="ph-sig-item"><div class="ph-sig-line"></div><div class="ph-sig-label">评价人（签字）</div></div>
+  <div class="ph-sig-item"><div class="ph-sig-line"></div><div class="ph-sig-label">被评价单位负责人（签字）</div></div>
+  <div class="ph-sig-item"><div class="ph-sig-line"></div><div class="ph-sig-label">日期</div></div>
+</div>
+<div class="ph-footnote">注：本报告一式三份，被评价单位、评价机构、存档各一份。报告结论仅对当次评价周期负责。</div>
+</div>
+</div></body></html>
