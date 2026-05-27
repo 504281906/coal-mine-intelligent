@@ -12,3 +12,4 @@
 - 智能监控中心
 - 评价报告中心
 - 整改管理中心
+# trigger rebuild Wed May 27 09:48:02 AM CST 2026
