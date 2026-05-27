@@ -21,7 +21,7 @@ body {
   font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   background: var(--bg-base);
   color: var(--text-primary);
-  font-size: 14px;
+  font-size: 15px;
   min-height: 100vh;
 }
 
@@ -37,11 +37,11 @@ body {
   top: 0;
   z-index: 100;
 }
-.header .logo { font-size: 16px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
-.logo-icon { width: 30px; height: 30px; background: var(--accent-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; }
+.header .logo { font-size: 17px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+.logo-icon { width: 30px; height: 30px; background: var(--accent-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; }
 .header-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
-.header-time { font-size: 13px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
-.header-user { font-size: 13px; color: var(--text-secondary); }
+.header-time { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.header-user { font-size: 14px; color: var(--text-secondary); }
 
 /* LAYOUT */
 .main-wrapper { display: flex; min-height: calc(100vh - 60px); }
@@ -49,13 +49,13 @@ body {
 /* SIDEBAR */
 .sidebar { width: 64px; background: var(--bg-card); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 14px 0; gap: 3px; flex-shrink: 0; }
 .sidebar-item { width: 46px; height: 46px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: 12px; cursor: pointer; color: var(--text-muted); font-size: 9px; transition: all 0.2s; }
-.sidebar-item:hover { background: #f5f7fa; color: var(--text-secondary); }
-.sidebar-item.active { background: var(--accent-blue-light); color: var(--accent-blue); }
-.sidebar-item .icon { font-size: 18px; }
+.sidebar-item:hover { background: #f5f7fa; color: var(--text-secondary); text-decoration: none; }
+.sidebar-item.active { background: var(--accent-blue-light); color: var(--accent-blue); text-decoration: none; }
+.sidebar-item .icon { font-size: 19px; }
 
 /* CONTENT */
 .content { flex: 1; padding: 20px; min-width: 0; }
-.breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
 
 /* GRID: 4 equal columns, 3 rows */
 .grid {
@@ -70,19 +70,19 @@ body {
 .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; transition: box-shadow 0.2s; }
 .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
 .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.card-title { font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+.card-title { font-size: 14px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
 .card-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
 /* OVERVIEW: col1 row1 span2 */
 .overview-card { grid-column: 1; grid-row: 1; min-height: unset; }
 .overview-stat { display: flex; flex-direction: column; gap: 11px; }
 .overview-item { display: flex; flex-direction: column; gap: 2px; }
-.overview-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-.overview-value { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+.overview-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.overview-value { font-size: 14px; color: var(--text-primary); font-weight: 500; }
 .overview-value.red { color: var(--accent-red); font-weight: 700; }
 .overview-value.orange { color: var(--accent-amber); font-weight: 700; }
 .overview-value.green { color: var(--accent-green); font-weight: 700; }
-.overview-value.large { font-size: 22px; font-weight: 800; line-height: 1; }
+.overview-value.large { font-size: 23px; font-weight: 800; line-height: 1; }
 .overview-bar { height: 5px; background: #e8ecf0; border-radius: 3px; overflow: hidden; margin-top: 2px; }
 .overview-bar-fill { height: 100%; border-radius: 3px; }
 
@@ -93,34 +93,34 @@ body {
 
 .result-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; background: rgba(255,255,255,0.95); border: 1px solid var(--border); border-radius: 16px; padding: 12px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); min-width: 110px; }
 .result-badge.fail { border-color: rgba(220,38,38,0.3); }
-.result-badge .label { font-size: 10px; color: var(--accent-red); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 2px; }
-.result-badge .score { font-size: 34px; font-weight: 900; color: var(--accent-red); line-height: 1; }
-.result-badge .unit { font-size: 11px; color: var(--accent-red); font-weight: 500; }
+.result-badge .label { font-size: 11px; color: var(--accent-red); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 2px; }
+.result-badge .score { font-size: 35px; font-weight: 900; color: var(--accent-red); line-height: 1; }
+.result-badge .unit { font-size: 12px; color: var(--accent-red); font-weight: 500; }
 .result-badge.pass { border-color: rgba(22,163,74,0.3); }
 .result-badge.pass .label { color: var(--accent-green); }
 .result-badge.pass .score { color: var(--accent-green); }
 .result-badge.pass .unit { color: var(--accent-green); }
 
-.eval-conclusion { width: 100%; text-align: center; font-size: 11px; color: var(--text-muted); background: #f5f7fa; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; border-left: 3px solid var(--accent-blue); flex-shrink: 0; }
+.eval-conclusion { width: 100%; text-align: center; font-size: 12px; color: var(--text-muted); background: #f5f7fa; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; border-left: 3px solid var(--accent-blue); flex-shrink: 0; }
 
 /* QUICK: col4 row1 */
 .quick-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .tile { background: #f5f7fa; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s; }
 .tile:hover { background: var(--accent-blue-light); border-color: var(--accent-blue); transform: translateY(-2px); }
-.tile-icon { font-size: 20px; font-weight: 700; }
-.tile-label { font-size: 11px; color: var(--text-secondary); font-weight: 500; }
+.tile-icon { font-size: 21px; font-weight: 700; }
+.tile-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
 
 /* SCORE: col1 row3 */
 .score-list { display: flex; flex-direction: column; gap: 7px; }
 .score-item { display: flex; align-items: center; gap: 8px; }
-.score-label { font-size: 11px; color: var(--text-secondary); width: 68px; flex-shrink: 0; }
+.score-label { font-size: 12px; color: var(--text-secondary); width: 68px; flex-shrink: 0; }
 .score-bar-wrap { flex: 1; height: 5px; background: #e8ecf0; border-radius: 3px; overflow: visible; position: relative; }
 .score-pass-line { position: absolute; left: 70%; top: -2px; bottom: -2px; width: 1px; background: rgba(0,0,0,0.1); }
 .score-bar { height: 100%; border-radius: 3px; position: absolute; left: 0; top: 0; }
 .score-bar.high { background: var(--accent-blue); }
 .score-bar.mid { background: var(--accent-amber); }
 .score-bar.low { background: var(--accent-red); }
-.score-num { font-size: 11px; font-weight: 700; width: 26px; text-align: right; flex-shrink: 0; }
+.score-num { font-size: 12px; font-weight: 700; width: 26px; text-align: right; flex-shrink: 0; }
 .score-num.high { color: var(--accent-blue); }
 .score-num.mid { color: var(--accent-amber); }
 .score-num.low { color: var(--accent-red); }
@@ -129,8 +129,8 @@ body {
 .subsystem-list { display: flex; flex-direction: column; gap: 5px; }
 .subsystem-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; background: #f5f7fa; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s; }
 .subsystem-item:hover { background: var(--accent-blue-light); border-color: var(--accent-blue); }
-.subsystem-name { font-size: 11px; color: var(--text-secondary); }
-.subsystem-status { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; }
+.subsystem-name { font-size: 12px; color: var(--text-secondary); }
+.subsystem-status { display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; }
 .status-dot { width: 6px; height: 6px; border-radius: 50%; }
 .status-dot.ok { background: var(--accent-green); }
 .status-dot.warn { background: var(--accent-amber); }
@@ -144,42 +144,42 @@ body {
 .bottom-row { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .mini-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
 .mini-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-.mini-card-title { font-size: 13px; font-weight: 600; color: #1a2332; display: flex; align-items: center; gap: 8px; }
-.mini-card-count { font-size: 10px; color: var(--text-muted); background: #f5f7fa; padding: 2px 7px; border-radius: 8px; border: 1px solid var(--border); }
+.mini-card-title { font-size: 14px; font-weight: 600; color: #1a2332; display: flex; align-items: center; gap: 8px; }
+.mini-card-count { font-size: 11px; color: var(--text-muted); background: #f5f7fa; padding: 2px 7px; border-radius: 8px; border: 1px solid var(--border); }
 
 .data-table { width: 100%; border-collapse: collapse; }
-.data-table th { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; padding: 0 6px 8px; text-align: left; border-bottom: 1px solid var(--border); }
-.data-table td { padding: 8px 6px; font-size: 11px; color: var(--text-secondary); border-bottom: 1px solid #f0f2f5; }
+.data-table th { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; padding: 0 6px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+.data-table td { padding: 8px 6px; font-size: 12px; color: var(--text-secondary); border-bottom: 1px solid #f0f2f5; }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: var(--accent-blue-light); }
 .blue-link { color: #5a6475; cursor: pointer; text-decoration: none; }
-.blue-link:hover { text-decoration: underline; }
-.tag { display: inline-block; padding: 1px 6px; border-radius: 5px; font-size: 10px; font-weight: 600; }
+.blue-link:hover { text-decoration: none; }
+.tag { display: inline-block; padding: 1px 6px; border-radius: 5px; font-size: 11px; font-weight: 600; }
 .tag.ok { background: rgba(22,163,74,0.1); color: var(--accent-green); }
 .tag.warn { background: rgba(220,38,38,0.1); color: var(--accent-red); }
 
 .pagination { display: flex; align-items: center; gap: 3px; margin-top: 10px; justify-content: flex-end; }
-.pagination button { width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.pagination button { width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .pagination button:hover { background: #f5f7fa; }
 .pagination button.active { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
-.pagination-info { font-size: 10px; color: var(--text-muted); margin-left: 6px; }
+.pagination-info { font-size: 11px; color: var(--text-muted); margin-left: 6px; }
 
 .notice-list { display: flex; flex-direction: column; }
 .notice-item { display: flex; align-items: flex-start; gap: 9px; padding: 8px 0; border-bottom: 1px solid #f0f2f5; cursor: pointer; transition: all 0.2s; }
 .notice-item:last-child { border-bottom: none; }
 .notice-item:hover { background: var(--accent-blue-light); border-radius: 8px; padding-left: 6px; }
-.notice-icon { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+.notice-icon { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
 .notice-icon.urgent { background: rgba(220,38,38,0.1); color: var(--accent-red); }
 .notice-icon.warn { background: rgba(217,119,6,0.1); color: var(--accent-amber); }
 .notice-icon.info { background: rgba(37,99,235,0.1); color: var(--accent-blue); }
 .notice-icon.normal { background: #f5f7fa; color: var(--text-muted); }
 .notice-body { flex: 1; min-width: 0; }
-.notice-title { font-size: 11px; color: var(--text-secondary); line-height: 1.5; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+.notice-title { font-size: 12px; color: var(--text-secondary); line-height: 1.5; font-weight: 500; display: flex; align-items: center; gap: 5px; }
 .notice-tag { font-size: 9px; padding: 1px 5px; border-radius: 4px; flex-shrink: 0; }
 .notice-tag.urgent { background: rgba(220,38,38,0.1); color: var(--accent-red); }
 .notice-tag.new { background: rgba(22,163,74,0.1); color: var(--accent-green); }
 .notice-tag.info { background: rgba(37,99,235,0.1); color: var(--accent-blue); }
-.notice-meta { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+.notice-meta { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
 
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
@@ -202,26 +202,26 @@ body {
 
 .kpi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:4px;transition:box-shadow 0.2s;}
 .kpi-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08);}
-.kpi-label{font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+.kpi-label{font-size: 12px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
 .kpi-value{font-size:32px;font-weight:800;line-height:1;}
-.kpi-unit{font-size:14px;font-weight:400;color:var(--text-muted);margin-left:2px;}
-.kpi-delta{font-size:11px;font-weight:700;margin-left:6px;}
+.kpi-unit{font-size: 15px;font-weight:400;color:var(--text-muted);margin-left:2px;}
+.kpi-delta{font-size: 12px;font-weight:700;margin-left:6px;}
 .kpi-delta.up{color:var(--accent-green);}
 .kpi-delta.down{color:var(--accent-red);}
-.kpi-sub{font-size:11px;color:var(--text-muted);margin-top:2px;}
+.kpi-sub{font-size: 12px;color:var(--text-muted);margin-top:2px;}
 .mod-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:all 0.2s;}
 .mod-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.10);border-color:var(--accent-blue);transform:translateY(-1px);}
 .mod-card .mod-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;}
-.mod-title{font-size:12px;font-weight:700;color:var(--text-primary);}
-.mod-desc{font-size:11px;color:var(--text-muted);line-height:1.4;}
+.mod-title{font-size: 13px;font-weight:700;color:var(--text-primary);}
+.mod-desc{font-size: 12px;color:var(--text-muted);line-height:1.4;}
 .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.section-title{font-size:14px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:8px;}
+.section-title{font-size: 15px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:8px;}
 .section-title .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.section-more{font-size:11px;color:var(--accent-blue);cursor:pointer;}
+.section-more{font-size: 12px;color:var(--accent-blue);cursor:pointer;}
 .section-more:hover{text-decoration:underline;}
 .sys-dot-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 6px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;transition:all 0.2s;cursor:pointer;}
 .sys-dot-wrap:hover{box-shadow:0 2px 8px rgba(0,0,0,0.08);border-color:var(--accent-blue);}
-.sys-dot-name{font-size:10px;color:var(--text-secondary);text-align:center;font-weight:500;}
+.sys-dot-name{font-size: 11px;color:var(--text-secondary);text-align:center;font-weight:500;}
 .sys-dot-lamp{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 .sys-dot-lamp.online{background:var(--accent-green);box-shadow:0 0 0 3px rgba(22,163,74,0.15);}
 .sys-dot-lamp.warn{background:var(--accent-amber);box-shadow:0 0 0 3px rgba(217,119,6,0.15);animation:pulse-warn 2s infinite;}
@@ -230,12 +230,12 @@ body {
 .alert-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:8px;}
 .alert-item.critical{border:1px solid #fecaca;background:#fef2f2;}
 .alert-item.warning{border:1px solid #fde68a;background:#fef9ec;}
-.alert-level{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0;}
+.alert-level{font-size: 11px;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0;}
 .alert-level.critical{background:var(--accent-red);color:#fff;}
 .alert-level.warning{background:var(--accent-amber);color:#fff;}
-.alert-title{font-size:12px;font-weight:600;color:var(--text-primary);margin-bottom:2px;}
-.alert-meta{font-size:11px;color:var(--text-muted);}
-.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:600;}
+.alert-title{font-size: 13px;font-weight:600;color:var(--text-primary);margin-bottom:2px;}
+.alert-meta{font-size: 12px;color:var(--text-muted);}
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size: 12px;font-weight:600;}
 .tag.ok{background:rgba(22,163,74,0.1);color:var(--accent-green);}
 .tag.warn{background:rgba(220,38,38,0.1);color:var(--accent-red);}
 .tag.info{background:rgba(37,99,235,0.1);color:var(--accent-blue);}
@@ -243,12 +243,12 @@ body {
 .blue-link{color:var(--accent-blue);cursor:pointer;text-decoration:none;}
 .blue-link:hover{text-decoration:underline;}
 .rank-item{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#f5f7fa;border-radius:7px;}
-.rank-num{font-size:10px;font-weight:800;color:var(--text-muted);width:14px;text-align:center;flex-shrink:0;}
+.rank-num{font-size: 11px;font-weight:800;color:var(--text-muted);width:14px;text-align:center;flex-shrink:0;}
 .rank-num.top{color:var(--accent-amber);}
-.rank-name{flex:1;font-size:11px;color:var(--text-secondary);}
+.rank-name{flex:1;font-size: 12px;color:var(--text-secondary);}
 .rank-bar{flex:1;height:5px;background:#dde1e7;border-radius:3px;overflow:hidden;}
 .rank-bar-fill{height:100%;border-radius:3px;}
-.score-badge{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:13px;font-size:22px;font-weight:800;flex-shrink:0;}
+.score-badge{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:13px;font-size: 23px;font-weight:800;flex-shrink:0;}
 .score-badge.excellent{background:rgba(22,163,74,0.1);color:var(--accent-green);}
 .score-badge.good{background:rgba(37,99,235,0.1);color:var(--accent-blue);}
 .score-badge.fail{background:rgba(220,38,38,0.1);color:var(--accent-red);}
@@ -284,12 +284,12 @@ body {
   <div class="kpi-card">
     <div class="kpi-label">子系统状态</div>
     <div style="display:flex;align-items:baseline;gap:3px;">
-      <span class="kpi-value" style="color:var(--accent-green);">8</span>
-      <span class="kpi-unit">/ 8 在线</span>
+      <span class="kpi-value" style="color:var(--accent-green);">9</span>
+      <span class="kpi-unit">/ 9 在线</span>
     </div>
     <div class="kpi-sub">本月无人值守率 <strong style="color:var(--accent-blue);">85%</strong></div>
     <div style="margin-top:8px;display:flex;gap:8px;">
-      <span style="font-size:11px;color:var(--accent-green);display:flex;align-items:center;gap:4px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-green);flex-shrink:0;"></span>正常 6</span>
+      <span style="font-size:11px;color:var(--accent-green);display:flex;align-items:center;gap:4px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-green);flex-shrink:0;"></span>正常 7</span>
       <span style="font-size:11px;color:var(--accent-amber);display:flex;align-items:center;gap:4px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-amber);flex-shrink:0;"></span>告警 2</span>
     </div>
   </div>
@@ -381,14 +381,15 @@ body {
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;">
-<div class="rank-item"><span class="rank-num top">1</span><span class="rank-name">主运输系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:92%;background:var(--accent-green);"></div></div><span style="font-size:11px;font-weight:700;color:var(--accent-green);">92</span></div>
-<div class="rank-item"><span class="rank-num top">2</span><span class="rank-name">综采系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:85%;background:var(--accent-green);"></div></div><span style="font-size:11px;font-weight:700;color:var(--accent-green);">85</span></div>
-<div class="rank-item"><span class="rank-num top">3</span><span class="rank-name">压风系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:78%;background:var(--accent-green);"></div></div><span style="font-size:11px;font-weight:700;color:var(--accent-green);">78</span></div>
-<div class="rank-item"><span class="rank-num ">4</span><span class="rank-name">掘进系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:72%;background:var(--accent-blue);"></div></div><span style="font-size:11px;font-weight:700;color:var(--accent-blue);">72</span></div>
-<div class="rank-item"><span class="rank-num ">5</span><span class="rank-name">通风系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:68%;background:var(--accent-blue);"></div></div><span style="font-size:11px;font-weight:700;color:var(--accent-blue);">68</span></div>
-<div class="rank-item"><span class="rank-num ">6</span><span class="rank-name">供电系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:65%;background:var(--accent-blue);"></div></div><span style="font-size:11px;font-weight:700;color:var(--accent-blue);">65</span></div>
-<div class="rank-item"><span class="rank-num ">7</span><span class="rank-name">排水系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:58%;background:var(--accent-amber);"></div></div><span style="font-size:11px;font-weight:700;color:var(--accent-amber);">58</span></div>
-<div class="rank-item"><span class="rank-num ">8</span><span class="rank-name">地质保障</span><div class="rank-bar"><div class="rank-bar-fill" style="width:42%;background:var(--accent-red);"></div></div><span style="font-size:11px;font-weight:700;color:var(--accent-red);">42</span></div>
+<div class="rank-item"><span class="rank-num top">1</span><span class="rank-name">主运输系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:92%;background:var(--accent-green);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-green);">92</span></div>
+<div class="rank-item"><span class="rank-num top">2</span><span class="rank-name">综采系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:85%;background:var(--accent-green);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-green);">85</span></div>
+<div class="rank-item"><span class="rank-num top">3</span><span class="rank-name">综合保障系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:78%;background:var(--accent-green);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-green);">78</span></div>
+<div class="rank-item"><span class="rank-num ">4</span><span class="rank-name">掘进系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:72%;background:var(--accent-blue);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-blue);">72</span></div>
+<div class="rank-item"><span class="rank-num ">5</span><span class="rank-name">辅助运输系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:68%;background:var(--accent-blue);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-blue);">68</span></div>
+<div class="rank-item"><span class="rank-num ">6</span><span class="rank-name">安全管控系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:65%;background:var(--accent-blue);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-blue);">65</span></div>
+<div class="rank-item"><span class="rank-num ">7</span><span class="rank-name">生产经营管理系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:58%;background:var(--accent-amber);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-amber);">58</span></div>
+<div class="rank-item"><span class="rank-num ">8</span><span class="rank-name">地质保障系统</span><div class="rank-bar"><div class="rank-bar-fill" style="width:42%;background:var(--accent-red);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-red);">42</span></div>
+<div class="rank-item"><span class="rank-num ">9</span><span class="rank-name">信息基础设施</span><div class="rank-bar"><div class="rank-bar-fill" style="width:35%;background:var(--accent-red);"></div></div><span style="font-size:12px;font-weight:700;color:var(--accent-red);">35</span></div>
     </div>
   </div>
   <div class="card">
@@ -396,17 +397,16 @@ body {
       <div class="card-title"><span class="card-dot" style="background:var(--accent-purple);"></span>子系统运行状态</div>
       <span class="blue-link section-more" onclick="location.href='monitoring.html'">查看全部 &rarr;</span>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;">
-<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">综采系统</div></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;">
+<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">信息基础设施</div></div>
+<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">地质保障系统</div></div>
 <div class="sys-dot-wrap"><div class="sys-dot-lamp warn"></div><div class="sys-dot-name">掘进系统</div></div>
+<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">综采系统</div></div>
 <div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">主运输系统</div></div>
-<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">辅助运输</div></div>
-<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">地质保障</div></div>
-<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">通风系统</div></div>
-<div class="sys-dot-wrap"><div class="sys-dot-lamp warn"></div><div class="sys-dot-name">排水系统</div></div>
-<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">供电系统</div></div>
-<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">压风系统</div></div>
-<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">信息基础</div></div>
+<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">辅助运输系统</div></div>
+<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">综合保障系统</div></div>
+<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">安全管控系统</div></div>
+<div class="sys-dot-wrap"><div class="sys-dot-lamp online"></div><div class="sys-dot-name">生产经营管理系统</div></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px;">
       <div class="alert-item critical">
