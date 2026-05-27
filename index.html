@@ -487,4 +487,97 @@ body {
     </div>
   </div>
 </div>
-</div></div><script>function updateClock(){var n=new Date(),e=document.getElementById("clock");if(e)e.textContent=String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0")+":"+String(n.getSeconds()).padStart(2,"0");}setInterval(updateClock,1e3);updateClock();if(typeof lucide!=="undefined")lucide.createIcons();</script></body></html>
+</div></div>
+<div style="margin-bottom:16px;">
+  <div class="card" style="padding:20px;">
+    <div class="card-header" style="margin-bottom:16px;">
+      <div class="card-title"><span class="card-dot" style="background:var(--accent-purple);"></span>综合评价雷达图</div>
+    </div>
+    <div class="radar-body" style="padding:16px 20px;">
+      <canvas id="radarChart" width="500" height="400"></canvas>
+      <div class="result-badge fail" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;background:rgba(255,255,255,0.95);border:1px solid rgba(220,38,38,0.3);border-radius:16px;padding:14px 24px;box-shadow:0 8px 32px rgba(0,0,0,0.12);min-width:130px;">
+        <div style="font-size:12px;color:var(--accent-red);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:4px;">综合评级</div>
+        <div style="font-size:36px;font-weight:900;color:var(--accent-red);line-height:1;">72</div>
+        <div style="font-size:13px;color:var(--accent-red);font-weight:500;">分 · 合格</div>
+      </div>
+    </div>
+    <div class="eval-conclusion" style="margin-top:10px;padding:10px 14px;font-size:13px;color:var(--text-muted);background:#f5f7fa;border:1px solid var(--border);border-radius:10px;border-left:4px solid var(--accent-blue);">
+      本期评价：综合得分 72 分，评级「合格」；九大子系统均处于运行状态，信息基础设施与地质保障系统需重点优化。
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var ctx = document.getElementById("radarChart");
+  if (!ctx) return;
+  var c = ctx.getContext("2d");
+  if (!c) return;
+  var w = ctx.width, h = ctx.height;
+  var cx = w / 2, cy = h / 2;
+  var maxR = Math.min(w, h) * 0.42;
+  var labels = ["信息基础设施", "地质保障系统", "掘进系统", "综采系统", "主运输系统", "辅助运输系统", "综合保障系统", "安全管控系统", "生产经营管理系统"];
+  var values = [35, 42, 72, 85, 92, 68, 78, 65, 58];
+  var n = labels.length;
+  var colors = { net: "#2563eb", bar: "rgba(37,99,235,0.25)" };
+  var step = 4;
+  for (var r = 1; r <= step; r++) {
+    c.beginPath();
+    for (var i = 0; i <= n; i++) {
+      var angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+      var rr = (r / step) * maxR;
+      var px = cx + Math.cos(angle) * rr;
+      var py = cy + Math.sin(angle) * rr;
+      if (i === 0) c.moveTo(px, py); else c.lineTo(px, py);
+    }
+    c.closePath();
+    c.strokeStyle = "rgba(0,0,0,0.07)";
+    c.lineWidth = 1;
+    c.stroke();
+  }
+  for (var i = 0; i < n; i++) {
+    var angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+    c.beginPath();
+    c.moveTo(cx, cy);
+    c.lineTo(cx + Math.cos(angle) * maxR, cy + Math.sin(angle) * maxR);
+    c.strokeStyle = "rgba(0,0,0,0.07)";
+    c.lineWidth = 1;
+    c.stroke();
+    var lx = cx + Math.cos(angle) * (maxR + 22);
+    var ly = cy + Math.sin(angle) * (maxR + 22);
+    c.font = "12px PingFang SC, Microsoft YaHei";
+    c.fillStyle = "#5a6475";
+    c.textAlign = "center";
+    c.textBaseline = "middle";
+    c.fillText(labels[i], lx, ly);
+  }
+  c.beginPath();
+  for (var i = 0; i <= n; i++) {
+    var idx = i % n;
+    var angle = (idx / n) * Math.PI * 2 - Math.PI / 2;
+    var r = (values[idx] / 100) * maxR;
+    var px = cx + Math.cos(angle) * r;
+    var py = cy + Math.sin(angle) * r;
+    if (i === 0) c.moveTo(px, py); else c.lineTo(px, py);
+  }
+  c.closePath();
+  c.fillStyle = "rgba(37,99,235,0.2)";
+  c.fill();
+  c.strokeStyle = "#2563eb";
+  c.lineWidth = 2;
+  c.stroke();
+  for (var i = 0; i < n; i++) {
+    var angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+    var r = (values[i] / 100) * maxR;
+    var px = cx + Math.cos(angle) * r;
+    var py = cy + Math.sin(angle) * r;
+    c.beginPath();
+    c.arc(px, py, 4, 0, Math.PI * 2);
+    c.fillStyle = "#2563eb";
+    c.fill();
+    c.strokeStyle = "#fff";
+    c.lineWidth = 2;
+    c.stroke();
+  }
+});
+</script><script>function updateClock(){var n=new Date(),e=document.getElementById("clock");if(e)e.textContent=String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0")+":"+String(n.getSeconds()).padStart(2,"0");}setInterval(updateClock,1e3);updateClock();if(typeof lucide!=="undefined")lucide.createIcons();</script></body></html>
