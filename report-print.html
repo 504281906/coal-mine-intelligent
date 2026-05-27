@@ -3,163 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>评价报告中心 - 煤矿智能化常态化运行管理系统</title>
+<title>智能化常态化运行月度评价报告</title>
 <style>
-:root {
-  --bg-base: #e8ecf0;
-  --bg-card: #ffffff;
-  --border: #d0d7de;
-  --text-primary: #1a2332;
-  --text-secondary: #5a6475;
-  --text-muted: #9aa0ab;
-  --accent-blue: #2563eb;
-  --accent-blue-light: rgba(37,99,235,0.08);
-  --accent-green: #16a34a;
-  --accent-red: #dc2626;
-  --accent-amber: #d97706;
-  --accent-purple: #9333ea;
-  --radius: 14px;
-  --radius-sm: 10px;
-}
-
-body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 15px; color: var(--text-primary); background: var(--bg-base); margin: 0; padding: 0; }
-.header { height: 60px; background: var(--bg-card); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; position: sticky; top: 0; z-index: 100; }
-.header .logo { font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
-.logo-icon { width: 30px; height: 30px; background: var(--accent-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; }
-.header-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
-.header-time { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
-.header-user { font-size: 14px; color: var(--text-secondary); }
-.main-wrapper { display: flex; min-height: calc(100vh - 60px); }
-.sidebar { width: 64px; background: var(--bg-card); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 14px 0; gap: 3px; flex-shrink: 0; }
-.sidebar-item { width: 46px; height: 46px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: 12px; cursor: pointer; color: var(--text-muted); font-size: 9px; transition: all 0.2s; text-decoration: none; }
-.sidebar-item:hover { background: #f5f7fa; color: var(--text-secondary); text-decoration: none; }
-.sidebar-item.active { background: var(--accent-blue-light); color: var(--accent-blue); text-decoration: none; }
-.sidebar-item .icon { font-size: 19px; }
-.content { flex: 1; padding: 20px; min-width: 0; }
-.page-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
-.page-title .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-purple); flex-shrink: 0; }
-.page-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
-.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
-.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.card-title { font-size: 14px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
-.card-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.report-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
-.meta-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-.meta-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-.meta-value { font-size: 20px; font-weight: 800; color: var(--text-primary); }
-.meta-value.green { color: var(--accent-green); }
-.meta-value.blue { color: var(--accent-blue); }
-.meta-value.amber { color: var(--accent-amber); }
-.meta-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-.grade-banner { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: center; gap: 24px; }
-.grade-badge { min-width: 80px; height: 80px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; flex-shrink: 0; }
-.grade-badge.pass { background: rgba(22,163,74,0.1); border: 2px solid var(--accent-green); }
-.grade-badge.warn { background: rgba(217,119,6,0.1); border: 2px solid var(--accent-amber); }
-.grade-big { font-size: 26px; font-weight: 800; }
-.grade-label { font-size: 11px; font-weight: 600; }
-.grade-badge.pass .grade-big, .grade-badge.pass .grade-label { color: var(--accent-green); }
-.grade-badge.warn .grade-big, .grade-badge.warn .grade-label { color: var(--accent-amber); }
-.grade-info { flex: 1; }
-.grade-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-.grade-subtitle { font-size: 13px; color: var(--text-muted); }
-.grade-score { display: flex; align-items: baseline; gap: 6px; margin-top: 6px; }
-.score-num-big { font-size: 36px; font-weight: 800; color: var(--accent-blue); }
-.score-unit-big { font-size: 14px; color: var(--text-muted); }
-.score-detail { font-size: 12px; color: var(--text-muted); margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
-.score-detail span { font-weight: 700; color: var(--accent-blue); }
-.btn-export { padding: 8px 20px; border-radius: 10px; border: none; background: var(--accent-blue); color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-.btn-export:hover { background: #1d4ed8; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-.score-table { width: 100%; border-collapse: collapse; }
-.score-table th { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); background: #f5f7fa; }
-.score-table td { padding: 9px 12px; font-size: 12px; color: var(--text-secondary); border-bottom: 1px solid #f0f2f5; vertical-align: middle; }
-.score-table tr:last-child td { border-bottom: none; }
-.score-table tr:hover td { background: rgba(37,99,235,0.04); }
-.sys-name { display: flex; align-items: center; gap: 8px; }
-.sys-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.score-bar-wrap { display: flex; align-items: center; gap: 8px; }
-.score-bar { flex: 1; height: 6px; background: #e8ecf0; border-radius: 3px; overflow: hidden; }
-.score-bar-fill { height: 100%; border-radius: 3px; }
-.score-bar-fill.high { background: var(--accent-green); }
-.score-bar-fill.mid { background: var(--accent-amber); }
-.score-bar-fill.low { background: var(--accent-red); }
-.s-num { font-size: 12px; font-weight: 700; width: 30px; text-align: right; }
-.s-num.high { color: var(--accent-green); }
-.s-num.mid { color: var(--accent-amber); }
-.s-num.low { color: var(--accent-red); }
-.status-ok { font-size: 11px; font-weight: 700; color: var(--accent-green); background: rgba(22,163,74,0.1); padding: 2px 8px; border-radius: 4px; }
-.status-warn { font-size: 11px; font-weight: 700; color: var(--accent-amber); background: rgba(217,119,6,0.1); padding: 2px 8px; border-radius: 4px; }
-.status-fail { font-size: 11px; font-weight: 700; color: var(--accent-red); background: rgba(220,38,38,0.1); padding: 2px 8px; border-radius: 4px; }
-.rec-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
-.rec-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.rec-list { list-style: none; padding: 0; margin: 0; }
-.rec-list li { padding: 8px 0; border-bottom: 1px solid #f0f2f5; font-size: 12px; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
-.rec-list li:last-child { border-bottom: none; }
-.rec-list li::before { content: "!"; width: 16px; height: 16px; border-radius: 50%; background: rgba(217,119,6,0.15); color: var(--accent-amber); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-.rec-list li.good::before { content: "OK"; background: rgba(22,163,74,0.15); color: var(--accent-green); }
-.history-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-.history-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.history-table { width: 100%; border-collapse: collapse; }
-.history-table th { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); background: #f5f7fa; }
-.history-table td { padding: 10px 12px; font-size: 12px; color: var(--text-secondary); border-bottom: 1px solid #f0f2f5; }
-.history-table tr:last-child td { border-bottom: none; }
-.history-table tr:hover td { background: rgba(37,99,235,0.04); }
-.history-grade { font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 6px; }
-.history-grade.good { color: var(--accent-green); background: rgba(22,163,74,0.1); }
-.history-grade.warn { color: var(--accent-amber); background: rgba(217,119,6,0.1); }
-.history-grade.fail { color: var(--accent-red); background: rgba(220,38,38,0.1); }
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-@media(max-width:900px) { .sidebar { display: none; } .report-meta { grid-template-columns: 1fr 1fr; } .two-col { grid-template-columns: 1fr; } }
-@media print {
-  @page { size: A4; margin: 15mm 14mm 15mm 16mm; }
-  body { print-color-adjust: exact; -webkit-print-color-adjust: exact; background: #fff !important; }
-  .noprint { display: none !important; }
-  .header { position: static; }
-  .main-wrapper { display: block !important; }
-  .sidebar { display: none !important; }
-  .content { padding: 0 !important; }
-  .card { box-shadow: none !important; border: 1px solid #d0d7de !important; page-break-inside: avoid; }
-  .two-col { grid-template-columns: 1fr 1fr !important; }
-  .report-meta { grid-template-columns: repeat(4, 1fr) !important; }
-  .grade-banner { page-break-inside: avoid; }
-  .rec-card { page-break-inside: avoid; }
-  .history-card { page-break-inside: avoid; }
-  table { page-break-inside: auto; }
-}
+:root{--bg-base:#e8ecf0;--bg-card:#ffffff;--border:#d0d7de;--text-primary:#1a2332;--text-secondary:#5a6475;--text-muted:#9aa0ab;--accent-blue:#2563eb;--accent-blue-light:rgba(37,99,235,0.08);--accent-green:#16a34a;--accent-red:#dc2626;--accent-amber:#d97706;--accent-purple:#9333ea;--radius:14px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;color:var(--text-primary);background:var(--bg-base);}
+.header{height:60px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;position:sticky;top:0;z-index:100;}
+.logo{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:600;}
+.logo-icon{width:30px;height:30px;background:var(--accent-blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:14px;}
+.header-time{font-size:14px;color:var(--text-muted);}
+.header-user{font-size:14px;color:var(--text-secondary);}
+.main-wrapper{display:flex;min-height:calc(100vh - 60px);}
+.sidebar{width:64px;background:var(--bg-card);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:3px;}
+.sidebar-item{width:46px;height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:12px;color:var(--text-muted);font-size:9px;text-decoration:none;transition:all 0.2s;}
+.sidebar-item:hover{background:#f5f7fa;color:var(--text-secondary);}
+.sidebar-item.active{background:var(--accent-blue-light);color:var(--accent-blue);}
+.sidebar-item .icon{font-size:19px;}
+.content{flex:1;padding:20px;min-width:0;}
+.report-cover{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px 20px;margin-bottom:14px;position:relative;overflow:hidden;}
+.report-cover::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent-blue),var(--accent-purple));}
+.report-cover-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.report-org{font-size:12px;color:var(--text-muted);font-weight:600;letter-spacing:1px;}
+.report-id{font-size:11px;color:var(--text-muted);}
+.report-title-wrap{display:flex;align-items:center;gap:16px;}
+.report-title-main{font-size:24px;font-weight:800;color:var(--text-primary);line-height:1.35;}
+.report-title-en{font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-top:3px;}
+.report-grade-stamp{width:68px;height:68px;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.report-grade-stamp.pass{background:rgba(22,163,74,0.1);border:2px solid var(--accent-green);}
+.stamp-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent-green);}
+.stamp-score{font-size:26px;font-weight:900;color:var(--accent-green);line-height:1;}
+.report-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px;}
+.meta-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;}
+.meta-label{font-size:10px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px;}
+.meta-value{font-size:15px;font-weight:700;color:var(--text-primary);line-height:1.3;}
+.meta-value.blue{color:var(--accent-blue);}
+.meta-sub{font-size:10px;color:var(--text-muted);margin-top:2px;}
+.score-overview{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:14px;display:flex;align-items:center;gap:18px;}
+.score-main{display:flex;align-items:baseline;gap:6px;flex-shrink:0;}
+.score-big{font-size:38px;font-weight:900;color:var(--accent-blue);line-height:1;}
+.score-unit{font-size:14px;color:var(--text-muted);}
+.score-max{font-size:13px;color:var(--text-muted);font-weight:600;}
+.score-divider{width:1px;height:38px;background:var(--border);}
+.score-subs{display:flex;flex-direction:column;gap:5px;flex:1;}
+.score-sub-row{display:flex;align-items:center;gap:10px;font-size:12px;}
+.score-sub-name{color:var(--text-muted);width:76px;}
+.score-sub-bar{flex:1;height:6px;background:#e8ecf0;border-radius:3px;overflow:hidden;max-width:160px;}
+.score-sub-fill{height:100%;border-radius:3px;}
+.score-sub-val{font-weight:700;width:44px;text-align:right;}
+.score-sub-val.blue{color:var(--accent-blue);}
+.score-sub-val.green{color:var(--accent-green);}
+.score-sub-val.amber{color:var(--accent-amber);}
+.score-sub-val.red{color:var(--accent-red);}
+.score-rate{font-size:12px;color:var(--text-muted);flex-shrink:0;text-align:right;line-height:1.7;}
+.score-rate strong{color:var(--text-primary);font-weight:700;}
+.deduct-section{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;}
+.section-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.section-title{font-size:14px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:8px;}
+.section-num{width:22px;height:22px;background:var(--accent-blue);color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;}
+.section-badge{font-size:10px;padding:2px 8px;border-radius:6px;font-weight:700;background:rgba(220,38,38,0.1);color:var(--accent-red);}
+.data-table{width:100%;border-collapse:collapse;}
+.data-table th{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;padding:8px 12px;text-align:left;border-bottom:2px solid var(--border);background:#f5f7fa;white-space:nowrap;}
+.data-table td{padding:9px 12px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid #f0f2f5;vertical-align:middle;}
+.data-table tbody tr:hover td{background:rgba(37,99,235,0.04);}
+.data-table tr:last-child td{border-bottom:none;}
+.score-tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:4px;}
+.score-tag.green{background:rgba(22,163,74,0.1);color:var(--accent-green);}
+.score-tag.amber{background:rgba(217,119,6,0.1);color:var(--accent-amber);}
+.score-tag.red{background:rgba(220,38,38,0.1);color:var(--accent-red);}
+.rate-bar{display:flex;align-items:center;gap:6px;}
+.rate-bar-fill{height:5px;background:#e8ecf0;border-radius:3px;overflow:hidden;flex:1;}
+.rate-bar-inner{height:100%;border-radius:3px;}
+.rate-pct{font-size:11px;font-weight:700;width:34px;text-align:right;}
+.action-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.action-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.action-card.urgent{border-left:3px solid var(--accent-red);}
+.action-card.warn{border-left:3px solid var(--accent-amber);}
+.action-card.good{border-left:3px solid var(--accent-green);}
+.action-icon{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;}
+.action-icon.red{background:rgba(220,38,38,0.1);color:var(--accent-red);}
+.action-icon.amber{background:rgba(217,119,6,0.1);color:var(--accent-amber);}
+.action-icon.green{background:rgba(22,163,74,0.1);color:var(--accent-green);}
+.action-body{flex:1;}
+.action-title{font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:3px;}
+.action-items{font-size:12px;color:var(--text-secondary);line-height:1.7;}
+.action-deadline{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;white-space:nowrap;flex-shrink:0;}
+.action-deadline.red{background:rgba(220,38,38,0.1);color:var(--accent-red);}
+.action-deadline.amber{background:rgba(217,119,6,0.1);color:var(--accent-amber);}
+.action-deadline.green{background:rgba(22,163,74,0.1);color:var(--accent-green);}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.footer-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;}
+.grade-std th{background:var(--text-primary);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;padding:8px 12px;text-align:left;border-bottom:2px solid var(--border);}
+.grade-std td{padding:8px 12px;font-size:12px;color:var(--text-secondary);border-bottom:1px solid #f0f2f5;}
+.grade-std tr:last-child td{border-bottom:none;}
+.std-excellent{color:var(--accent-green);font-weight:800;}
+.std-good{color:var(--accent-blue);font-weight:800;}
+.std-pass{color:var(--accent-amber);font-weight:800;}
+.std-fail{color:var(--accent-red);font-weight:800;}
+.sign-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px;}
+.sign-item{display:flex;flex-direction:column;gap:22px;}
+.sign-label{font-size:10px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+.sign-line{border-bottom:1px solid var(--border);height:26px;}
+.btn-print{display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-print:hover{background:var(--accent-blue-light);border-color:var(--accent-blue);color:var(--accent-blue);}
+@media print{@page{size:A4;margin:12mm 14mm 12mm 16mm;}body{print-color-adjust:exact;-webkit-print-color-adjust:exact;background:#fff!important;}.header,.sidebar,.btn-print{display:none!important;}.content{padding:0!important;}.main-wrapper{display:block!important;}.report-cover,.meta-card,.score-overview,.deduct-section,.action-card,.footer-card{page-break-inside:avoid;}.report-meta{grid-template-columns:repeat(4,1fr)!important;}table{page-break-inside:auto;}tr{page-break-inside:avoid;}}}
+@media(max-width:900px){.sidebar{display:none;}.report-meta{grid-template-columns:1fr 1fr;}.footer-grid{grid-template-columns:1fr;}.sign-row{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-<div class="header"><div class="logo"><div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;"><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M12 6h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path><path d="M8 6h.01"></path><path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"></path><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg></div>煤矿智能化常态化运行管理系统</div><div class="header-right"><div class="header-time" id="clock">--:--:--</div><div class="header-user">王矿长</div></div></div><div class="main-wrapper">
-<div class="sidebar">
-    <a class="sidebar-item" href="index.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div><span>首页</span></a>
-    <a class="sidebar-item" href="data-center.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg></div><span>数据中心</span></a>
-    <a class="sidebar-item" href="eval-template.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21v-6"></path><path d="M12 21V3"></path><path d="M19 21V9"></path></svg></div><span>指标评价</span></a>
-    <a class="sidebar-item" href="inspection.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg></div><span>巡检任务</span></a>
-    <a class="sidebar-item" href="monitoring.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg></div><span>智能监控</span></a>
-    <a class="sidebar-item active" href="report.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg></div><span>评价报告</span></a>
-    <a class="sidebar-item" href="rectification.html"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div><span>整改管理</span></a>
-  </div>
-  <div class="content">
-
-<script>
-function updateClock(){var now=new Date();var h=String(now.getHours()).padStart(2,"0");var m=String(now.getMinutes()).padStart(2,"0");var s=String(now.getSeconds()).padStart(2,"0");document.getElementById("clock").textContent=h+":"+m+":"+s;}
-updateClock();setInterval(updateClock,1000);
-(function(){
-  var canvas=document.getElementById("radarCanvas");
-  if(!canvas)return;
-  var ctx=canvas.getContext("2d");
-  var cx=canvas.width/2,cy=canvas.height/2;
-  var labels=["基本要求","信息基础设施","地质保障","掘进","综采","主运输","辅助运输","综合保障","安全管控","生产管理"];
-  var values=[65,35,42,72,85,92,68,78,65,58];
-  var max=100;var count=labels.length;var step=360/count;var radius=Math.min(cx,cy)-45;var levels=4;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(var l=1;l<=levels;l++){var r=radius*(l/levels);ctx.beginPath();for(var i=0;i<=count;i++){var angle=(step*(i%count)-90)*Math.PI/180;var x=cx+r*Math.cos(angle);var y=cy+r*Math.sin(angle);if(i==0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.closePath();ctx.strokeStyle="#e8ecf0";ctx.lineWidth=1;ctx.stroke();}
-  for(var i=0;i<count;i++){var angle=(step*i-90)*Math.PI/180;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+(radius+20)*Math.cos(angle),cy+(radius+20)*Math.sin(angle));ctx.strokeStyle="#d0d7de";ctx.lineWidth=1;ctx.stroke();ctx.fillStyle="#9aa0ab";ctx.font="10px PingFang SC, Microsoft YaHei";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(labels[i],cx+(radius+35)*Math.cos(angle),cy+(radius+35)*Math.sin(angle));}
-  ctx.beginPath();for(var i=0;i<count;i++){var angle=(step*i-90)*Math.PI/180;var r=radius*(values[i]/max);var x=cx+r*Math.cos(angle);var y=cy+r*Math.sin(angle);if(i==0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.closePath();ctx.fillStyle="rgba(37,99,235,0.15)";ctx.fill();ctx.strokeStyle="#2563eb";ctx.lineWidth=2;ctx.stroke();
-  for(var i=0;i<count;i++){var angle=(step*i-90)*Math.PI/180;var r=radius*(values[i]/max);var x=cx+r*Math.cos(angle);var y=cy+r*Math.sin(angle);ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle="#2563eb";ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=1.5;ctx.stroke();}
-  ctx.fillStyle="#1a2332";ctx.font="bold 11px PingFang SC, Microsoft YaHei";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("72",cx,cy);ctx.font="10px PingFang SC, Microsoft YaHei";ctx.fillStyle="#9aa0ab";ctx.fillText("综合得分",cx,cy+14);
-})();
-</script>
+<div class="header"><div class="logo"><div class="logo-icon">矿</div>煤矿智能化常态化运行管理系统</div><div class="header-right"><div class="header-time" id="clock">--:--:--</div><div class="header-user">王矿长</div></div></div>
+<div class="main-wrapper">
+<div class="sidebar"><a class="sidebar-item" href="index.html"><div class="icon">首</div><span>首页</span></a><a class="sidebar-item" href="data-center.html"><div class="icon">库</div><span>数据中心</span></a><a class="sidebar-item" href="eval-template.html"><div class="icon">评</div><span>指标评价</span></a><a class="sidebar-item" href="inspection.html"><div class="icon">巡</div><span>巡检任务</span></a><a class="sidebar-item" href="monitoring.html"><div class="icon">监</div><span>智能监控</span></a><a class="sidebar-item active" href="report.html"><div class="icon">报</div><span>评价报告</span></a><a class="sidebar-item" href="rectification.html"><div class="icon">改</div><span>整改管理</span></a></div>
+<div class="content">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;"><div style="font-size:16px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent-purple);flex-shrink:0;display:inline-block;"></span>智能化常态化运行月度评价报告</div><button class="btn-print" onclick="window.print()">打印 / 导出 PDF</button></div>
+<div class="report-cover"><div class="report-cover-top"><div class="report-org">湖南XX煤业集团 · XX煤矿</div><div class="report-id">报告编号：ICM-2026-05-001 &nbsp;|&nbsp; 2026年05月31日</div></div><div class="report-title-wrap"><div><div class="report-title-main">煤矿智能化常态化运行</div><div class="report-title-main">月度评价报告</div><div class="report-title-en">Coal Mine Intelligent Operation Monthly Evaluation Report</div></div><div class="report-grade-stamp pass"><div class="stamp-label">综合评级</div><div class="stamp-score">72</div></div></div></div>
+<div class="report-meta"><div class="meta-card"><div class="meta-label">被评价单位</div><div class="meta-value">XX煤矿</div><div class="meta-sub">湖南XX煤业集团</div></div><div class="meta-card"><div class="meta-label">评价周期</div><div class="meta-value blue">2026年05月</div><div class="meta-sub">05月01日 — 05月31日</div></div><div class="meta-card"><div class="meta-label">评价机构</div><div class="meta-value">智能化评价组</div><div class="meta-sub">井下安全生产联合评估</div></div><div class="meta-card"><div class="meta-label">评价日期</div><div class="meta-value">2026-05-31</div><div class="meta-sub">本报告由系统自动生成</div></div></div>
+<div class="score-overview"><div class="score-main"><span class="score-big">72</span><span class="score-unit">分</span><span class="score-max">/ 1000分</span></div><div class="score-divider"></div><div class="score-subs"><div class="score-sub-row"><div class="score-sub-name">九大系统</div><div class="score-sub-bar"><div class="score-sub-fill" style="width:63%;background:var(--accent-blue);"></div></div><div class="score-sub-val blue">570</div></div><div class="score-sub-row"><div class="score-sub-name">基本要求</div><div class="score-sub-bar"><div class="score-sub-fill" style="width:65%;background:var(--accent-green);"></div></div><div class="score-sub-val green">65</div></div><div class="score-sub-row"><div class="score-sub-name">加分项</div><div class="score-sub-bar"><div class="score-sub-fill" style="width:20%;background:var(--accent-amber);"></div></div><div class="score-sub-val amber">+2</div></div><div class="score-sub-row"><div class="score-sub-name">累计扣分</div><div class="score-sub-bar"><div class="score-sub-fill" style="width:43%;background:var(--accent-red);"></div></div><div class="score-sub-val red">-35</div></div></div><div class="score-rate">综合得分率 <strong>57%</strong><br>评级 <strong style="color:var(--accent-green);">合格</strong></div></div>
+<div class="deduct-section"><div class="section-hd"><div class="section-title"><div class="section-num">一</div>各子系统评分明细</div><div class="section-badge">满分 900 分</div></div><table class="data-table"><thead><tr><th>子系统</th><th>标准分</th><th>实得分</th><th>得分率</th><th>评级</th><th>主要问题</th></tr></thead><tbody><tr><td><strong>地质保障系统</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-red);">42</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:42%;background:var(--accent-red);"></div></div><div class="rate-pct" style="color:var(--accent-red);">42%</div></div></td><td><span class="score-tag red">不达标</span></td><td>地质编录未及时更新</td></tr><tr><td><strong>信息基础设施</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-amber);">35</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:35%;background:var(--accent-amber);"></div></div><div class="rate-pct" style="color:var(--accent-amber);">35%</div></div></td><td><span class="score-tag amber">偏低</span></td><td>网络架构未完成规划</td></tr><tr><td><strong>掘进系统</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-amber);">72</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:72%;background:var(--accent-amber);"></div></div><div class="rate-pct" style="color:var(--accent-amber);">72%</div></div></td><td><span class="score-tag amber">偏低</span></td><td>设备日常维护记录不完整</td></tr><tr><td><strong>综采系统</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-blue);">85</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:85%;background:var(--accent-blue);"></div></div><div class="rate-pct" style="color:var(--accent-blue);">85%</div></div></td><td><span class="score-tag green">良好</span></td><td>个别传感器标定超期</td></tr><tr><td><strong>主运输系统</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-green);">92</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:92%;background:var(--accent-green);"></div></div><div class="rate-pct" style="color:var(--accent-green);">92%</div></div></td><td><span class="score-tag green">优秀</span></td><td>运行稳定，无重大问题</td></tr><tr><td><strong>辅助运输系统</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-amber);">68</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:68%;background:var(--accent-amber);"></div></div><div class="rate-pct" style="color:var(--accent-amber);">68%</div></div></td><td><span class="score-tag amber">偏低</span></td><td>部分绞车道信号装置老化</td></tr><tr><td><strong>综合保障系统</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-blue);">78</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:78%;background:var(--accent-blue);"></div></div><div class="rate-pct" style="color:var(--accent-blue);">78%</div></div></td><td><span class="score-tag green">良好</span></td><td>排水系统监控数据略有延迟</td></tr><tr><td><strong>安全管控系统</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-amber);">65</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:65%;background:var(--accent-amber);"></div></div><div class="rate-pct" style="color:var(--accent-amber);">65%</div></div></td><td><span class="score-tag amber">偏低</span></td><td>安全监测传感器布点不足</td></tr><tr><td><strong>生产经营管理系统</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-amber);">58</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:58%;background:var(--accent-amber);"></div></div><div class="rate-pct" style="color:var(--accent-amber);">58%</div></div></td><td><span class="score-tag amber">偏低</span></td><td>ERP系统对接尚未完成</td></tr><tr><td><strong>基本要求</strong></td><td>100</td><td><span style="font-weight:700;color:var(--accent-green);">65</span></td><td><div class="rate-bar"><div class="rate-bar-fill"><div class="rate-bar-inner" style="width:65%;background:var(--accent-green);"></div></div><div class="rate-pct" style="color:var(--accent-green);">65%</div></div></td><td><span class="score-tag amber">合格</span></td><td>部分培训记录不完整</td></tr></tbody></table></div>
+<div class="deduct-section"><div class="section-hd"><div class="section-title"><div class="section-num">二</div>关键指标扣分详情</div><div class="section-badge">扣分制 · 累计 -35 分</div></div><table class="data-table"><thead><tr><th>指标名称</th><th>所属子系统</th><th>考核方式</th><th>标准分</th><th>扣分</th><th>实得分</th><th>扣分原因</th></tr></thead><tbody><tr><td>网络架构规划</td><td>信息基础设施</td><td>现场查验</td><td>6</td><td><span class="score-tag red">-3</span></td><td>3</td><td>网络架构规划尚未完成，交换机布点不规范</td></tr><tr><td>故障恢复时间</td><td>信息基础设施</td><td>数据接入</td><td>4</td><td><span class="score-tag red">-2</span></td><td>2</td><td>5月发生2次交换机故障，恢复时间超4小时</td></tr><tr><td>网络图纸绘制</td><td>信息基础设施</td><td>查阅台账</td><td>6</td><td><span class="score-tag red">-4</span></td><td>2</td><td>网络拓扑图未按期更新，与实际布线不符</td></tr><tr><td>地质编录更新</td><td>地质保障系统</td><td>查阅台账</td><td>10</td><td><span class="score-tag red">-6</span></td><td>4</td><td>地质编录滞后2个月，未及时更新采掘面数据</td></tr><tr><td>设备日常维护</td><td>掘进系统</td><td>实地测量</td><td>10</td><td><span class="score-tag red">-3</span></td><td>7</td><td>部分掘进设备维护记录缺失，维护周期不明确</td></tr><tr><td>传感器标定</td><td>综采系统</td><td>实地测量</td><td>8</td><td><span class="score-tag amber">-1</span></td><td>7</td><td>3个压力传感器标定超期15天</td></tr><tr><td>信号装置维护</td><td>辅助运输系统</td><td>现场查验</td><td>10</td><td><span class="score-tag red">-4</span></td><td>6</td><td>绞车道信号装置老化，存在2处安全隐患</td></tr><tr><td>监控数据延迟</td><td>综合保障系统</td><td>数据接入</td><td>8</td><td><span class="score-tag amber">-1</span></td><td>7</td><td>排水系统监控数据延迟超30秒</td></tr><tr><td>传感器布点不足</td><td>安全管控系统</td><td>实地测量</td><td>10</td><td><span class="score-tag red">-3</span></td><td>7</td><td>安全监测传感器实际布点数低于标准要求</td></tr><tr><td>ERP系统对接</td><td>生产经营管理系统</td><td>查阅台账</td><td>10</td><td><span class="score-tag red">-4</span></td><td>6</td><td>ERP系统与矿井平台对接尚未完成</td></tr></tbody></table></div>
+<div class="action-cards">
+<div class="action-card urgent"><div class="action-icon red">!</div><div class="action-body"><div class="action-title">🔴 紧急整改 — 限期完成</div><div class="action-items">· 信息基础设施：立即启动网络架构规划，3日内提交实施方案<br>· 地质保障系统：两周内完成地质编录数据更新<br>· 安全管控系统：一个月内完成传感器布点补充与调试</div></div><div class="action-deadline red">≤30天</div></div>
+<div class="action-card warn"><div class="action-icon amber">!</div><div class="action-body"><div class="action-title">🟡 持续改进 — 计划推进</div><div class="action-items">· 掘进系统：完善设备日常维护记录，明确维护周期<br>· 辅助运输系统：制定信号装置更换计划，半年内完成<br>· 综合保障系统：优化排水监控数据刷新频率<br>· 生产经营管理系统：推进ERP系统对接，3个月内完成</div></div><div class="action-deadline amber">≤90天</div></div>
+<div class="action-card good"><div class="action-icon green">✓</div><div class="action-body"><div class="action-title">🟢 保持优秀 — 正常运行</div><div class="action-items">· 主运输系统继续保持高标准运行状态<br>· 综采系统定期传感器标定检查</div></div><div class="action-deadline green">常态化</div></div></div>
+<div class="footer-grid"><div class="footer-card"><div class="section-hd" style="margin-bottom:12px;padding-bottom:8px;"><div class="section-title"><div class="section-num" style="background:var(--accent-green);">三</div>评分等级标准</div></div><table class="data-table grade-std"><thead><tr><th>等级</th><th>分数区间</th><th>说明</th></tr></thead><tbody><tr><td class="std-excellent">优秀</td><td>900分以上</td><td>系统运行极为完善，全面达标</td></tr><tr><td class="std-good">良好</td><td>700-899分</td><td>系统运行良好，基本达标</td></tr><tr><td class="std-pass">合格</td><td>600-699分</td><td>系统运行基本达标，需持续改进</td></tr><tr><td class="std-fail">不合格</td><td>600分以下</td><td>系统运行存在重大问题，限期整改</td></tr></tbody></table></div><div class="footer-card"><div class="section-hd" style="margin-bottom:12px;padding-bottom:8px;"><div class="section-title"><div class="section-num" style="background:var(--accent-purple);">四</div>签字确认栏</div></div><div class="sign-row"><div class="sign-item"><div class="sign-label">编制人 / Prepared By</div><div class="sign-line"></div></div><div class="sign-item"><div class="sign-label">审核人 / Reviewed By</div><div class="sign-line"></div></div><div class="sign-item"><div class="sign-label">批准人 / Approved By</div><div class="sign-line"></div></div></div><div style="margin-top:14px;font-size:11px;color:var(--text-muted);text-align:center;">本报告由煤矿智能化常态化运行管理系统自动生成 · 2026年05月</div></div></div>
+</div>
+</div>
+<script>function updateClock(){var now=new Date();var h=String(now.getHours()).padStart(2,"0");var m=String(now.getMinutes()).padStart(2,"0");var s=String(now.getSeconds()).padStart(2,"0");document.getElementById("clock").textContent=h+":"+m+":"+s;}updateClock();setInterval(updateClock,1000);</script>
 </body>
 </html>
