@@ -268,10 +268,10 @@ body {
   </div>
 </div>
 
-<div style="display:grid;grid-template-columns:1fr 2fr 1fr;gap:14px;margin-bottom:20px;align-items:stretch;height:440px;">
+<div style="display:grid;grid-template-columns:1fr 2fr 1fr;gap:14px;margin-bottom:20px;align-items:stretch;height:465px;">
 
   <!-- LEFT: 数据总览 -->
-  <div style="display:flex;flex-direction:column;gap:10px;height:440px;">
+  <div style="display:flex;flex-direction:column;gap:10px;height:465px;">
     <div class="kpi-card" style="flex:1;padding:14px 16px;display:flex;flex-direction:column;justify-content:center;">
       <div class="kpi-label" style="font-size:11px;">综合得分</div>
       <div style="display:flex;align-items:baseline;gap:3px;margin-top:4px;">
@@ -317,7 +317,7 @@ body {
       <span class="blue-link" onclick="location.href='report.html'" style="font-size:12px;">评价报告 &rarr;</span>
     </div>
     <div class="radar-body" style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 16px 8px 16px;min-height:360px;box-sizing:border-box;margin-top:30px;">
-      <canvas id="radarChart" width="420" height="360" style="display:block;"></canvas>
+      <canvas id="radarChart" width="520" height="440" style="display:block;"></canvas>
       <div class="result-badge fail" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;background:rgba(255,255,255,0.95);border:1px solid rgba(220,38,38,0.3);border-radius:16px;padding:12px 22px;box-shadow:0 8px 32px rgba(0,0,0,0.12);min-width:120px;">
         <div style="font-size:11px;color:var(--accent-red);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:3px;">综合评级</div>
         <div style="font-size:35px;font-weight:900;color:var(--accent-red);line-height:1;">72</div>
@@ -502,8 +502,8 @@ document.addEventListener("DOMContentLoaded", function() {
   var w = ctx.width, h = ctx.height;
   var cx = w / 2, cy = h / 2;
   var maxR = Math.min(w, h) * 0.42;
-  var labels = ["信息基础设施", "地质保障系统", "掘进系统", "综采系统", "主运输系统", "辅助运输系统", "综合保障系统", "安全管控系统", "生产经营管理系统"];
-  var values = [35, 42, 72, 85, 92, 68, 78, 65, 58];
+  var labels = ["基本要求", "信息基础设施", "地质保障系统", "掘进系统", "综采系统", "主运输系统", "辅助运输系统", "综合保障系统", "安全管控系统", "生产经营管理系统"];
+  var values = [65, 35, 42, 72, 85, 92, 68, 78, 65, 58];
   var n = labels.length;
   var colors = { net: "#2563eb", bar: "rgba(37,99,235,0.25)" };
   var step = 4;
